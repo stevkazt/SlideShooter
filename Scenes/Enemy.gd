@@ -83,9 +83,9 @@ func _on_Enemy_area_entered(area):
 	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5):
 		match type:
 			0:
-				Singleton.score += 50
+				Singleton.score += 5
 			1:
-				Singleton.score += 100
+				Singleton.score += 10
 		speed = 0
 		$CollisionShape2D.queue_free()
 		$Sprite.play("explode")
