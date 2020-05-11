@@ -1,0 +1,163 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Art/Player/playerShip2_orange.png" type="Texture" id=4]
+[ext_resource path="res://Art/GUI/configuration.png" type="Texture" id=5]
+[ext_resource path="res://Art/GUI/sfx_on.png" type="Texture" id=6]
+[ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=7]
+[ext_resource path="res://Art/GUI/keys.png" type="Texture" id=8]
+[ext_resource path="res://Art/GUI/tutorial.png" type="Texture" id=9]
+[ext_resource path="res://Art/GUI/about.png" type="Texture" id=10]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 70
+font_data = ExtResource( 3 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 50
+font_data = ExtResource( 3 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "sfx_on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "sfx_off",
+"speed": 5.0
+} ]
+
+[node name="Main" type="Control"]
+editor/display_folded = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+Game = ExtResource( 2 )
+
+[node name="Screen" type="Control" parent="."]
+editor/display_folded = true
+margin_right = 720.0
+margin_bottom = 1280.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Up" type="Control" parent="Screen"]
+margin_right = 720.0
+margin_bottom = 800.0
+
+[node name="Title" type="Label" parent="Screen/Up"]
+anchor_right = 1.0
+margin_bottom = 456.0
+custom_fonts/font = SubResource( 1 )
+text = "Slide Shooter"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="HighScore" type="Label" parent="Screen/Up"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -78.0
+margin_top = -312.0
+margin_right = 79.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 2 )
+text = "100"
+valign = 1
+
+[node name="Label" type="Label" parent="Screen/Up/HighScore"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -171.0
+margin_right = 171.0
+margin_bottom = 155.0
+grow_horizontal = 2
+custom_fonts/font = SubResource( 3 )
+text = "highscore"
+align = 1
+
+[node name="Play" type="Button" parent="Screen/Up"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -130.0
+margin_top = -30.481
+margin_right = -6.0
+margin_bottom = 66.519
+grow_horizontal = 2
+grow_vertical = 2
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 4 )
+flat = true
+
+[node name="Down" type="Control" parent="Screen"]
+margin_top = 1150.0
+margin_right = 40.0
+margin_bottom = 1190.0
+
+[node name="Settings" type="Button" parent="Screen/Down"]
+editor/display_folded = true
+margin_left = 516.0
+margin_right = 576.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 5 )
+flat = true
+
+[node name="sfx" type="Button" parent="Screen/Down/Settings"]
+editor/display_folded = true
+visible = false
+margin_left = -70.0
+margin_right = -10.0
+margin_bottom = 54.0
+flat = true
+
+[node name="sfx" type="AnimatedSprite" parent="Screen/Down/Settings/sfx"]
+position = Vector2( 5.98393, 3.41943 )
+frames = SubResource( 4 )
+animation = "sfx_on"
+centered = false
+
+[node name="Store" type="Button" parent="Screen/Down"]
+margin_left = 372.0
+margin_right = 432.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 8 )
+flat = true
+
+[node name="tutorial" type="Button" parent="Screen/Down"]
+margin_left = 228.0
+margin_right = 288.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 9 )
+flat = true
+
+[node name="about" type="Button" parent="Screen/Down"]
+margin_left = 84.0
+margin_right = 144.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 10 )
+flat = true
+
+[connection signal="pressed" from="Screen/Up/Play" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="Screen/Down/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Screen/Down/Settings/sfx" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="Screen/Down/Store" to="." method="_on_Store_pressed"]
+[connection signal="pressed" from="Screen/Down/tutorial" to="." method="_on_tutorial_pressed"]

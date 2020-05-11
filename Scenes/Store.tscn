@@ -1,0 +1,344 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://Scenes/Store.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Asteroid.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=3]
+[ext_resource path="res://art/PNG/UI/configuration.png" type="Texture" id=4]
+[ext_resource path="res://art/PNG/UI/sfx_on.png" type="Texture" id=5]
+[ext_resource path="res://art/PNG/UI/sfx_off.png" type="Texture" id=6]
+[ext_resource path="res://art/PNG/UI/home.png" type="Texture" id=7]
+[ext_resource path="res://art/PNG/UI/tutorial.png" type="Texture" id=8]
+[ext_resource path="res://art/PNG/UI/about.png" type="Texture" id=9]
+[ext_resource path="res://art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=10]
+[ext_resource path="res://art/PNG/UI/empty.png" type="Texture" id=11]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "sfx_on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "sfx_off",
+"speed": 5.0
+} ]
+
+[sub_resource type="DynamicFont" id=2]
+size = 60
+font_data = ExtResource( 10 )
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+Asteroid = ExtResource( 2 )
+
+[node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
+
+[node name="AsteroidTimer" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 0.5
+autostart = true
+
+[node name="Screen" type="Control" parent="."]
+margin_right = 720.0
+margin_bottom = 1280.0
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Down" type="Control" parent="Screen"]
+margin_top = 1150.0
+margin_right = 40.0
+margin_bottom = 1190.0
+
+[node name="Settings" type="Button" parent="Screen/Down"]
+editor/display_folded = true
+margin_left = 516.0
+margin_right = 576.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 4 )
+flat = true
+
+[node name="sfx" type="Button" parent="Screen/Down/Settings"]
+editor/display_folded = true
+visible = false
+margin_left = -70.0
+margin_right = -10.0
+margin_bottom = 54.0
+flat = true
+
+[node name="sfx" type="AnimatedSprite" parent="Screen/Down/Settings/sfx"]
+position = Vector2( 5.98393, 3.41943 )
+frames = SubResource( 1 )
+animation = "sfx_on"
+centered = false
+
+[node name="home" type="Button" parent="Screen/Down"]
+margin_left = 372.0
+margin_right = 432.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 7 )
+flat = true
+
+[node name="tutorials" type="Button" parent="Screen/Down"]
+margin_left = 228.0
+margin_right = 288.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 8 )
+flat = true
+
+[node name="about" type="Button" parent="Screen/Down"]
+margin_left = 84.0
+margin_right = 144.0
+margin_bottom = 54.0
+rect_scale = Vector2( 2, 2 )
+icon = ExtResource( 9 )
+flat = true
+
+[node name="tuto_menu" type="Control" parent="Screen"]
+margin_right = 720.0
+margin_bottom = 1100.0
+
+[node name="title" type="Label" parent="Screen/tuto_menu"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -99.3109
+margin_top = 61.9482
+margin_right = 125.689
+margin_bottom = 151.948
+custom_fonts/font = SubResource( 2 )
+text = "Store"
+
+[node name="GridContainer" type="GridContainer" parent="Screen/tuto_menu"]
+editor/display_folded = true
+margin_left = 110.0
+margin_top = 200.0
+margin_right = 370.0
+margin_bottom = 660.0
+rect_scale = Vector2( 2, 2 )
+columns = 4
+
+[node name="tuto" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_right = 60.0
+margin_bottom = 54.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto2" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 64.0
+margin_right = 124.0
+margin_bottom = 54.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto3" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 128.0
+margin_right = 188.0
+margin_bottom = 54.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto4" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 192.0
+margin_right = 252.0
+margin_bottom = 54.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto5" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_top = 58.0
+margin_right = 60.0
+margin_bottom = 112.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto6" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 64.0
+margin_top = 58.0
+margin_right = 124.0
+margin_bottom = 112.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto7" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 128.0
+margin_top = 58.0
+margin_right = 188.0
+margin_bottom = 112.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto8" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 192.0
+margin_top = 58.0
+margin_right = 252.0
+margin_bottom = 112.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto9" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_top = 116.0
+margin_right = 60.0
+margin_bottom = 170.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto10" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 64.0
+margin_top = 116.0
+margin_right = 124.0
+margin_bottom = 170.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto11" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 128.0
+margin_top = 116.0
+margin_right = 188.0
+margin_bottom = 170.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto12" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 192.0
+margin_top = 116.0
+margin_right = 252.0
+margin_bottom = 170.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto13" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_top = 174.0
+margin_right = 60.0
+margin_bottom = 228.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto14" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 64.0
+margin_top = 174.0
+margin_right = 124.0
+margin_bottom = 228.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto15" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 128.0
+margin_top = 174.0
+margin_right = 188.0
+margin_bottom = 228.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto16" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 192.0
+margin_top = 174.0
+margin_right = 252.0
+margin_bottom = 228.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto17" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_top = 232.0
+margin_right = 60.0
+margin_bottom = 286.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto18" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 64.0
+margin_top = 232.0
+margin_right = 124.0
+margin_bottom = 286.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto19" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 128.0
+margin_top = 232.0
+margin_right = 188.0
+margin_bottom = 286.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto20" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 192.0
+margin_top = 232.0
+margin_right = 252.0
+margin_bottom = 286.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto21" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_top = 290.0
+margin_right = 60.0
+margin_bottom = 344.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto22" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 64.0
+margin_top = 290.0
+margin_right = 124.0
+margin_bottom = 344.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto23" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 128.0
+margin_top = 290.0
+margin_right = 188.0
+margin_bottom = 344.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto24" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 192.0
+margin_top = 290.0
+margin_right = 252.0
+margin_bottom = 344.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto25" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_top = 348.0
+margin_right = 60.0
+margin_bottom = 402.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto26" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 64.0
+margin_top = 348.0
+margin_right = 124.0
+margin_bottom = 402.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto27" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 128.0
+margin_top = 348.0
+margin_right = 188.0
+margin_bottom = 402.0
+icon = ExtResource( 11 )
+flat = true
+
+[node name="tuto28" type="Button" parent="Screen/tuto_menu/GridContainer"]
+margin_left = 192.0
+margin_top = 348.0
+margin_right = 252.0
+margin_bottom = 402.0
+icon = ExtResource( 11 )
+flat = true
+
+[connection signal="timeout" from="AsteroidTimer" to="." method="_on_AsteroidTimer_timeout"]
+[connection signal="pressed" from="Screen/Down/Settings" to="." method="_on_Settings_pressed"]
+[connection signal="pressed" from="Screen/Down/Settings/sfx" to="." method="_on_sfx_pressed"]
+[connection signal="pressed" from="Screen/Down/home" to="." method="_on_home_pressed"]
+[connection signal="pressed" from="Screen/Down/tutorials" to="." method="_on_tutorial_pressed"]

@@ -1,0 +1,13 @@
+[gd_scene format=2]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 0, 640 )
+
+[node name="Sprite" type="Sprite" parent="ParallaxLayer"]
+position = Vector2( 360, 600 )
+scale = Vector2( 1, 1.5 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 720, 1280 )
+

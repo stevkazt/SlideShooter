@@ -1,0 +1,53 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="SlideShooter"
+run/main_scene="res://Scenes/Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+Singleton="*res://Scenes/Singleton.gd"
+
+[display]
+
+window/size/width=720
+window/size/height=1280
+window/handheld/orientation="portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="keep_width"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="AreaPlayer"
+2d_physics/layer_3="Enemy"
+2d_physics/layer_4="Object"
+2d_physics/layer_5="PowerUp"
+2d_physics/layer_6="BulletsPlayer"
+2d_physics/layer_7="BulletsEnemy"
+2d_physics/layer_8="LaserBoss"
+2d_physics/layer_9="MissilePlayer"
+2d_physics/layer_10="MissileEnemy"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,81 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Scenes/Bullet.gd" type="Script" id=1]
+[ext_resource path="res://Art/Bullets/laserBlue01.png" type="Texture" id=2]
+[ext_resource path="res://Art/Bullets/laserRed01.png" type="Texture" id=3]
+[ext_resource path="res://Art/Bullets/laserBlue08.png" type="Texture" id=4]
+[ext_resource path="res://Art/Bullets/laserBlue09.png" type="Texture" id=5]
+[ext_resource path="res://Art/Bullets/laserBlue10.png" type="Texture" id=6]
+[ext_resource path="res://Art/Bullets/laserBlue11.png" type="Texture" id=7]
+[ext_resource path="res://Art/Bullets/laserRed08.png" type="Texture" id=8]
+[ext_resource path="res://Art/Bullets/laserRed09.png" type="Texture" id=9]
+[ext_resource path="res://Art/Bullets/laserRed10.png" type="Texture" id=10]
+[ext_resource path="res://Art/Bullets/laserRed11.png" type="Texture" id=11]
+[ext_resource path="res://Art/Bullets/mesiles1.png" type="Texture" id=12]
+[ext_resource path="res://Art/Bullets/mesiles2.png" type="Texture" id=13]
+[ext_resource path="res://Art/Bullets/mesiles3.png" type="Texture" id=14]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "enemy",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"loop": false,
+"name": "explode",
+"speed": 16.0
+}, {
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"loop": false,
+"name": "explodeenemy",
+"speed": 16.0
+}, {
+"frames": [ ExtResource( 12 ) ],
+"loop": false,
+"name": "missile",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"loop": true,
+"name": "launch_missile",
+"speed": 15.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 3.89649
+height = 21.2112
+
+[node name="Bullet" type="Area2D"]
+pause_mode = 1
+collision_layer = 32
+collision_mask = 524
+script = ExtResource( 1 )
+speed = 1000
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+rotation = 1.5708
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 11.5158, 0.0449142 )
+rotation = 1.5708
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( -14.52, 0.250343 )
+
+[node name="sfx_laser_player" type="AudioStreamPlayer2D" parent="."]
+volume_db = -10.0
+
+[node name="sfx_laser_enemy" type="AudioStreamPlayer2D" parent="."]
+
+[connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Scenes/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Art/Damage/playerShip3_damage1.png" type="Texture" id=3]
+[ext_resource path="res://Art/Damage/playerShip3_damage2.png" type="Texture" id=4]
+[ext_resource path="res://Art/Damage/playerShip3_damage3.png" type="Texture" id=5]
+[ext_resource path="res://Art/Enemy/enemyBlack1.png" type="Texture" id=6]
+[ext_resource path="res://Art/Enemy/enemyRed2.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "explode",
+"speed": 12.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "ninja_black",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "shooter_orange",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 41.9856
+
+[node name="Enemy" type="Area2D" groups=[
+"enemy",
+]]
+z_index = -2
+collision_layer = 4
+collision_mask = 33
+script = ExtResource( 1 )
+speed = 300
+bullet = ExtResource( 2 )
+
+[node name="Sprite" type="AnimatedSprite" parent="."]
+rotation = -1.5708
+frames = SubResource( 1 )
+animation = "ninja_black"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+[node name="Position2D" type="Position2D" parent="."]
+position = Vector2( 45, 0 )
+
+[node name="ShootTimer" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
+[connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
+[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

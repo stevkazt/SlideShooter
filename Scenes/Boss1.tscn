@@ -1,0 +1,99 @@
+[gd_scene load_steps=13 format=2]
+
+[ext_resource path="res://Scenes/Boss1.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Art/Enemy/spaceShips_007.png" type="Texture" id=3]
+[ext_resource path="res://Art/Bullets/ShipLazer.png" type="Texture" id=4]
+[ext_resource path="res://Art/Bullets/Lazer1.png" type="Texture" id=5]
+[ext_resource path="res://Art/Bullets/Lazer2.png" type="Texture" id=6]
+[ext_resource path="res://Art/Bullets/Lazer3.png" type="Texture" id=7]
+[ext_resource path="res://Art/Bullets/Lazer4.png" type="Texture" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "laser",
+"speed": 5.0
+} ]
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 70.739
+height = 61.7354
+
+[sub_resource type="SpriteFrames" id=3]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
+"loop": true,
+"name": "default",
+"speed": 16.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 480.931, 33.5849 )
+
+[node name="Boss1" type="Area2D" groups=[
+"enemy",
+]]
+collision_layer = 4
+collision_mask = 33
+script = ExtResource( 1 )
+bullet = ExtResource( 2 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+rotation = -1.5708
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 2 )
+
+[node name="PosTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Laser1Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="Position2D" type="Position2D" parent="."]
+
+[node name="Position2D2" type="Position2D" parent="."]
+position = Vector2( 66.4997, -72.1997 )
+
+[node name="Position2D3" type="Position2D" parent="."]
+position = Vector2( 68.3997, 74.0997 )
+
+[node name="Laser2Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="MissilesTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="Laser" type="Area2D" parent="."]
+visible = false
+collision_layer = 128
+collision_mask = 33
+
+[node name="AnimatedSprite2" type="AnimatedSprite" parent="Laser"]
+position = Vector2( 500, 0 )
+rotation = 1.5708
+z_index = -1
+frames = SubResource( 3 )
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Laser"]
+position = Vector2( 500, 0 )
+shape = SubResource( 4 )
+disabled = true
+
+[connection signal="area_entered" from="." to="." method="_on_Boss1_area_entered"]
+[connection signal="timeout" from="PosTimer" to="." method="_on_Timer_timeout"]
+[connection signal="timeout" from="Laser1Timer" to="." method="_on_MissileTimer_timeout"]
+[connection signal="timeout" from="Laser2Timer" to="." method="_on_Laser2Timer_timeout"]
+[connection signal="timeout" from="MissilesTimer" to="." method="_on_MissilesTimer_timeout"]
