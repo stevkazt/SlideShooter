@@ -21,8 +21,8 @@ export (PackedScene) var Bullet
 func _ready():
 	#can_get_damage = false
 	screensize = get_viewport_rect().size
-
-
+	
+#------------------------------------------------------------------------------
 func _process(delta):
 	if shield:
 		_powerupShieldprocess()
@@ -36,8 +36,8 @@ func _process(delta):
 		var target_dir = (target.global_position - global_position).normalized()
 		var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*10).angle()
-
-
+	
+#------------------------------------------------------------------------------
 func _input(event):
 	if event is InputEventMouseButton and event.position.y < screensize.y-200:
 		if event.button_index == BUTTON_LEFT and event.pressed:
@@ -58,8 +58,8 @@ func _input(event):
 			dragging = false
 	if event is InputEventScreenDrag:
 		drag = event.relative
-
-
+	
+#------------------------------------------------------------------------------
 func who_to(enemies_in_area):
 	enemytypes = Array()
 	if enemies_in_area.size() > 0:
@@ -70,73 +70,32 @@ func who_to(enemies_in_area):
 			target = enemies_in_area[closest_enemy_index]
 	else:
 		target = null
-
+	
+#------------------------------------------------------------------------------
 func _on_Timer_timeout():
 	var dir = Vector2(1, 0).rotated($Position2D.global_rotation)
 	var b = Bullet.instance()
 	get_parent().add_child(b)
 	b.start($Position2D.global_position, dir,1,1)
 	
-
+#------------------------------------------------------------------------------
 func _powerupStair():
 		var b = Bullet.instance()
 		$sfx_stair.play()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(1,0),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(-1,0),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(0,1),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(0,-1),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(1,1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(-1,1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(-1,-1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(1,-1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(1,-2).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(2,-1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(2,1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(1,2).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(-1,2).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(-2,1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(-2,-1).normalized(),1,1)
-		b = Bullet.instance()
-		get_parent().add_child(b)
-		b.start(self.global_position, Vector2(-1,-2).normalized(),1,1)
-		
-			
+		for i in range(30):
+			get_parent().add_child(b)
+			b.start(self.global_position, Vector2(1,0).rotated(deg2rad(12*i)),1,1)
+			b = Bullet.instance()
+	
+#------------------------------------------------------------------------------
 func _powerupShield():
 	if !shield: 
 		$sfx_shielup.play()
 		can_get_damage = false
 		shields_number = 3
 		shield = true
-
+	
+#------------------------------------------------------------------------------
 func _powerupShieldprocess():
 	if shields_number == 3:
 		$Sprite.animation = "PowerShield"
@@ -160,10 +119,8 @@ func _powerupShieldprocess():
 		$Sprite.animation = "default"
 		shield = false
 		can_get_damage = true
-
-
-
-
+	
+#------------------------------------------------------------------------------
 func _on_PlayerShip_area_entered(area):
 	if shield and area.get_collision_layer_bit(7):
 		shields_number=0
@@ -188,21 +145,20 @@ func _on_PlayerShip_area_entered(area):
 			Singleton.powers.resize(0)
 			$Sprite.play("explode")
 			$sfx_lose.play()
-		
-
-
+	
+#------------------------------------------------------------------------------
 func _on_LifeTimer_timeout():
 	$Sprite.play("default")
 	can_get_damage = true
 	$sfx_shielup.stop()
 	$sfx_shielddown.play()
-
-
-
-
+	
+#------------------------------------------------------------------------------
 func _on_TapTimer_timeout():
 	taps = 0
-
-
+	
+#------------------------------------------------------------------------------
 func _on_sfx_lost_shield_finished():
 	lost_shield_played = true
+	
+#------------------------------------------------------------------------------

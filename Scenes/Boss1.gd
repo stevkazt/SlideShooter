@@ -27,7 +27,7 @@ func _process(delta):
 		position = position.linear_interpolate(Vector2(screensize.x/2,screensize.y/2), delta*0.5)
 		if Singleton.score > 1540:
 			$Laser.show()
-			#$AnimatedSprite.animation = "laser"
+			$AnimatedSprite.animation = "laser"
 			$Laser/CollisionShape2D.disabled = false
 	else:
 		if $PosTimer.is_stopped():

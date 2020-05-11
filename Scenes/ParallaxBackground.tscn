@@ -1,13 +1,15 @@
-[gd_scene format=2]
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Art/Background/fondo1.png" type="Texture" id=1]
 
 [node name="ParallaxBackground" type="ParallaxBackground"]
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="."]
-motion_mirroring = Vector2( 0, 640 )
+motion_mirroring = Vector2( 0, 3838 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxLayer"]
 position = Vector2( 360, 600 )
-scale = Vector2( 1, 1.5 )
+texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 0, 0, 720, 1280 )
+region_rect = Rect2( 0, 0.5, 720, 3838.5 )
 

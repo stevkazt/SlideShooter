@@ -18,18 +18,26 @@ func start(_position, _direction, _type,_team):
 	screensize = get_viewport_rect().size
 	type = _type
 	team = _team
-	if team == 2:
-		$sfx_laser_enemy.play()
-		$Sprite.animation = "enemy"
-		set_collision_layer_bit(5,false)
-		set_collision_mask_bit(0,true)
-	if type == 2:
-		rocketlaunch = false
-		$Sprite.animation = "missile"
-		target = get_tree().get_nodes_in_group("player")[0]
-		missile_side  = randi()%2+1
+	
+	#---------- Player team ----------------#
+	if team == 1:
+		$sfx_laser_player.play()
 		
-	$sfx_laser_player.play()
+	#---------- Enemy team -----------------#
+	if team == 2:
+		if type == 1:
+			$sfx_laser_enemy.play()
+			$Sprite.animation = "enemy"
+			set_collision_layer_bit(5,false)
+			set_collision_mask_bit(0,true)
+		if type == 2:
+			$CollisionShape2D.scale = Vector2(2,2)
+			rocketlaunch = false
+			$Sprite.animation = "missile"
+			set_collision_layer_bit(9,true)
+			target = get_tree().get_nodes_in_group("player")[0]
+			missile_side  = randi()%2+1
+		
 	position = _position
 	rotation = _direction.angle()
 	velocity = _direction * speed
@@ -67,15 +75,15 @@ func _on_VisibilityNotifier2D_screen_exited():
 
 
 func _on_Bullet_area_entered(area):
-	if team == 1 and area.get_collision_layer_bit(2):
+	if team == 1 and (area.get_collision_layer_bit(2) or area.get_collision_layer_bit(9)):
 		velocity = Vector2()
 		$CollisionShape2D.queue_free()
 		$Sprite.play("explode")
-	if team == 2 and area.get_collision_layer_bit(0):
+	if team == 2 and (area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5)):
 		velocity = Vector2()
 		$CollisionShape2D.queue_free()
 		self.scale = Vector2(1,1)
-		$Sprite.play("explode")
+		$Sprite.play("explodeenemy")
 
 func _on_Sprite_animation_finished():
 	queue_free()

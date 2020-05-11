@@ -36,7 +36,7 @@ z_index = -2
 collision_layer = 4
 collision_mask = 33
 script = ExtResource( 1 )
-speed = 300
+speed = 250
 bullet = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
@@ -55,7 +55,6 @@ position = Vector2( 45, 0 )
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
-
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

@@ -1,15 +1,16 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Art/Player/playerShip2_orange.png" type="Texture" id=4]
+[ext_resource path="res://Art/Player/playerShip2_blue.png" type="Texture" id=4]
 [ext_resource path="res://Art/GUI/configuration.png" type="Texture" id=5]
 [ext_resource path="res://Art/GUI/sfx_on.png" type="Texture" id=6]
 [ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=7]
 [ext_resource path="res://Art/GUI/keys.png" type="Texture" id=8]
 [ext_resource path="res://Art/GUI/tutorial.png" type="Texture" id=9]
 [ext_resource path="res://Art/GUI/about.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -25,26 +26,27 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": false,
-"name": "sfx_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": false,
 "name": "sfx_off",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "sfx_on",
+"speed": 5.0
 } ]
 
 [node name="Main" type="Control"]
-editor/display_folded = true
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 Game = ExtResource( 2 )
 
 [node name="Screen" type="Control" parent="."]
-editor/display_folded = true
 margin_right = 720.0
 margin_bottom = 1280.0
 __meta__ = {
@@ -110,7 +112,6 @@ margin_right = 40.0
 margin_bottom = 1190.0
 
 [node name="Settings" type="Button" parent="Screen/Down"]
-editor/display_folded = true
 margin_left = 516.0
 margin_right = 576.0
 margin_bottom = 54.0
@@ -119,7 +120,6 @@ icon = ExtResource( 5 )
 flat = true
 
 [node name="sfx" type="Button" parent="Screen/Down/Settings"]
-editor/display_folded = true
 visible = false
 margin_left = -70.0
 margin_right = -10.0
@@ -156,6 +156,7 @@ rect_scale = Vector2( 2, 2 )
 icon = ExtResource( 10 )
 flat = true
 
+[node name="ParallaxBackground" parent="." instance=ExtResource( 11 )]
 [connection signal="pressed" from="Screen/Up/Play" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Screen/Down/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Screen/Down/Settings/sfx" to="." method="_on_sfx_pressed"]

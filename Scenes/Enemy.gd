@@ -10,12 +10,8 @@ var type = 0
 var target = null
 var set_pos = Vector2()
 var screensize
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
 
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	screensize = get_viewport_rect().size
 	target = get_tree().get_nodes_in_group("player")[0]

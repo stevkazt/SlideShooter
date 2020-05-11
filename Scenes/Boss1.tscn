@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Boss1.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/Enemy/spaceShips_007.png" type="Texture" id=3]
-[ext_resource path="res://Art/Bullets/ShipLazer.png" type="Texture" id=4]
+[ext_resource path="res://Art/Bullets/destello.png" type="Texture" id=4]
 [ext_resource path="res://Art/Bullets/Lazer1.png" type="Texture" id=5]
 [ext_resource path="res://Art/Bullets/Lazer2.png" type="Texture" id=6]
 [ext_resource path="res://Art/Bullets/Lazer3.png" type="Texture" id=7]
@@ -85,6 +85,7 @@ position = Vector2( 500, 0 )
 rotation = 1.5708
 z_index = -1
 frames = SubResource( 3 )
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Laser"]
