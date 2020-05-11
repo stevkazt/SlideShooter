@@ -68,7 +68,7 @@ func missile_process(delta):
 		
 
 func explode():
-    queue_free()
+	queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ESCUDO2.png-049fe5ead92158b7b3432db31538c5f1.stex"
+path="res://.import/ESCUDO1.png-70e45adb925fdd66fa94287a32da41b6.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Shields/ESCUDO2.png"
-dest_files=[ "res://.import/ESCUDO2.png-049fe5ead92158b7b3432db31538c5f1.stex" ]
+source_file="res://Art/Shields/Stage_1/ESCUDO1.png"
+dest_files=[ "res://.import/ESCUDO1.png-70e45adb925fdd66fa94287a32da41b6.stex" ]
 
 [params]
 

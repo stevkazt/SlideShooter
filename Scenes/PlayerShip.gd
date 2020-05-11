@@ -81,11 +81,11 @@ func _on_Timer_timeout():
 #------------------------------------------------------------------------------
 func _powerupStair():
 		var b = Bullet.instance()
-		$sfx_stair.play()
-		for i in range(30):
+		for i in range(18):
 			get_parent().add_child(b)
-			b.start(self.global_position, Vector2(1,0).rotated(deg2rad(12*i)),1,1)
+			b.start(global_position,Vector2(1,0).rotated(deg2rad(20*i)),1,1)
 			b = Bullet.instance()
+		$sfx_stair.play()
 	
 #------------------------------------------------------------------------------
 func _powerupShield():

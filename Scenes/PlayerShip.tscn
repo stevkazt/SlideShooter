@@ -7,14 +7,15 @@
 [ext_resource path="res://Art/Damage/playerShip3_damage2.png" type="Texture" id=5]
 [ext_resource path="res://Art/Damage/playerShip3_damage1.png" type="Texture" id=6]
 [ext_resource path="res://Art/Shields/shield1.png" type="Texture" id=7]
-[ext_resource path="res://Art/Shields/ESCUDO3.png" type="Texture" id=8]
-[ext_resource path="res://Art/Shields/ESCUDO2.png" type="Texture" id=9]
-[ext_resource path="res://Art/Shields/ESCUDO1.png" type="Texture" id=10]
+[ext_resource path="res://Art/Shields/Stage_1/ESCUDO3.png" type="Texture" id=8]
+[ext_resource path="res://Art/Shields/Stage_1/ESCUDO2.png" type="Texture" id=9]
+[ext_resource path="res://Art/Shields/Stage_1/ESCUDO1.png" type="Texture" id=10]
 [ext_resource path="res://Art/Sfx/Powerupshield.ogg" type="AudioStream" id=11]
 [ext_resource path="res://Art/Sfx/lostshield.ogg" type="AudioStream" id=12]
 [ext_resource path="res://Art/Sfx/sfx_lose.ogg" type="AudioStream" id=13]
 [ext_resource path="res://Art/Sfx/stair.ogg" type="AudioStream" id=14]
 [ext_resource path="res://Art/Sfx/sfx_shieldDown.ogg" type="AudioStream" id=15]
+
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
