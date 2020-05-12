@@ -47,27 +47,27 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 14 ) ],
-"loop": false,
-"name": "sfx_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 13 ) ],
 "loop": false,
 "name": "sfx_on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 14 ) ],
+"loop": false,
+"name": "sfx_off",
 "speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 15 ) ],
-"loop": true,
-"name": "shield",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ) ],
 "loop": false,
 "name": "stair",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 15 ) ],
+"loop": true,
+"name": "shield",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 17 ) ],
@@ -118,6 +118,9 @@ custom_fonts/font = SubResource( 1 )
 text = "100"
 align = 2
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="GameOverTimer" type="Timer" parent="."]
 pause_mode = 2
@@ -245,7 +248,7 @@ animation = "stair"
 centered = false
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 19 )]
-[connection signal="timeout" from="ninjaSpawn" to="." method="_on_EnemySpawn_timeout"]
+[connection signal="timeout" from="ninjaSpawn" to="." method="_on_ninjaSpawn_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]

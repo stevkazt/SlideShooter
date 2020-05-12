@@ -92,9 +92,8 @@ playing = true
 position = Vector2( 500, 0 )
 shape = SubResource( 4 )
 disabled = true
-
 [connection signal="area_entered" from="." to="." method="_on_Boss1_area_entered"]
 [connection signal="timeout" from="PosTimer" to="." method="_on_Timer_timeout"]
-[connection signal="timeout" from="Laser1Timer" to="." method="_on_MissileTimer_timeout"]
+[connection signal="timeout" from="Laser1Timer" to="." method="_on_Laser1Timer_timeout"]
 [connection signal="timeout" from="Laser2Timer" to="." method="_on_Laser2Timer_timeout"]
 [connection signal="timeout" from="MissilesTimer" to="." method="_on_MissilesTimer_timeout"]

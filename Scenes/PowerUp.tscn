@@ -1,15 +1,16 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Scenes/PowerUp.gd" type="Script" id=1]
 [ext_resource path="res://Art/PowerUps/Escudo.png" type="Texture" id=2]
 [ext_resource path="res://Art/PowerUps/Multishot.png" type="Texture" id=3]
 [ext_resource path="res://Art/PowerUps/Roketluncher.png" type="Texture" id=4]
+[ext_resource path="res://Art/PowerUps/upgrade1.png" type="Texture" id=5]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 5 ) ],
 "loop": false,
-"name": "shield",
+"name": "double_shoot",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
@@ -17,8 +18,13 @@ animations = [ {
 "name": "stair",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "shield",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 4 ) ],
-"loop": true,
+"loop": false,
 "name": "rocket",
 "speed": 5.0
 } ]
@@ -34,7 +40,7 @@ script = ExtResource( 1 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "stair"
+animation = "double_shoot"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0.234371, 0.937477 )
@@ -46,7 +52,6 @@ volume_db = 5.0
 [node name="Dissapear" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
-
 [connection signal="area_entered" from="." to="." method="_on_PowerUp_area_entered"]
 [connection signal="finished" from="sfx_taken" to="." method="_on_sfx_taken_finished"]
 [connection signal="timeout" from="Dissapear" to="." method="_on_Dissapear_timeout"]
