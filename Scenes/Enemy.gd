@@ -1,9 +1,8 @@
 extends Area2D
 
 
-export (int) var speed
 export (PackedScene) var bullet
-
+var speed
 var velocity = Vector2()
 var dir = Vector2()
 var type = 0
@@ -13,6 +12,11 @@ var screensize
 
 
 func _ready():
+	if Singleton.score > 2000:
+		speed = 350
+	else:
+		speed = 250
+		
 	screensize = get_viewport_rect().size
 	target = get_tree().get_nodes_in_group("player")[0]
 	randomize()

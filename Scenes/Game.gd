@@ -52,6 +52,10 @@ func _process(_delta):
 		add_child(p)
 		p.position = Vector2(screensize.x/2,screensize.y/2)
 		Singleton.boss = false
+		if $ninjaSpawn.wait_time == 0.7:
+			$ninjaSpawn.wait_time = 1.2
+		if $ShooterTimer.wait_time == 6:
+			$ShooterTimer.wait_time = 4
 	#----------------------------------------------------------------------------------------------
 	if !Singleton.boss and $ninjaSpawn.is_stopped() and !Singleton.update:
 		$ninjaSpawn.start()
