@@ -136,6 +136,10 @@ autostart = true
 [node name="ShooterTimer" type="Timer" parent="."]
 wait_time = 6.0
 
+[node name="UfoTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
 [node name="PowerUpTimer" type="Timer" parent="."]
 wait_time = 15.0
 one_shot = true
@@ -261,6 +265,7 @@ animation = "stair"
 centered = false
 [connection signal="timeout" from="ninjaSpawn" to="." method="_on_ninjaSpawn_timeout"]
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
+[connection signal="timeout" from="UfoTimer" to="." method="_on_UfoTimer_timeout"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="pressed" from="Buttons/pause_menu" to="." method="_on_pause_pressed"]

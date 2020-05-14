@@ -53,9 +53,7 @@ func _process(_delta):
 		p.position = Vector2(screensize.x/2,screensize.y/2)
 		Singleton.boss = false
 		if $ninjaSpawn.wait_time == 0.7:
-			$ninjaSpawn.wait_time = 1.2
-		if $ShooterTimer.wait_time == 6:
-			$ShooterTimer.wait_time = 4
+			$ninjaSpawn.wait_time = 2
 	#----------------------------------------------------------------------------------------------
 	if !Singleton.boss and $ninjaSpawn.is_stopped() and !Singleton.update:
 		$ninjaSpawn.start()
@@ -107,11 +105,19 @@ func _on_ninjaSpawn_timeout():
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_ShooterTimer_timeout():
-	var choose = 2
 	if Singleton.score > 2000:
-		choose = randi()%2+1
+		$UfoTimer.start()
 	var e = Enemy.instance()
-	e.type = choose
+	e.type = 1
+	add_child(e)
+	
+#-----------------------------------------------------------------------------------------------------
+func _on_UfoTimer_timeout():
+	var e = Enemy.instance()
+	e.type = 2
+	add_child(e)
+	e = Enemy.instance()
+	e.type = 2
 	add_child(e)
 	
 #-----------------------------------------------------------------------------------------------------
@@ -228,6 +234,9 @@ func _on_sfx_pressed():
 	Singleton.sfx = !Singleton.sfx
 	
 #-----------------------------------------------------------------------------------------------------
+
+
+
 
 
 

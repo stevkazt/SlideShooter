@@ -13,7 +13,7 @@ var screensize
 
 func _ready():
 	if Singleton.score > 2000:
-		speed = 350
+		speed = 450
 	else:
 		speed = 250
 		
