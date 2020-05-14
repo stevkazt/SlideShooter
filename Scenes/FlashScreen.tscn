@@ -26,6 +26,7 @@ script = ExtResource( 3 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 z_index = 1
 frames = SubResource( 1 )
+frame = 4
 playing = true
 
 [node name="Timer" type="Timer" parent="."]

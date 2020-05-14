@@ -22,8 +22,8 @@ export (PackedScene) var FlashScreen
 #-----------------------------------------------------------------------------------------------------
 func _ready():
 	s_size = get_viewport_rect().size
-	Singleton.score = 2100
-	Singleton.boss = true
+	Singleton.score = 980
+	Singleton.lifes = 2
 	
 #-----------------------------------------------------------------------------------------------------
 func _process(delta):
@@ -174,7 +174,6 @@ func _on_PlayerShip_area_entered(area):
 	# ----------------------- NORMAL ENEMY ----------------------
 	elif can_get_damage and !area.get_collision_layer_bit(4): 
 		#Input.vibrate_handheld(500)
-		print(can_get_damage)
 		if !Singleton.update:
 			can_get_damage = false
 			$sfx_shielup.play()
@@ -196,7 +195,6 @@ func _on_PlayerShip_area_entered(area):
 			Singleton.update = true
 			can_get_damage = false
 			$UpdateTimer.start()
-			print(can_get_damage)
 			$Sprite.play("upgrade1")
 	
 #-----------------------------------------------------------------------------------------------------

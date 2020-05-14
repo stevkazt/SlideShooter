@@ -72,8 +72,8 @@ func missile_process(delta):
 			var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 			self.global_rotation = current_dir.linear_interpolate(target_dir, delta*10).angle()
 		else:
-			position = Vector2()
-			$Sprite.play("explode")
+			target = null
+			position += velocity * delta
 			
 	#----------------------------------------------------------------------------------------------
 	if team == 2:

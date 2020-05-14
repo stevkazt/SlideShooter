@@ -128,11 +128,10 @@ func _on_PowerUpTimer_timeout():
 	var pa = [1,1,1,1,1,1,1,2,2,2]
 	var pb = [3,3,3,3,3,3,3,2,2,2]
 	var b
-	var range_ = 8
 	
 	if Singleton.score > 2000:
 		pa = pb
-	b = randi()%range_+0
+	b = randi()%10+0
 	p.power = pa[b]
 	add_child(p)
 	p.position = Vector2(rand_range(150,600),rand_range(400,1120))

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scenes/Boss1.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://Art/Bullets/Lazer3.png" type="Texture" id=7]
 [ext_resource path="res://Art/Bullets/Lazer4.png" type="Texture" id=8]
 [ext_resource path="res://Art/Damage/Explosion1.png" type="Texture" id=9]
+[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -45,6 +46,7 @@ collision_layer = 4
 collision_mask = 33
 script = ExtResource( 1 )
 bullet = ExtResource( 2 )
+minions = ExtResource( 10 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
@@ -85,7 +87,7 @@ position = Vector2( 500, 0 )
 rotation = 1.5708
 z_index = -1
 frames = SubResource( 3 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Laser"]
@@ -102,8 +104,12 @@ visible = false
 position = Vector2( 0.326172, 4.85721 )
 texture = ExtResource( 9 )
 offset = Vector2( 14.7054, 35.2272 )
+
+[node name="ShooterTimer" type="Timer" parent="."]
+wait_time = 3.0
 [connection signal="area_entered" from="." to="." method="_on_Boss1_area_entered"]
 [connection signal="timeout" from="PosTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Laser1Timer" to="." method="_on_Laser1Timer_timeout"]
 [connection signal="timeout" from="Laser2Timer" to="." method="_on_Laser2Timer_timeout"]
 [connection signal="timeout" from="MissilesTimer" to="." method="_on_MissilesTimer_timeout"]
+[connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]

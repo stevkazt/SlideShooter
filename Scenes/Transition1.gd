@@ -12,7 +12,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	get_parent().get_node("BG").add_child(background2)
 	Singleton.update = false
 	Singleton.lifes = 3
-	get_tree().get_nodes_in_group("player")[0].can_get_damage = true
+	#get_tree().get_nodes_in_group("player")[0].can_get_damage = true
 	queue_free()
 	
 	

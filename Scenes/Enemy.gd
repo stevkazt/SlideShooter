@@ -9,6 +9,7 @@ var type = 0
 var target = null
 var set_pos = Vector2()
 var screensize
+var can_get_damage = true
 
 
 func _ready():
@@ -106,9 +107,11 @@ func _on_Enemy_area_entered(area):
 	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5):
 		match type:
 			0:
-				Singleton.score += 5
+				if can_get_damage:
+					Singleton.score += 2
 			1:
-				Singleton.score += 10
+				if can_get_damage:
+					Singleton.score += 7
 			3:
 				Singleton.score += 15
 		speed = 0
