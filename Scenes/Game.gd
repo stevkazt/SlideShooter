@@ -125,18 +125,15 @@ func _on_UfoTimer_timeout():
 func _on_PowerUpTimer_timeout():
 	randomize()
 	var p = PowerUp.instance()
-	var pa = [1,1,1,1,1,1,2,2,3,3]
-	var pb = [1,1,2,2,2,2,3,3,3,3]
+	var pa = [1,1,1,1,1,1,1,2,2,2]
+	var pb = [3,3,3,3,3,3,3,2,2,2]
 	var b
 	var range_ = 8
 	
 	if Singleton.score > 2000:
-		range_ = 10 # Genera numeros de 0 a 9
+		pa = pb
 	b = randi()%range_+0
-	if Singleton.last_powers[0] == 1 and Singleton.last_powers[1] == 1:
-		p.power = pb[b]
-	else:
-		p.power = pa[b]
+	p.power = pa[b]
 	add_child(p)
 	p.position = Vector2(rand_range(150,600),rand_range(400,1120))
 	

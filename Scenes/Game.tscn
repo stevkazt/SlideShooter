@@ -141,7 +141,7 @@ wait_time = 5.0
 one_shot = true
 
 [node name="PowerUpTimer" type="Timer" parent="."]
-wait_time = 15.0
+wait_time = 13.0
 one_shot = true
 autostart = true
 
