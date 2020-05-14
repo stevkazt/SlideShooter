@@ -8,8 +8,8 @@ var enemytypes : Array
 
 var drag 
 var dragging
-var screensize
-var can_get_damage = false#true
+var s_size
+var can_get_damage = true
 var taps = 0
 var shields_number = 0
 var shield = false
@@ -17,41 +17,51 @@ var lost_shield_played = false
 var double_shoot = false
 
 export (PackedScene) var Bullet
-
+export (PackedScene) var FlashScreen
 
 #-----------------------------------------------------------------------------------------------------
 func _ready():
-	screensize = get_viewport_rect().size
+	s_size = get_viewport_rect().size
+	Singleton.score = 1980
+	Singleton.boss = true
 	
 #-----------------------------------------------------------------------------------------------------
 func _process(delta):
+	if $LaserTimer.is_stopped() and position != Vector2(s_size.x/2,s_size.y/2) and !Singleton.update:
+		$LaserTimer.start()
+	
 	if shield:
 		_powerupShieldprocess()
-	var enemies_in_area = $Area2D.get_overlapping_areas()
+	
+	#--------------- Rotacion y movimiento -------------------------------------------------------
 	if drag and dragging:
 		position += drag
-		position.x = clamp(position.x,0,screensize.x)
-		position.y = clamp(position.y,0,screensize.y)
-	who_to(enemies_in_area)
+		position.x = clamp(position.x,0,s_size.x)
+		position.y = clamp(position.y,10,s_size.y)
+	who_to()
+	var target_dir
+	var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 	if target:
-		var target_dir = (target.global_position - global_position).normalized()
-		var current_dir = Vector2(1, 0).rotated(self.global_rotation)
+		target_dir = (target.global_position - global_position).normalized()
 		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*10).angle()
+	elif Singleton.update:
+		target_dir = Vector2(0,-1)
+		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*4).angle()
+		self.global_position = global_position.linear_interpolate(Vector2(360,1000),delta)
 	
 #-----------------------------------------------------------------------------------------------------
 func _input(event):
-	if event is InputEventMouseButton and event.position.y < screensize.y-200:
+	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed:
 			if Singleton.powers.size() > 0:
 				taps += 1
 				$TapTimer.start()
-				if taps == 2:
+				if taps == 2 and event.position.y < s_size.y-200:
 					match Singleton.powers[0]:
 						1:
 							_powerupStair()
 						2:
-							if !shield:
-								_powerupShield()
+							_powerupShield()
 						3:
 							_powerupRocket()
 					Singleton.powers.remove(0)
@@ -63,7 +73,8 @@ func _input(event):
 		drag = event.relative
 	
 #-----------------------------------------------------------------------------------------------------
-func who_to(enemies_in_area):
+func who_to():
+	var enemies_in_area = $Area2D.get_overlapping_areas()
 	enemytypes = Array()
 	if enemies_in_area.size() > 0:
 		dis = Array()
@@ -75,7 +86,7 @@ func who_to(enemies_in_area):
 		target = null
 	
 #-----------------------------------------------------------------------------------------------------
-func _on_Timer_timeout():
+func _on_LaserTimer_timeout():
 	if double_shoot:
 		var dir = Vector2(1, 0).rotated($Position2D2.global_rotation)
 		var b = Bullet.instance()
@@ -102,11 +113,10 @@ func _powerupStair():
 	
 #-----------------------------------------------------------------------------------------------------
 func _powerupShield():
-	if !shield: 
-		$sfx_shielup.play()
-		can_get_damage = false
-		shields_number = 3
-		shield = true
+	$sfx_shielup.play()
+	can_get_damage = false
+	shields_number = 3
+	shield = true
 	
 #-----------------------------------------------------------------------------------------------------
 func _powerupShieldprocess():
@@ -131,7 +141,10 @@ func _powerupShieldprocess():
 	if shields_number == 0:
 		if !$sfx_lost_shield.playing  and !lost_shield_played:
 			$sfx_lost_shield.play()
-		$Sprite.animation = "default"
+		if double_shoot:
+			$Sprite.animation = "Player2"
+		else:
+			$Sprite.animation = "default"
 		shield = false
 		can_get_damage = true
 	
@@ -144,23 +157,27 @@ func _powerupRocket():
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_PlayerShip_area_entered(area):
-	
+	# ----------------------- BOSS SHIELD ----------------------
 	if shield and area.get_collision_layer_bit(7):
 		shields_number=0
 		lost_shield_played = false
+	# ------------------------ BOSS LASER -----------------------
 	if can_get_damage and area.get_collision_layer_bit(7): 
 		Singleton.lifes = 0
 		$Sprite.play("explode")
 		$sfx_lose.play()
 		Singleton.powers.resize(0)
-	
+	# ------------------------------ SHIELD ------------------
 	elif shield and !area.get_collision_layer_bit(4):
 		shields_number-=1
 		lost_shield_played = false
+	# ----------------------- NORMAL ENEMY ----------------------
 	elif can_get_damage and !area.get_collision_layer_bit(4): 
 		#Input.vibrate_handheld(500)
-		can_get_damage = false
-		$sfx_shielup.play()
+		print(can_get_damage)
+		if !Singleton.update:
+			can_get_damage = false
+			$sfx_shielup.play()
 		if double_shoot:
 			$Sprite.play("Player2Shield")
 		else:
@@ -171,16 +188,28 @@ func _on_PlayerShip_area_entered(area):
 			Singleton.powers.resize(0)
 			$Sprite.play("explode")
 			$sfx_lose.play()
-	
+	# --------------------- UPGRADE 1 ----------------------
 	if area.get_collision_layer_bit(4):
 		if area.power == 4:
-			print("double_shooter")
+			var flash = FlashScreen.instance()
+			get_parent().add_child(flash)
+			Singleton.update = true
+			can_get_damage = false
+			$UpdateTimer.start()
+			print(can_get_damage)
 			$Sprite.play("upgrade1")
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_LifeTimer_timeout():
-	$Sprite.play("default")
-	can_get_damage = true
+	if double_shoot:
+		$Sprite.play("Player2")
+	else:
+		$Sprite.play("default")
+		
+	if Singleton.update:
+		pass
+	else:
+		can_get_damage = true
 	$sfx_shielup.stop()
 	$sfx_shielddown.play()
 	
@@ -193,8 +222,19 @@ func _on_sfx_lost_shield_finished():
 	lost_shield_played = true
 	
 #-----------------------------------------------------------------------------------------------------
-func _on_Sprite_animation_finished():
-	if $Sprite.animation == "upgrade1":
-		$Sprite.animation = "Player2"
-		$CollisionShape2D.scale = Vector2(1.7,1)
-		double_shoot = true
+
+
+func _on_UpdateTimer_timeout():
+	var enemies = get_tree().get_nodes_in_group("enemy")
+	for i in range(enemies.size()):
+		if enemies[i]:
+			enemies[i].queue_free()
+	get_parent().get_node("BG/ParallaxBackground/ParallaxLayer/Sprite").hide()
+	var Transition = load("res://Scenes/Transition1.tscn")
+	var transition = Transition.instance()
+	get_parent().add_child(transition)
+	Singleton.update = true
+	$LaserTimer.stop()
+	$Sprite.animation = "Player2"
+	$CollisionShape2D.scale = Vector2(1.7,1)
+	double_shoot = true

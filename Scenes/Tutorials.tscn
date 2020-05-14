@@ -12,6 +12,8 @@
 [ext_resource path="res://art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=10]
 [ext_resource path="res://art/PNG/UI/empty.png" type="Texture" id=11]
 
+
+
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],

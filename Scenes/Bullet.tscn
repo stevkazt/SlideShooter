@@ -24,10 +24,20 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "enemy",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "launch_missile",
 "speed": 15.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"loop": false,
+"name": "explode",
+"speed": 16.0
 }, {
 "frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
 "loop": false,
@@ -37,16 +47,6 @@ animations = [ {
 "frames": [ ExtResource( 12 ) ],
 "loop": false,
 "name": "missile",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
-"loop": false,
-"name": "explode",
-"speed": 16.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": false,
-"name": "enemy",
 "speed": 5.0
 } ]
 

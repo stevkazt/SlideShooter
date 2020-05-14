@@ -18,7 +18,7 @@
 [ext_resource path="res://Art/PowerUps/Multishot.png" type="Texture" id=16]
 [ext_resource path="res://Art/PowerUps/Roketluncher.png" type="Texture" id=17]
 [ext_resource path="res://Art/PowerUps/FondoPowerup.png" type="Texture" id=18]
-[ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=19]
+[ext_resource path="res://Art/Background/fondo1.png" type="Texture" id=21]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -47,14 +47,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "sfx_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": false,
 "name": "sfx_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "sfx_on",
 "speed": 5.0
 } ]
 
@@ -86,9 +86,16 @@ PLAYER = ExtResource( 3 )
 PowerUp = ExtResource( 4 )
 Boss1 = ExtResource( 5 )
 
-[node name="ninjaSpawn" type="Timer" parent="."]
-wait_time = 0.7
-autostart = true
+[node name="BG" type="Node2D" parent="."]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="BG"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="BG/ParallaxBackground"]
+motion_mirroring = Vector2( 0, 3838 )
+
+[node name="Sprite" type="Sprite" parent="BG/ParallaxBackground/ParallaxLayer"]
+position = Vector2( 360, 200 )
+texture = ExtResource( 21 )
 
 [node name="Lifes" type="Control" parent="."]
 margin_right = 40.0
@@ -122,16 +129,22 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="GameOverTimer" type="Timer" parent="."]
-pause_mode = 2
-wait_time = 4.0
-one_shot = true
+[node name="ninjaSpawn" type="Timer" parent="."]
+wait_time = 0.7
+autostart = true
 
 [node name="ShooterTimer" type="Timer" parent="."]
 wait_time = 6.0
 
 [node name="PowerUpTimer" type="Timer" parent="."]
 wait_time = 15.0
+one_shot = true
+autostart = true
+
+[node name="GameOverTimer" type="Timer" parent="."]
+pause_mode = 2
+wait_time = 4.0
+one_shot = true
 
 [node name="Buttons" type="Control" parent="."]
 margin_top = 1150.0
@@ -217,8 +230,8 @@ animation = "stair"
 centered = false
 
 [node name="Sprite" type="Sprite" parent="Buttons/Powers/Power1"]
-position = Vector2( -6.14424, -3.28645 )
-scale = Vector2( 0.899892, 0.842736 )
+position = Vector2( -6.14424, -4.37238 )
+scale = Vector2( 0.899892, 0.876673 )
 z_index = -1
 texture = ExtResource( 18 )
 centered = false
@@ -246,12 +259,10 @@ flat = true
 frames = SubResource( 5 )
 animation = "stair"
 centered = false
-
-[node name="ParallaxBackground" parent="." instance=ExtResource( 19 )]
 [connection signal="timeout" from="ninjaSpawn" to="." method="_on_ninjaSpawn_timeout"]
-[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
+[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="pressed" from="Buttons/pause_menu" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home/Button_yes" to="." method="_on_Button_yes_pressed"]

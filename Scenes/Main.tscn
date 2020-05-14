@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
@@ -11,6 +11,8 @@
 [ext_resource path="res://Art/GUI/tutorial.png" type="Texture" id=9]
 [ext_resource path="res://Art/GUI/about.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=11]
+
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -26,16 +28,20 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 7 ) ],
-"loop": false,
-"name": "sfx_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": false,
 "name": "sfx_on",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "sfx_off",
+"speed": 5.0
 } ]
+
+[sub_resource type="DynamicFont" id=5]
+size = 30
+font_data = ExtResource( 3 )
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -157,6 +163,13 @@ icon = ExtResource( 10 )
 flat = true
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 11 )]
+
+[node name="Language" type="Label" parent="."]
+margin_left = 30.0
+margin_right = 70.0
+margin_bottom = 63.0
+custom_fonts/font = SubResource( 5 )
+text = "language"
 [connection signal="pressed" from="Screen/Up/Play" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Screen/Down/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Screen/Down/Settings/sfx" to="." method="_on_sfx_pressed"]

@@ -3,7 +3,8 @@ var power = 0
 
 #-----------------------------------------------------------------------------------------------------
 func _ready():
-	$Dissapear.start()
+	if power != 4:
+		$Dissapear.start()
 	match power:
 		0:
 			queue_free()

@@ -27,14 +27,14 @@ func _ready():
 	
 #-----------------------------------------------------------------------------------------------------
 func _process(_delta):
-	$ParallaxBackground/ParallaxLayer.motion_offset.y += 3
+	$BG/ParallaxBackground/ParallaxLayer.motion_offset.y += 3
 	$Score.text = str(Singleton.score)
 	
 	#------------------------ Game Flow -----------------------------------------------------------
-	if Singleton.score > 100 and $ShooterTimer.is_stopped() and !Singleton.boss:
+	if Singleton.score > 100 and $ShooterTimer.is_stopped() and !Singleton.boss and !Singleton.update:
 		$ShooterTimer.start()
-		
-		
+	elif Singleton.update:
+		$ShooterTimer.stop()
 	#----------------------------------------------------------------------------------------------
 	if Singleton.score > 200 and $PowerUpTimer.is_stopped():
 		$PowerUpTimer.start()
@@ -53,8 +53,10 @@ func _process(_delta):
 		p.position = Vector2(screensize.x/2,screensize.y/2)
 		Singleton.boss = false
 	#----------------------------------------------------------------------------------------------
-	if !Singleton.boss and $ninjaSpawn.is_stopped():
+	if !Singleton.boss and $ninjaSpawn.is_stopped() and !Singleton.update:
 		$ninjaSpawn.start()
+	elif Singleton.update:
+		$ninjaSpawn.stop()
 	#----------------------------------------------------------------------------------------------
 	if Singleton.lifes == 0:
 		check_highscore()
@@ -101,8 +103,11 @@ func _on_ninjaSpawn_timeout():
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_ShooterTimer_timeout():
+	var choose = 2
+	if Singleton.score > 2000:
+		choose = randi()%2+1
 	var e = Enemy.instance()
-	e.type = 1
+	e.type = choose
 	add_child(e)
 	
 #-----------------------------------------------------------------------------------------------------
@@ -112,11 +117,11 @@ func _on_PowerUpTimer_timeout():
 	var a = [1,1,1,1,1,1,2,2,3,3]
 	var b
 	var range_ = 8
-	
+
 	if Singleton.score > 2000:
 		range_ = 10 # Genera numeros de 0 a 9
-		
-		
+
+
 	b = randi()%range_+0
 	p.power = a[b]
 	add_child(p)

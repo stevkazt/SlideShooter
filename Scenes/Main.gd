@@ -11,6 +11,7 @@ var settings = false
 	
 #-----------------------------------------------------------------------------------------------------
 func _ready():
+	$Language.text = OS.get_locale()
 	randomize()
 	load_score()
 	if !Singleton.sfx:

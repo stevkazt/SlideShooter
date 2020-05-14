@@ -20,6 +20,8 @@ func _ready():
 		_ninja()
 	if type == 1:
 		_shooter()
+	if type == 2:
+		_ufo()
 
 
 func _process(delta):
@@ -27,7 +29,8 @@ func _process(delta):
 		_ninja_process(delta)
 	if type == 1:
 		_shooter_process(delta)
-
+	if type == 2:
+		_ufo_process(delta)
 
 func _ninja():
 	var side = randi()%4+1
@@ -74,6 +77,26 @@ func _shooter_process(delta):
 	var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 	self.global_rotation = current_dir.linear_interpolate(target_dir, delta*2).angle()
 	
+#
+func _ufo():
+	$Sprite.animation = "ufo"
+	var side = randi()%4+1
+	match side:
+		1:
+			position = Vector2(rand_range(0,screensize.x),0)
+			set_pos = Vector2(rand_range(100,screensize.x-100),200)
+		2:
+			position = Vector2(screensize.x,rand_range(0,screensize.y))
+			set_pos = Vector2(screensize.x-100,rand_range(100,screensize.y-100))
+		3:
+			position = Vector2(0,rand_range(0,screensize.y))
+			set_pos = Vector2(100,rand_range(100,screensize.y-100))
+		4:
+			position = Vector2(rand_range(0,screensize.x),screensize.y)
+			set_pos = Vector2(rand_range(100,screensize.x-100),screensize.y-200)
+	
+func _ufo_process(delta):
+	position = position.linear_interpolate(set_pos, delta*0.5)
 	
 func _on_Enemy_area_entered(area):
 	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5):
@@ -82,9 +105,13 @@ func _on_Enemy_area_entered(area):
 				Singleton.score += 5
 			1:
 				Singleton.score += 10
+			3:
+				Singleton.score += 15
 		speed = 0
 		$CollisionShape2D.queue_free()
 		$Sprite.play("explode")
+	
+#------------------------------------------------
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
@@ -99,3 +126,10 @@ func _on_ShootTimer_timeout():
 		var b = bullet.instance()
 		get_parent().add_child(b)
 		b.start($Position2D.global_position,Vector2(1, 0).rotated($Position2D.global_rotation),1,2)
+	if type == 2:
+		var b = bullet.instance()
+		for i in range(12):
+			get_parent().add_child(b)
+			b.start(global_position,Vector2(1,0).rotated(deg2rad(30*i)),1,2)
+			b = bullet.instance()
+
