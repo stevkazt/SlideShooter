@@ -6,5 +6,5 @@ func _ready():
 	position = Vector2(0,500)
 
 func _process(delta):
-	rotation += delta*.2
+	rotation += delta*.1
 	position = Vector2(-300,960)

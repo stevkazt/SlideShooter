@@ -22,7 +22,7 @@ export (PackedScene) var FlashScreen
 #-----------------------------------------------------------------------------------------------------
 func _ready():
 	s_size = get_viewport_rect().size
-	Singleton.score = 1980
+	Singleton.score = 2100
 	Singleton.boss = true
 	
 #-----------------------------------------------------------------------------------------------------

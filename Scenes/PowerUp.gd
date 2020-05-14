@@ -16,6 +16,10 @@ func _ready():
 			$AnimatedSprite.animation = "rocket"
 		4:
 			$AnimatedSprite.animation = "double_shoot"
+	
+	Singleton.last_powers.push_front(power)
+	if Singleton.last_powers.size() > 3:
+		Singleton.last_powers.pop_back()
 #-----------------------------------------------------------------------------------------------------
 func _on_PowerUp_area_entered(_area):
 	if Singleton.powers.size()<3:

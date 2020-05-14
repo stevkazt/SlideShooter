@@ -106,7 +106,8 @@ func _on_ninjaSpawn_timeout():
 #-----------------------------------------------------------------------------------------------------
 func _on_ShooterTimer_timeout():
 	if Singleton.score > 2000:
-		$UfoTimer.start()
+		if $UfoTimer.is_stopped():
+			$UfoTimer.start()
 	var e = Enemy.instance()
 	e.type = 1
 	add_child(e)
@@ -124,16 +125,18 @@ func _on_UfoTimer_timeout():
 func _on_PowerUpTimer_timeout():
 	randomize()
 	var p = PowerUp.instance()
-	var a = [1,1,1,1,1,1,2,2,3,3]
+	var pa = [1,1,1,1,1,1,2,2,3,3]
+	var pb = [1,1,2,2,2,2,3,3,3,3]
 	var b
 	var range_ = 8
-
+	
 	if Singleton.score > 2000:
 		range_ = 10 # Genera numeros de 0 a 9
-
-
 	b = randi()%range_+0
-	p.power = a[b]
+	if Singleton.last_powers[0] == 1 and Singleton.last_powers[1] == 1:
+		p.power = pb[b]
+	else:
+		p.power = pa[b]
 	add_child(p)
 	p.position = Vector2(rand_range(150,600),rand_range(400,1120))
 	
