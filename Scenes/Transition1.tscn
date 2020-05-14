@@ -19,7 +19,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 11, 13, 16, 19, 24 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 360, -500 ), Vector2( 360, 400 ), Vector2( 360, 400 ), Vector2( 360, 500 ), Vector2( 360, 500 ), Vector2( 360, 650 ) ]
+"values": [ Vector2( 360, -300 ), Vector2( 360, 400 ), Vector2( 360, 400 ), Vector2( 360, 500 ), Vector2( 360, 500 ), Vector2( 360, 650 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("AnimationPlayer/Player:position")
@@ -119,7 +119,7 @@ scale = Vector2( 0.6, 0.6 )
 texture = ExtResource( 1 )
 
 [node name="Fondo1" type="Sprite" parent="AnimationPlayer"]
-position = Vector2( 360, -500 )
+position = Vector2( 360, -300 )
 texture = ExtResource( 2 )
 
 [node name="Player" type="Sprite" parent="AnimationPlayer"]
