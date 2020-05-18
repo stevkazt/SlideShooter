@@ -15,6 +15,7 @@ var shields_number = 0
 var shield = false
 var lost_shield_played = false
 var double_shoot = false
+var mov_modifier = 1
 
 export (PackedScene) var Bullet
 export (PackedScene) var FlashScreen
@@ -22,8 +23,8 @@ export (PackedScene) var FlashScreen
 #-----------------------------------------------------------------------------------------------------
 func _ready():
 	s_size = get_viewport_rect().size
-	Singleton.score = 980
-	Singleton.lifes = 2
+	#Singleton.score = 900
+	#Singleton.lifes = 2
 	
 #-----------------------------------------------------------------------------------------------------
 func _process(delta):
@@ -31,20 +32,20 @@ func _process(delta):
 		$LaserTimer.start()
 	
 	if shield:
-		_powerupShieldprocess()
-	
+		_powerupShieldprocess()	
 	#--------------- Rotacion y movimiento -------------------------------------------------------
 	if drag and dragging:
-		position += drag
-		position.x = clamp(position.x,0,s_size.x)
-		position.y = clamp(position.y,10,s_size.y)
+		position += drag*mov_modifier
+		position.x = clamp(position.x,50,s_size.x-50)
+		position.y = clamp(position.y,100,s_size.y-150)
+
 	who_to()
 	var target_dir
 	var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 	if target:
 		target_dir = (target.global_position - global_position).normalized()
-		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*10).angle()
-	elif Singleton.update:
+		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*10*mov_modifier).angle()
+	if Singleton.update:
 		target_dir = Vector2(0,-1)
 		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*4).angle()
 		self.global_position = global_position.linear_interpolate(Vector2(360,1000),delta)
@@ -79,11 +80,18 @@ func who_to():
 	if enemies_in_area.size() > 0:
 		dis = Array()
 		for i in range(0, enemies_in_area.size()):
-			dis.append(position.distance_to(enemies_in_area[i].position))
+			if enemies_in_area[i].get_collision_layer_bit(3):
+				var meteor = enemies_in_area[i].get_child(0)
+				dis.append(position.distance_to(meteor.global_position))
+			else:
+				dis.append(position.distance_to(enemies_in_area[i].position))
 			var closest_enemy_index = dis.rfind(dis.min())
 			target = enemies_in_area[closest_enemy_index]
+			
 	else:
 		target = null
+	
+
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_LaserTimer_timeout():
@@ -177,10 +185,12 @@ func _on_PlayerShip_area_entered(area):
 		if !Singleton.update:
 			can_get_damage = false
 			$sfx_shielup.play()
+			
 		if double_shoot:
 			$Sprite.play("Player2Shield")
 		else:
 			$Sprite.play("shield")
+			
 		$LifeTimer.start()
 		Singleton.lifes -= 1
 		if Singleton.lifes == 0:
@@ -233,6 +243,7 @@ func _on_UpdateTimer_timeout():
 	get_parent().add_child(transition)
 	Singleton.update = true
 	$LaserTimer.stop()
+	$Sprite.offset = Vector2(0,0)
 	$Sprite.animation = "Player2"
 	$CollisionShape2D.scale = Vector2(1.7,1)
 	double_shoot = true

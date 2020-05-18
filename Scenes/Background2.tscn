@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Art/Background/fondo2.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Background2.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Stuff.tscn" type="PackedScene" id=3]
 
 [node name="Background2" type="Sprite"]
 position = Vector2( -300, 960 )
@@ -9,3 +10,8 @@ rotation = 3.14159
 z_index = -2
 texture = ExtResource( 1 )
 script = ExtResource( 2 )
+Stuff = ExtResource( 3 )
+
+[node name="StuffTimer" type="Timer" parent="."]
+wait_time = 0.3
+[connection signal="timeout" from="StuffTimer" to="." method="_on_StuffTimer_timeout"]

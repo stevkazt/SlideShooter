@@ -31,7 +31,7 @@ func _process(_delta):
 	$Score.text = str(Singleton.score)
 	
 	#------------------------ Game Flow -----------------------------------------------------------
-	if Singleton.score > 100 and $ShooterTimer.is_stopped() and !Singleton.boss and !Singleton.update:
+	if Singleton.score > 100 and $ShooterTimer.is_stopped() and!Singleton.boss and !Singleton.update and !Singleton.stuff:
 		$ShooterTimer.start()
 	elif Singleton.update:
 		$ShooterTimer.stop()
@@ -55,9 +55,19 @@ func _process(_delta):
 		if $ninjaSpawn.wait_time == 0.7:
 			$ninjaSpawn.wait_time = 2
 	#----------------------------------------------------------------------------------------------
-	if !Singleton.boss and $ninjaSpawn.is_stopped() and !Singleton.update:
+#	if Singleton.score > 3000 and !Singleton.stuff:
+#		print("update")
+#		var p = PowerUp.instance()
+#		p.power = 4
+#		add_child(p)
+#		p.position = Vector2(screensize.x/2,screensize.y/2)
+		Singleton.stuff = true
+	#----------------------------------------------------------------------------------------------
+	if !Singleton.boss and $ninjaSpawn.is_stopped() and !Singleton.update and !Singleton.stuff:
 		$ninjaSpawn.start()
 	elif Singleton.update:
+		$ninjaSpawn.stop()
+	elif Singleton.stuff:
 		$ninjaSpawn.stop()
 	#----------------------------------------------------------------------------------------------
 	if Singleton.lifes == 0:

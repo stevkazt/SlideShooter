@@ -95,7 +95,7 @@ func missile_process(delta):
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_Bullet_area_entered(area):
-	if team == 1 and (area.get_collision_layer_bit(2) or area.get_collision_layer_bit(9)):
+	if team == 1 and !area.get_collision_layer_bit(9):
 		if type ==1:
 			pass
 		velocity = Vector2()

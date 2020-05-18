@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playerShip2_blue.png-24e34dc7430baf97f6c4182411e23483.stex"
+path="res://.import/meteorGrey_big4.png-014abab179936b79bd3f1752ce188e7a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Player/playerShip2_blue.png"
-dest_files=[ "res://.import/playerShip2_blue.png-24e34dc7430baf97f6c4182411e23483.stex" ]
+source_file="res://Art/Stuff/meteorGrey_big4.png"
+dest_files=[ "res://.import/meteorGrey_big4.png-014abab179936b79bd3f1752ce188e7a.stex" ]
 
 [params]
 

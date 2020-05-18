@@ -11,20 +11,10 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "shooter_orange",
-"speed": 5.0
-}, {
 "frames": [  ],
 "loop": true,
 "name": "ninja_black2",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
-"name": "explode",
-"speed": 12.0
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": false,
@@ -35,6 +25,16 @@ animations = [ {
 "loop": true,
 "name": "ufo",
 "speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": true,
+"name": "shooter_orange",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "explode",
+"speed": 12.0
 } ]
 
 [sub_resource type="CircleShape2D" id=2]

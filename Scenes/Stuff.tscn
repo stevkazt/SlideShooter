@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Art/Stuff/meteorGrey_med2.png" type="Texture" id=1]
+[ext_resource path="res://Scenes/Stuff.gd" type="Script" id=2]
+[ext_resource path="res://Art/Stuff/meteorBrown_big2.png" type="Texture" id=3]
+[ext_resource path="res://Art/Stuff/meteorBrown_big4.png" type="Texture" id=4]
+[ext_resource path="res://Art/Stuff/meteorBrown_big3.png" type="Texture" id=5]
+[ext_resource path="res://Art/Stuff/meteorBrown_big1.png" type="Texture" id=6]
+[ext_resource path="res://Art/Stuff/meteorGrey_med1.png" type="Texture" id=7]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ) ],
+"loop": false,
+"name": "meteor_big_2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "meteor_big_0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": false,
+"name": "meteor_big_3",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "meteor_mid_1",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "meteor_mid_0",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": false,
+"name": "meteor_big_1",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 18.8635
+
+[node name="Stuff" type="Node2D" groups=[
+"stuff",
+]]
+script = ExtResource( 2 )
+
+[node name="Meteor" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 545
+
+[node name="Sprite" type="AnimatedSprite" parent="Meteor"]
+frames = SubResource( 1 )
+animation = "meteor_mid_0"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Meteor"]
+shape = SubResource( 2 )
+disabled = true
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="Meteor"]
+[connection signal="area_entered" from="Meteor" to="." method="_on_Meteor_area_entered"]
+[connection signal="screen_entered" from="Meteor/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_entered"]
+[connection signal="screen_exited" from="Meteor/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

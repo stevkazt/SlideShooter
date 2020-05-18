@@ -3,7 +3,7 @@
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=3]
-[ext_resource path="res://Art/Player/playerShip2_blue.png" type="Texture" id=4]
+[ext_resource path="res://Art/Player/ship1_4.png" type="Texture" id=4]
 [ext_resource path="res://Art/GUI/configuration.png" type="Texture" id=5]
 [ext_resource path="res://Art/GUI/sfx_on.png" type="Texture" id=6]
 [ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=7]
@@ -11,8 +11,6 @@
 [ext_resource path="res://Art/GUI/tutorial.png" type="Texture" id=9]
 [ext_resource path="res://Art/GUI/about.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=11]
-
-
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -28,14 +26,14 @@ font_data = ExtResource( 3 )
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": false,
-"name": "sfx_on",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": false,
 "name": "sfx_off",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": false,
+"name": "sfx_on",
 "speed": 5.0
 } ]
 
@@ -102,15 +100,18 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -130.0
+margin_left = -118.64
 margin_top = -30.481
-margin_right = -6.0
+margin_right = 5.36035
 margin_bottom = 66.519
 grow_horizontal = 2
 grow_vertical = 2
 rect_scale = Vector2( 2, 2 )
 icon = ExtResource( 4 )
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Down" type="Control" parent="Screen"]
 margin_top = 1150.0

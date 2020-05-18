@@ -125,7 +125,7 @@ func _on_MissilesTimer_timeout():
 #-----------------------------------------------------------------------------------------------------
 
 func _on_ShooterTimer_timeout():
-	if minions_count <= 5:
+	if minions_count <= 4:
 		var m = minions.instance()
 		m.type = 0
 		m.can_get_damage = false

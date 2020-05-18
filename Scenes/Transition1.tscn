@@ -111,6 +111,7 @@ script = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fondo1"
+playback_speed = 8.0
 anims/fondo1 = SubResource( 1 )
 
 [node name="Fondo2" type="Sprite" parent="AnimationPlayer"]
