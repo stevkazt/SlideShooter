@@ -23,7 +23,7 @@ export (PackedScene) var FlashScreen
 #-----------------------------------------------------------------------------------------------------
 func _ready():
 	s_size = get_viewport_rect().size
-	#Singleton.score = 900
+	#Singleton.score = 2050
 	#Singleton.lifes = 2
 	
 #-----------------------------------------------------------------------------------------------------
@@ -90,8 +90,6 @@ func who_to():
 			
 	else:
 		target = null
-	
-
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_LaserTimer_timeout():
@@ -230,14 +228,11 @@ func _on_sfx_lost_shield_finished():
 	lost_shield_played = true
 	
 #-----------------------------------------------------------------------------------------------------
-
-
 func _on_UpdateTimer_timeout():
 	var enemies = get_tree().get_nodes_in_group("enemy")
 	for i in range(enemies.size()):
 		if enemies[i]:
 			enemies[i].queue_free()
-	get_parent().get_node("BG/ParallaxBackground/ParallaxLayer/Sprite").hide()
 	var Transition = load("res://Scenes/Transition1.tscn")
 	var transition = Transition.instance()
 	get_parent().add_child(transition)
@@ -246,3 +241,5 @@ func _on_UpdateTimer_timeout():
 	$Sprite.animation = "Player2"
 	$CollisionShape2D.scale = Vector2(1.2,1.2)
 	double_shoot = true
+
+

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Game.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Stage0.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Art/Player/ship1_4.png" type="Texture" id=4]
 [ext_resource path="res://Art/GUI/configuration.png" type="Texture" id=5]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Art/GUI/tutorial.png" type="Texture" id=9]
 [ext_resource path="res://Art/GUI/about.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=11]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 100

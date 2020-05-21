@@ -27,8 +27,8 @@ func _ready():
 		_shooter()
 	if type == 2:
 		_ufo()
-
-
+	
+#----------------------------------------------------------------------------------------------------
 func _process(delta):
 	if type == 0:
 		_ninja_process(delta)
@@ -36,7 +36,8 @@ func _process(delta):
 		_shooter_process(delta)
 	if type == 2:
 		_ufo_process(delta)
-
+	
+#----------------------------------------------------------------------------------------------------
 func _ninja():
 	var side = randi()%4+1
 	match side:
@@ -48,7 +49,8 @@ func _ninja():
 			position = Vector2(rand_range(0,screensize.x),screensize.y)
 		4:
 			position = Vector2(0,rand_range(0,screensize.y))
-
+	
+#----------------------------------------------------------------------------------------------------
 func _ninja_process(delta):
 	var playerpos = target.position
 	if $sfx_explode.playing:
@@ -58,7 +60,8 @@ func _ninja_process(delta):
 	velocity = dir*speed
 	rotation = dir.angle()
 	position += velocity * delta
-
+	
+#----------------------------------------------------------------------------------------------------
 func _shooter():
 	$Sprite.animation = "shooter_orange"
 	var sides = 3
@@ -78,14 +81,15 @@ func _shooter():
 		4:
 			position = Vector2(rand_range(0,screensize.x),screensize.y)
 			set_pos = Vector2(rand_range(100,screensize.x-100),screensize.y-200)
-
+	
+#----------------------------------------------------------------------------------------------------
 func _shooter_process(delta):
 	position = position.linear_interpolate(set_pos, delta*0.5)
 	var target_dir = (target.global_position - global_position).normalized()
 	var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 	self.global_rotation = current_dir.linear_interpolate(target_dir, delta*2).angle()
 	
-#
+#----------------------------------------------------------------------------------------------------
 func _ufo():
 	$Sprite.animation = "ufo"
 	var side = randi()%4+1
@@ -103,15 +107,17 @@ func _ufo():
 			position = Vector2(rand_range(0,screensize.x),screensize.y)
 			set_pos = Vector2(rand_range(100,screensize.x-100),screensize.y-200)
 	
+#----------------------------------------------------------------------------------------------------
 func _ufo_process(delta):
 	position = position.linear_interpolate(set_pos, delta*0.5)
 	
+#----------------------------------------------------------------------------------------------------
 func _on_Enemy_area_entered(area):
 	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5):
 		match type:
 			0:
 				if can_get_damage:
-					Singleton.score += 5
+					Singleton.score += 3
 			1:
 				if can_get_damage:
 					Singleton.score += 7
@@ -123,11 +129,11 @@ func _on_Enemy_area_entered(area):
 		$Sprite.play("explode")
 		$Sprite.scale = Vector2(.7,.7)
 	
-#------------------------------------------------
-
+#----------------------------------------------------------------------------------------------------
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
-
+	
+#----------------------------------------------------------------------------------------------------
 func _on_ShootTimer_timeout():
 	if type ==1:
 		var b = bullet.instance()
@@ -139,6 +145,9 @@ func _on_ShootTimer_timeout():
 			get_parent().add_child(b)
 			b.start(global_position,Vector2(1,0).rotated(deg2rad(30*i)),1,2)
 			b = bullet.instance()
-
+	
+#----------------------------------------------------------------------------------------------------
 func _on_sfx_explode_finished():
 	queue_free()
+	
+#----------------------------------------------------------------------------------------------------

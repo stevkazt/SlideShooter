@@ -11,6 +11,8 @@ var highscore = 0
 var screensize
 var Icons = [0,"stair","shield","rocket"]
 var shooter_speed = 200
+var gfp = false # game flow pause
+var ninjas = 0 # count for paths of ninjas
 
 
 #-----------------------------------------------------------------------------------------------------
@@ -22,61 +24,31 @@ func _ready():
 	$Buttons.rect_global_position = Vector2(0,screensize.y-130)
 	#----------------------------------------------------------------------------------------------
 	player =  PLAYER.instance()
-	add_child(player)
+	get_parent().add_child(player)
 	player.position = Vector2(screensize.x/2,screensize.y/2)
 	
 #-----------------------------------------------------------------------------------------------------
 func _process(_delta):
 	$BG/ParallaxBackground/ParallaxLayer.motion_offset.y += 3
 	$Score.text = str(Singleton.score)
-	
 	#------------------------ Game Flow -----------------------------------------------------------
-	if Singleton.score > 100 and $ShooterTimer.is_stopped() and!Singleton.boss and !Singleton.update and !Singleton.stuff:
-		$ShooterTimer.start()
-	elif Singleton.update:
-		$ShooterTimer.stop()
-	elif Singleton.stuff:
-		$ShooterTimer.stop()
-	#----------------------------------------------------------------------------------------------
-	if Singleton.score > 200 and $PowerUpTimer.is_stopped():
-		$PowerUpTimer.start()
-	#----------------------------------------------------------------------------------------------
-	if Singleton.score > 1000 and Singleton.score < 1100 and !Singleton.boss:
-		Singleton.boss = true
-		$ShooterTimer.stop()
-		$ninjaSpawn.stop()
+	if Singleton.score > 1000 and Singleton.score < 1100 and !gfp:
+		gfp = true
 		var boss1 = Boss1.instance()
 		add_child(boss1)
 	#----------------------------------------------------------------------------------------------
-	if Singleton.score > 2000 and Singleton.boss:
+	if Singleton.score > 2000 and gfp:
 		var p = PowerUp.instance()
 		p.power = 4
 		add_child(p)
 		p.position = Vector2(screensize.x/2,screensize.y/2)
-		Singleton.boss = false
-		if $ninjaSpawn.wait_time == 0.7:
-			$ninjaSpawn.wait_time = 2
-	#----------------------------------------------------------------------------------------------
-#	if Singleton.score > 3000 and !Singleton.stuff:
-#		print("update")
-#		var p = PowerUp.instance()
-#		p.power = 4
-#		add_child(p)
-#		p.position = Vector2(screensize.x/2,screensize.y/2)
-		Singleton.stuff = true
-	#----------------------------------------------------------------------------------------------
-	if !Singleton.boss and $ninjaSpawn.is_stopped() and !Singleton.update and !Singleton.stuff:
-		$ninjaSpawn.start()
-	elif Singleton.update:
-		$ninjaSpawn.stop()
-	elif Singleton.stuff:
-		$ninjaSpawn.stop()
-	#----------------------------------------------------------------------------------------------
-	if Singleton.lifes == 0:
-		check_highscore()
-		$GameOverTimer.start()
-		get_tree().paused = true
+		gfp = false
 	#-------------------------- Actualizaciones de pantalla ---------------------------------------
+	update_lifes()
+	update_power_icons()
+	
+#-----------------------------------------------------------------------------------------------------
+func update_lifes():
 	if Singleton.lifes == 3:
 		$Lifes/Life3.show()
 		$Lifes/Life2.show()
@@ -89,7 +61,13 @@ func _process(_delta):
 		$Lifes/Life2.hide()
 		$Lifes/Life2.hide()
 		$Lifes/Life1.show()
-	#----------------------------------------------------------------------------------------------
+	if Singleton.lifes == 0:
+		check_highscore()
+		$GameOverTimer.start()
+		get_tree().paused = true
+	
+#-----------------------------------------------------------------------------------------------------
+func update_power_icons():
 	if Singleton.powers.size() > 0:
 		$Buttons/Powers/Power1/AnimatedSprite.animation = Icons[Singleton.powers[0]]
 		$Buttons/Powers/Power1.show()
@@ -111,45 +89,48 @@ func _process(_delta):
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_ninjaSpawn_timeout():
-	$ninjaSpawn.wait_time -= 0.005 if (Singleton.score<300) else 0
-	var e = Enemy.instance()
-	e.type = 0
-	shooter_speed += 0.5 
-	e.speed = shooter_speed 
-	add_child(e)
+	if Singleton.score > 100:
+		$ninjaSpawn.wait_time = 0.9
+		shooter_speed = 220
+	if Singleton.score > 200:
+		$ninjaSpawn.wait_time = 0.85
+		shooter_speed = 240
+	if Singleton.score > 300:
+		$ninjaSpawn.wait_time = 0.80
+		shooter_speed = 260
+	if Singleton.score > 400:
+		$ninjaSpawn.wait_time = 0.75
+		shooter_speed = 280
+	if Singleton.score > 500:
+		$ninjaSpawn.wait_time = 0.725
+	if Singleton.score > 600:
+		$ninjaSpawn.wait_time = 0.7
+	if Singleton.score > 700:
+		$ninjaSpawn.wait_time = 0.675
+	
+	if !gfp:
+		var e = Enemy.instance()
+		e.type = 0
+		e.speed = shooter_speed 
+		add_child(e)
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_ShooterTimer_timeout():
-	if Singleton.score > 2000:
-		if $UfoTimer.is_stopped():
-			$UfoTimer.start()
-	var e = Enemy.instance()
-	e.type = 1
-	add_child(e)
-	
-#-----------------------------------------------------------------------------------------------------
-func _on_UfoTimer_timeout():
-	var e = Enemy.instance()
-	e.type = 2
-	add_child(e)
-	e = Enemy.instance()
-	e.type = 2
-	add_child(e)
+	if !gfp and Singleton.score > 300:
+		var e = Enemy.instance()
+		e.type = 1
+		add_child(e)
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_PowerUpTimer_timeout():
-	randomize()
-	var p = PowerUp.instance()
-	var pa = [1,1,1,1,1,1,1,2,2,2]
-	var pb = [3,3,3,3,3,3,3,2,2,2]
-	var b
-	
-	if Singleton.score > 2000:
-		pa = pb
-	b = randi()%10+0
-	p.power = pa[b]
-	add_child(p)
-	p.position = Vector2(rand_range(150,600),rand_range(400,1120))
+	if Singleton.score > 200:
+		randomize()
+		var p = PowerUp.instance()
+		var pa = [1,1,1,1,1,1,1,2,2,2]
+		var b = randi()%10+0
+		p.power = pa[b]
+		add_child(p)
+		p.position = Vector2(rand_range(150,600),rand_range(400,1120))
 	
 #-----------------------------------------------------------------------------------------------------
 func check_highscore():
@@ -180,7 +161,7 @@ func _on_GameOverTimer_timeout():
 	get_tree().paused = false
 	Singleton.lifes = 3
 	Singleton.score = 0
-	Singleton.boss = false
+	get_tree().get_nodes_in_group("player")[0].queue_free()
 	get_parent().add_child(main)
 	queue_free()
 	
@@ -228,7 +209,7 @@ func _on_Button_yes_pressed():
 	Singleton.lifes = 3
 	Singleton.score = 0
 	Singleton.powers.resize(0)
-	Singleton.boss = false
+	get_tree().get_nodes_in_group("player")[0].queue_free()
 	get_parent().add_child(main)
 	queue_free()
 	

@@ -35,7 +35,6 @@ func _on_PowerUp_area_entered(_area):
 				Singleton.powers.push_front(3)
 	if power == 4:
 		$sfx_taken.play()
-		Singleton.boss = false
 		
 	
 #-----------------------------------------------------------------------------------------------------

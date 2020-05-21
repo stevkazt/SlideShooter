@@ -83,7 +83,7 @@ func _process(delta):
 #-----------------------------------------------------------------------------------------------------
 func _on_Boss1_area_entered(area):
 	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5) and can_get_damage:
-		Singleton.score += 3
+		Singleton.score += 2
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_Timer_timeout():

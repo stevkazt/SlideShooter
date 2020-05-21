@@ -87,7 +87,7 @@ position = Vector2( 500, 0 )
 rotation = 1.5708
 z_index = -1
 frames = SubResource( 3 )
-frame = 2
+frame = 3
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Laser"]
