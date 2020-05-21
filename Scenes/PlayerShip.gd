@@ -243,7 +243,6 @@ func _on_UpdateTimer_timeout():
 	get_parent().add_child(transition)
 	Singleton.update = true
 	$LaserTimer.stop()
-	$Sprite.offset = Vector2(0,0)
 	$Sprite.animation = "Player2"
-	$CollisionShape2D.scale = Vector2(1.7,1)
+	$CollisionShape2D.scale = Vector2(1.2,1.2)
 	double_shoot = true

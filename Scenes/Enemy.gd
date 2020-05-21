@@ -2,7 +2,7 @@ extends Area2D
 
 
 export (PackedScene) var bullet
-var speed
+var speed = 300
 var velocity = Vector2()
 var dir = Vector2()
 var type = 0
@@ -13,10 +13,10 @@ var can_get_damage = true
 
 
 func _ready():
-	if Singleton.score > 2000:
-		speed = 450
-	else:
-		speed = 250
+#	if Singleton.score > 2000:
+#		speed = 450
+#	else:
+#		speed = 250
 		
 	screensize = get_viewport_rect().size
 	target = get_tree().get_nodes_in_group("player")[0]
@@ -51,7 +51,10 @@ func _ninja():
 
 func _ninja_process(delta):
 	var playerpos = target.position
-	dir = (playerpos-position).normalized()
+	if $sfx_explode.playing:
+		dir = Vector2()
+	else:
+		dir = (playerpos-position).normalized()
 	velocity = dir*speed
 	rotation = dir.angle()
 	position += velocity * delta
@@ -108,7 +111,7 @@ func _on_Enemy_area_entered(area):
 		match type:
 			0:
 				if can_get_damage:
-					Singleton.score += 3
+					Singleton.score += 5
 			1:
 				if can_get_damage:
 					Singleton.score += 7
@@ -116,17 +119,14 @@ func _on_Enemy_area_entered(area):
 				Singleton.score += 15
 		speed = 0
 		$CollisionShape2D.queue_free()
+		$sfx_explode.play()
 		$Sprite.play("explode")
+		$Sprite.scale = Vector2(.7,.7)
 	
 #------------------------------------------------
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
-
-
-func _on_Sprite_animation_finished():
-	queue_free()
-
 
 func _on_ShootTimer_timeout():
 	if type ==1:
@@ -140,3 +140,5 @@ func _on_ShootTimer_timeout():
 			b.start(global_position,Vector2(1,0).rotated(deg2rad(30*i)),1,2)
 			b = bullet.instance()
 
+func _on_sfx_explode_finished():
+	queue_free()

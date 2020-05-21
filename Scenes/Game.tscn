@@ -130,7 +130,6 @@ __meta__ = {
 }
 
 [node name="ninjaSpawn" type="Timer" parent="."]
-wait_time = 0.7
 autostart = true
 
 [node name="ShooterTimer" type="Timer" parent="."]
@@ -142,8 +141,6 @@ one_shot = true
 
 [node name="PowerUpTimer" type="Timer" parent="."]
 wait_time = 13.0
-one_shot = true
-autostart = true
 
 [node name="GameOverTimer" type="Timer" parent="."]
 pause_mode = 2
@@ -235,15 +232,18 @@ margin_right = 100.0
 margin_bottom = 60.0
 rect_scale = Vector2( 1.5, 1.5 )
 flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Buttons/Powers/Power1"]
 frames = SubResource( 5 )
-animation = "stair"
+animation = "shield"
 centered = false
 
 [node name="Sprite" type="Sprite" parent="Buttons/Powers/Power1"]
-position = Vector2( -6.14424, -4.37238 )
-scale = Vector2( 0.899892, 0.876673 )
+position = Vector2( -8.93757, -9.02792 )
+scale = Vector2( 0.993004, 0.981423 )
 z_index = -1
 texture = ExtResource( 18 )
 centered = false

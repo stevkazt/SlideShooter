@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Scenes/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
@@ -8,14 +8,10 @@
 [ext_resource path="res://Art/Enemy/enemyBlack1.png" type="Texture" id=6]
 [ext_resource path="res://Art/Enemy/enemyRed2.png" type="Texture" id=7]
 [ext_resource path="res://Art/Enemy/ufoRed.png" type="Texture" id=8]
+[ext_resource path="res://Art/Sfx/basic_explode.wav" type="AudioStream" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [  ],
-"loop": true,
-"name": "ninja_black2",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 6 ) ],
 "loop": false,
 "name": "ninja_black",
@@ -31,8 +27,13 @@ animations = [ {
 "name": "shooter_orange",
 "speed": 5.0
 }, {
+"frames": [  ],
+"loop": true,
+"name": "ninja_black2",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": false,
+"loop": true,
 "name": "explode",
 "speed": 12.0
 } ]
@@ -65,7 +66,11 @@ position = Vector2( 45, 0 )
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 1.5
 autostart = true
+
+[node name="sfx_explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -15.0
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
-[connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
+[connection signal="finished" from="sfx_explode" to="." method="_on_sfx_explode_finished"]

@@ -10,7 +10,7 @@ var score_file = "user://highscore.gd"
 var highscore = 0
 var screensize
 var Icons = [0,"stair","shield","rocket"]
-
+var shooter_speed = 200
 
 
 #-----------------------------------------------------------------------------------------------------
@@ -34,6 +34,8 @@ func _process(_delta):
 	if Singleton.score > 100 and $ShooterTimer.is_stopped() and!Singleton.boss and !Singleton.update and !Singleton.stuff:
 		$ShooterTimer.start()
 	elif Singleton.update:
+		$ShooterTimer.stop()
+	elif Singleton.stuff:
 		$ShooterTimer.stop()
 	#----------------------------------------------------------------------------------------------
 	if Singleton.score > 200 and $PowerUpTimer.is_stopped():
@@ -109,8 +111,11 @@ func _process(_delta):
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_ninjaSpawn_timeout():
+	$ninjaSpawn.wait_time -= 0.005 if (Singleton.score<300) else 0
 	var e = Enemy.instance()
 	e.type = 0
+	shooter_speed += 0.5 
+	e.speed = shooter_speed 
 	add_child(e)
 	
 #-----------------------------------------------------------------------------------------------------
