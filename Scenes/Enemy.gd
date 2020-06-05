@@ -10,14 +10,10 @@ var target = null
 var set_pos = Vector2()
 var screensize
 var can_get_damage = true
+var ninja_sprite = 0# Green: 0, Orange:1, Red: 2
 
 
 func _ready():
-#	if Singleton.score > 2000:
-#		speed = 450
-#	else:
-#		speed = 250
-		
 	screensize = get_viewport_rect().size
 	target = get_tree().get_nodes_in_group("player")[0]
 	randomize()
@@ -40,6 +36,13 @@ func _process(delta):
 #----------------------------------------------------------------------------------------------------
 func _ninja():
 	var side = randi()%4+1
+	match ninja_sprite:
+		0:
+			$Sprite.animation = "NinjaGreen"
+		1:
+			$Sprite.animation = "NinjaOrange"
+		2:
+			$Sprite.animation = "NinjaRed"
 	match side:
 		1:
 			position = Vector2(rand_range(0,screensize.x),0)
@@ -117,7 +120,7 @@ func _on_Enemy_area_entered(area):
 		match type:
 			0:
 				if can_get_damage:
-					Singleton.score += 3
+					Singleton.score += 5
 			1:
 				if can_get_damage:
 					Singleton.score += 7

@@ -1,14 +1,16 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Art/Damage/playerShip3_damage1.png" type="Texture" id=3]
 [ext_resource path="res://Art/Damage/playerShip3_damage2.png" type="Texture" id=4]
 [ext_resource path="res://Art/Damage/playerShip3_damage3.png" type="Texture" id=5]
-[ext_resource path="res://Art/Enemy/enemyBlack1.png" type="Texture" id=6]
-[ext_resource path="res://Art/Enemy/enemyRed2.png" type="Texture" id=7]
+[ext_resource path="res://Art/Enemy/NinjaOrange.png" type="Texture" id=6]
+[ext_resource path="res://Art/Enemy/Shooter.png" type="Texture" id=7]
 [ext_resource path="res://Art/Enemy/ufoRed.png" type="Texture" id=8]
 [ext_resource path="res://Art/Sfx/basic_explode.wav" type="AudioStream" id=9]
+[ext_resource path="res://Art/Enemy/NinjaRed.png" type="Texture" id=10]
+[ext_resource path="res://Art/Enemy/NinjaGreen.png" type="Texture" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -17,24 +19,29 @@ animations = [ {
 "name": "explode",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "ufo",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "shooter_orange",
 "speed": 5.0
 }, {
-"frames": [  ],
+"frames": [ ExtResource( 8 ) ],
 "loop": true,
-"name": "ninja_black2",
+"name": "ufo",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "NinjaOrange",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 11 ) ],
 "loop": false,
-"name": "ninja_black",
+"name": "NinjaGreen",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ) ],
+"loop": true,
+"name": "NinjaRed",
 "speed": 5.0
 } ]
 
@@ -53,7 +60,7 @@ bullet = ExtResource( 2 )
 [node name="Sprite" type="AnimatedSprite" parent="."]
 rotation = -1.5708
 frames = SubResource( 1 )
-animation = "ninja_black"
+animation = "NinjaGreen"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )

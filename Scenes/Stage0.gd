@@ -10,9 +10,10 @@ var score_file = "user://highscore.gd"
 var highscore = 0
 var screensize
 var Icons = [0,"stair","shield","rocket"]
-var shooter_speed = 200
+var ninja_speed = 200
+var ninja_sprite = 0
 var gfp = false # game flow pause
-var ninjas = 0 # count for paths of ninjas
+#var ninjas = 0 # count for paths of ninjas
 
 
 #-----------------------------------------------------------------------------------------------------
@@ -91,27 +92,28 @@ func update_power_icons():
 func _on_ninjaSpawn_timeout():
 	if Singleton.score > 100:
 		$ninjaSpawn.wait_time = 0.9
-		shooter_speed = 220
 	if Singleton.score > 200:
 		$ninjaSpawn.wait_time = 0.85
-		shooter_speed = 240
 	if Singleton.score > 300:
 		$ninjaSpawn.wait_time = 0.80
-		shooter_speed = 260
+		ninja_speed = 250
+		ninja_sprite = 1
 	if Singleton.score > 400:
 		$ninjaSpawn.wait_time = 0.75
-		shooter_speed = 280
 	if Singleton.score > 500:
 		$ninjaSpawn.wait_time = 0.725
 	if Singleton.score > 600:
 		$ninjaSpawn.wait_time = 0.7
-	if Singleton.score > 700:
+		ninja_speed = 290
+		ninja_sprite = 2
+	if Singleton.score > 800:
 		$ninjaSpawn.wait_time = 0.675
 	
 	if !gfp:
 		var e = Enemy.instance()
+		e.ninja_sprite = ninja_sprite
 		e.type = 0
-		e.speed = shooter_speed 
+		e.speed = ninja_speed 
 		add_child(e)
 	
 #-----------------------------------------------------------------------------------------------------

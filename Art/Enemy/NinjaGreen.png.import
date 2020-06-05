@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/enemyBlack1.png-d23cfe452ea9421b5f8ceeba7a13e1bf.stex"
+path="res://.import/NinjaGreen.png-e6816f55ae5cb5bcea2c48c59682e7a4.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemy/enemyBlack1.png"
-dest_files=[ "res://.import/enemyBlack1.png-d23cfe452ea9421b5f8ceeba7a13e1bf.stex" ]
+source_file="res://Art/Enemy/NinjaGreen.png"
+dest_files=[ "res://.import/NinjaGreen.png-e6816f55ae5cb5bcea2c48c59682e7a4.stex" ]
 
 [params]
 

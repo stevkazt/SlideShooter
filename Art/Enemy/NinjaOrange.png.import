@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/spaceBuilding_005.png-a1bb3bc20e8ed64aa6b0ec94402d945b.stex"
+path="res://.import/NinjaOrange.png-a8f5ab3c1b17f8576bd02ea6d0ee4615.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Enemy/spaceBuilding_005.png"
-dest_files=[ "res://.import/spaceBuilding_005.png-a1bb3bc20e8ed64aa6b0ec94402d945b.stex" ]
+source_file="res://Art/Enemy/NinjaOrange.png"
+dest_files=[ "res://.import/NinjaOrange.png-a8f5ab3c1b17f8576bd02ea6d0ee4615.stex" ]
 
 [params]
 
