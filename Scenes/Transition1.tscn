@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Art/Background/fondo2.png" type="Texture" id=1]
 [ext_resource path="res://Art/Background/asterisco1.png" type="Texture" id=2]
 [ext_resource path="res://Art/Player/playerShipUpgrade1.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Transition1.gd" type="Script" id=4]
+[ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "fondo1"
@@ -106,24 +107,47 @@ tracks/7/keys = {
 "values": [ true, false, false ]
 }
 
-[node name="Transition1" type="Node2D"]
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 5 )
+
+[node name="Transition1" type="Node2D" groups=[
+"transition",
+]]
 script = ExtResource( 4 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "fondo1"
-playback_speed = 8.0
 anims/fondo1 = SubResource( 1 )
 
 [node name="Fondo2" type="Sprite" parent="AnimationPlayer"]
-position = Vector2( 0, 500 )
-scale = Vector2( 0.6, 0.6 )
+position = Vector2( -300, 960 )
+rotation = 9.42478
 texture = ExtResource( 1 )
 
 [node name="Fondo1" type="Sprite" parent="AnimationPlayer"]
-position = Vector2( 360, -300 )
+visible = false
+position = Vector2( 360, 650 )
+scale = Vector2( 4.2, 5 )
 texture = ExtResource( 2 )
 
 [node name="Player" type="Sprite" parent="AnimationPlayer"]
 position = Vector2( 360, 1000 )
 texture = ExtResource( 3 )
+
+[node name="FinDemo" type="Label" parent="AnimationPlayer"]
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_top = -72.0
+margin_bottom = 72.0
+custom_fonts/font = SubResource( 2 )
+text = "Fin de la Demo
+Gracias por jugar
+No olvides darnos tu feedback"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

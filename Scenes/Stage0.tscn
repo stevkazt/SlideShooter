@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/Stage0.gd" type="Script" id=1]
 [ext_resource path="res://Art/GUI/play.png" type="Texture" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Art/GUI/no.png" type="Texture" id=17]
 [ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=18]
 [ext_resource path="res://Art/PowerUps/FondoPowerup.png" type="Texture" id=19]
+[ext_resource path="res://Art/Music/Marauder.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Art/Music/Boom.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Art/Music/BigCarTheft.ogg" type="AudioStream" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -47,14 +50,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=4]
 animations = [ {
-"frames": [ ExtResource( 18 ) ],
-"loop": false,
-"name": "sfx_off",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 16 ) ],
 "loop": false,
 "name": "sfx_on",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 18 ) ],
+"loop": false,
+"name": "sfx_off",
 "speed": 5.0
 } ]
 
@@ -65,14 +68,14 @@ animations = [ {
 "name": "shield",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ) ],
-"loop": false,
-"name": "stair",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "rocket",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 7 ) ],
+"loop": false,
+"name": "stair",
 "speed": 5.0
 } ]
 
@@ -137,7 +140,7 @@ wait_time = 6.0
 autostart = true
 
 [node name="PowerUpTimer" type="Timer" parent="."]
-wait_time = 13.0
+wait_time = 16.0
 autostart = true
 
 [node name="GameOverTimer" type="Timer" parent="."]
@@ -269,6 +272,18 @@ flat = true
 frames = SubResource( 5 )
 animation = "stair"
 centered = false
+
+[node name="Music_Green" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 20 )
+volume_db = -20.0
+
+[node name="Music_Orange" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 22 )
+volume_db = -20.0
+
+[node name="Music_Red" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 21 )
+volume_db = -20.0
 [connection signal="timeout" from="ninjaSpawn" to="." method="_on_ninjaSpawn_timeout"]
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]

@@ -120,13 +120,14 @@ func _on_Enemy_area_entered(area):
 		match type:
 			0:
 				if can_get_damage:
-					Singleton.score += 5
+					Singleton.score += 4
 			1:
 				if can_get_damage:
-					Singleton.score += 7
+					Singleton.score += 6
 			3:
 				Singleton.score += 15
 		speed = 0
+		$ShootTimer.stop()
 		$CollisionShape2D.queue_free()
 		$sfx_explode.play()
 		$Sprite.play("explode")

@@ -14,20 +14,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
-"loop": true,
-"name": "explode",
-"speed": 12.0
-}, {
 "frames": [ ExtResource( 7 ) ],
 "loop": true,
 "name": "shooter_orange",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 8 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "ufo",
-"speed": 5.0
+"name": "explode",
+"speed": 12.0
 }, {
 "frames": [ ExtResource( 6 ) ],
 "loop": true,
@@ -37,6 +32,11 @@ animations = [ {
 "frames": [ ExtResource( 11 ) ],
 "loop": false,
 "name": "NinjaGreen",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 8 ) ],
+"loop": true,
+"name": "ufo",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 10 ) ],
@@ -76,7 +76,7 @@ autostart = true
 
 [node name="sfx_explode" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
-volume_db = -15.0
+volume_db = -25.0
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

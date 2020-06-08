@@ -1,13 +1,9 @@
 extends Node2D
 
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
 func _on_AnimationPlayer_animation_finished(_anim_name):
 	get_tree().paused = true
+	
 #	var BG2 = load("res://Scenes/Background2.tscn")
 #	var background2 = BG2.instance()
 #	get_parent().get_node("Stage0").queue_free()

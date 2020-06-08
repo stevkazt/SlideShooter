@@ -36,7 +36,6 @@ func _on_PowerUp_area_entered(_area):
 	if power == 4:
 		$sfx_taken.play()
 		
-	
 #-----------------------------------------------------------------------------------------------------
 func _on_sfx_taken_finished():
 	queue_free()

@@ -2,7 +2,7 @@ extends Node
 # This is Singleton
 var score
 var lifes
-var sfx
+var sfx = true
 var powers : Array
 var update # Used to change stage
 var Stage 
@@ -13,13 +13,12 @@ var stuff
 	# Power 2 = shield
 	# Power 3 = Rocket
 
-func _ready():
+func _start():
 	stuff = false
 	Stage = 1
 	update = false
 	powers.resize(0)
 	last_powers = [0,0,0]
-	sfx = true
 	score = 0
 	lifes = 3
 	

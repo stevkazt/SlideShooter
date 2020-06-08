@@ -24,9 +24,7 @@ func _ready():
 	
 #-----------------------------------------------------------------------------------------------------
 func _process(delta):
-	if Singleton.score >2000:
-		queue_free()
-
+		
 	var target_dir = (target.global_position - global_position).normalized()
 	var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 	
@@ -62,10 +60,10 @@ func _process(delta):
 			can_get_damage = false
 			set_pos = Vector2(-200,screensize.y/2)
 			
-	if Singleton.score > 1450:
+	if Singleton.score > 1450 and can_get_damage:
 		set_pos = target.position
 		
-	if Singleton.score > 1600:
+	if Singleton.score > 1600 and can_get_damage:
 		set_pos = Vector2(screensize.x/2,screensize.y/2)
 		if Singleton.score > 1680:
 			$Laser.show()
@@ -76,14 +74,22 @@ func _process(delta):
 
 	
 	position = position.linear_interpolate(set_pos, delta*0.5)
-	self.global_rotation = current_dir.linear_interpolate(target_dir, delta*2).angle()
-
-	
+	if can_get_damage:
+		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*2).angle()
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_Boss1_area_entered(area):
 	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5) and can_get_damage:
-		Singleton.score += 2
+		Singleton.score += 4
+		if Singleton.score >2000:
+			$FinalTimer.start()
+			$Laser.hide()
+			$AnimatedSprite.animation = "explode"
+			scale = Vector2(2,2)
+			$MissilesTimer.stop()
+			$Laser1Timer.stop()
+			$Laser2Timer.stop()
+			can_get_damage = false
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_Timer_timeout():
@@ -99,7 +105,7 @@ func _on_Laser1Timer_timeout():
 	$Laser2Timer.start()
 	laser_count += 1
 	
-	if laser_count > 5:
+	if laser_count > 5 and can_get_damage:
 		$MissilesTimer.start()
 		missile_counter = 0
 		laser_count = 0
@@ -127,10 +133,12 @@ func _on_MissilesTimer_timeout():
 func _on_ShooterTimer_timeout():
 	if minions_count <= 4:
 		var m = minions.instance()
+		m.ninja_sprite = 2
 		m.type = 0
 		m.can_get_damage = false
 		get_parent().add_child(m)
 		m = minions.instance()
+		m.ninja_sprite = 2
 		m.type = 0
 		m.can_get_damage = false
 		get_parent().add_child(m)
@@ -157,3 +165,13 @@ func _on_ShooterTimer_timeout():
 		can_get_damage = true
 		part += 1
 		minions_count = 0 
+
+
+
+func _on_FinalTimer_timeout():
+	var PowerUp = load("res://Scenes/PowerUp.tscn")
+	var p = PowerUp.instance()
+	p.power = 4
+	get_parent().add_child(p)
+	p.position = Vector2(screensize.x/2,screensize.y/2)
+	queue_free()

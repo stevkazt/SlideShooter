@@ -13,14 +13,16 @@ var Icons = [0,"stair","shield","rocket"]
 var ninja_speed = 200
 var ninja_sprite = 0
 var gfp = false # game flow pause
-#var ninjas = 0 # count for paths of ninjas
 
 
 #-----------------------------------------------------------------------------------------------------
 func _ready():
+	$Music_Green.play()
+	Singleton._start()
 	randomize()
 	if !Singleton.sfx:
 		$Buttons/pause_menu/sfx/sfx.animation = "sfx_off"
+		
 	screensize =  get_viewport_rect().size
 	$Buttons.rect_global_position = Vector2(0,screensize.y-130)
 	#----------------------------------------------------------------------------------------------
@@ -38,12 +40,7 @@ func _process(_delta):
 		var boss1 = Boss1.instance()
 		add_child(boss1)
 	#----------------------------------------------------------------------------------------------
-	if Singleton.score > 2000 and gfp:
-		var p = PowerUp.instance()
-		p.power = 4
-		add_child(p)
-		p.position = Vector2(screensize.x/2,screensize.y/2)
-		gfp = false
+
 	#-------------------------- Actualizaciones de pantalla ---------------------------------------
 	update_lifes()
 	update_power_icons()
@@ -94,16 +91,22 @@ func _on_ninjaSpawn_timeout():
 		$ninjaSpawn.wait_time = 0.9
 	if Singleton.score > 200:
 		$ninjaSpawn.wait_time = 0.85
-	if Singleton.score > 300:
-		$ninjaSpawn.wait_time = 0.80
+		if $Music_Green.playing:
+			$Music_Green.stop()
+			$Music_Orange.play()
 		ninja_speed = 250
 		ninja_sprite = 1
+	if Singleton.score > 300:
+		$ninjaSpawn.wait_time = 0.80
 	if Singleton.score > 400:
 		$ninjaSpawn.wait_time = 0.75
 	if Singleton.score > 500:
 		$ninjaSpawn.wait_time = 0.725
 	if Singleton.score > 600:
 		$ninjaSpawn.wait_time = 0.7
+		if $Music_Orange.playing:
+			$Music_Orange.stop()
+			$Music_Red.play()
 		ninja_speed = 290
 		ninja_sprite = 2
 	if Singleton.score > 800:
@@ -130,7 +133,12 @@ func _on_PowerUpTimer_timeout():
 		var p = PowerUp.instance()
 		var pa = [1,1,1,1,1,1,1,2,2,2]
 		var b = randi()%10+0
-		p.power = pa[b]
+		if !Singleton.powers.has(2):
+			p.power = pa[b]
+			if player.shield:
+				p.power = 1
+		else:
+			p.power = 1
 		add_child(p)
 		p.position = Vector2(rand_range(150,600),rand_range(400,1120))
 	
@@ -212,6 +220,11 @@ func _on_Button_yes_pressed():
 	Singleton.score = 0
 	Singleton.powers.resize(0)
 	get_tree().get_nodes_in_group("player")[0].queue_free()
+	
+	var transitions = get_tree().get_nodes_in_group("transition")
+	if transitions.size() > 0:
+		transitions[0].queue_free()
+	
 	get_parent().add_child(main)
 	queue_free()
 	

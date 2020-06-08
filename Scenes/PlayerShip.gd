@@ -23,7 +23,7 @@ export (PackedScene) var FlashScreen
 #-----------------------------------------------------------------------------------------------------
 func _ready():
 	s_size = get_viewport_rect().size
-	#Singleton.score = 2050
+	#Singleton.score = 950
 	#Singleton.lifes = 2
 	
 #-----------------------------------------------------------------------------------------------------
@@ -241,5 +241,6 @@ func _on_UpdateTimer_timeout():
 	$Sprite.animation = "Player2"
 	$CollisionShape2D.scale = Vector2(1.2,1.2)
 	double_shoot = true
-
-
+	Singleton.update = true
+	# For Demo
+	$LaserTimer.stop()

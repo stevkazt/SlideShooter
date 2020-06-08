@@ -34,15 +34,10 @@ animations = [ {
 "name": "shield",
 "speed": 45.0
 }, {
-"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
-"loop": false,
-"name": "PowerShield",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 13 ) ],
-"loop": false,
-"name": "Player2",
-"speed": 5.0
+"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "explode",
+"speed": 6.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 4 ) ],
 "loop": true,
@@ -54,14 +49,19 @@ animations = [ {
 "name": "upgrade1",
 "speed": 9.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
-"loop": true,
-"name": "explode",
-"speed": 6.0
-}, {
 "frames": [ ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ) ],
 "loop": true,
 "name": "PowerShield2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": false,
+"name": "Player2",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"loop": false,
+"name": "PowerShield",
 "speed": 5.0
 } ]
 
@@ -151,6 +151,9 @@ volume_db = 5.0
 
 [node name="UpdateTimer" type="Timer" parent="."]
 wait_time = 6.0
+one_shot = true
+
+[node name="Timer" type="Timer" parent="."]
 one_shot = true
 [connection signal="area_entered" from="." to="." method="_on_PlayerShip_area_entered"]
 [connection signal="timeout" from="LaserTimer" to="." method="_on_LaserTimer_timeout"]
