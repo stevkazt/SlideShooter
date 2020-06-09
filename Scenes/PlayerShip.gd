@@ -9,7 +9,7 @@ var enemytypes : Array
 var drag 
 var dragging
 var s_size
-var can_get_damage = !true
+var can_get_damage = true
 var taps = 0
 var shields_number = 0
 var shield = false
