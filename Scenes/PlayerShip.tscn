@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/PlayerShip.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
@@ -21,6 +21,7 @@
 [ext_resource path="res://Art/Sfx/sfx_lose.ogg" type="AudioStream" id=19]
 [ext_resource path="res://Art/Sfx/stair.ogg" type="AudioStream" id=20]
 [ext_resource path="res://Art/Sfx/lostshield.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Art/Shields/Tuto_Range.png" type="Texture" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -155,6 +156,11 @@ one_shot = true
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true
+
+[node name="Tuto_Range" type="Sprite" parent="."]
+visible = false
+scale = Vector2( 1.4, 1.4 )
+texture = ExtResource( 22 )
 [connection signal="area_entered" from="." to="." method="_on_PlayerShip_area_entered"]
 [connection signal="timeout" from="LaserTimer" to="." method="_on_LaserTimer_timeout"]
 [connection signal="timeout" from="LifeTimer" to="." method="_on_LifeTimer_timeout"]

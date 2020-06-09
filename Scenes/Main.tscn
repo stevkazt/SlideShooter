@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Stage0.tscn" type="PackedScene" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://Art/GUI/tutorial.png" type="Texture" id=9]
 [ext_resource path="res://Art/GUI/about.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Scenes/Tutorials.tscn" type="PackedScene" id=12]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -49,6 +50,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 Game = ExtResource( 2 )
+Tutorials = ExtResource( 12 )
 
 [node name="Screen" type="Control" parent="."]
 margin_right = 720.0

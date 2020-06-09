@@ -16,6 +16,7 @@ var shield = false
 var lost_shield_played = false
 var double_shoot = false
 var mov_modifier = 1
+var circle = false
 
 export (PackedScene) var Bullet
 export (PackedScene) var FlashScreen
@@ -23,6 +24,9 @@ export (PackedScene) var FlashScreen
 #-----------------------------------------------------------------------------------------------------
 func _ready():
 	s_size = get_viewport_rect().size
+	if circle:
+		$Tuto_Range.show()
+		can_get_damage = false
 	#Singleton.score = 950
 	#Singleton.lifes = 2
 	

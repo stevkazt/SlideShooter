@@ -66,6 +66,7 @@ shape = SubResource( 2 )
 one_shot = true
 
 [node name="Laser1Timer" type="Timer" parent="."]
+wait_time = 1.2
 autostart = true
 
 [node name="Position2D" type="Position2D" parent="."]
@@ -77,7 +78,7 @@ position = Vector2( 66.4997, -72.1997 )
 position = Vector2( 68.3997, 74.0997 )
 
 [node name="Laser2Timer" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 0.4
 one_shot = true
 
 [node name="MissilesTimer" type="Timer" parent="."]

@@ -23,7 +23,6 @@ func _ready():
 
 	
 func _process(_delta):
-	$AsteroidTimer.wait_time = rand_range(.5,2)
 	$ParallaxBackground/ParallaxLayer.motion_offset.y += 1
 
 
@@ -71,3 +70,9 @@ func _on_Store_pressed():
 	get_parent().add_child(store)
 	queue_free()
 
+
+func _on_Button_pressed():
+	var TRange = load("res://Scenes/Tuto_Range.tscn")
+	var trange = TRange.instance()
+	get_parent().add_child(trange)
+	queue_free()
