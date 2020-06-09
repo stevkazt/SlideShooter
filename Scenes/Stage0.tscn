@@ -19,9 +19,9 @@
 [ext_resource path="res://Art/GUI/no.png" type="Texture" id=17]
 [ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=18]
 [ext_resource path="res://Art/PowerUps/FondoPowerup.png" type="Texture" id=19]
-[ext_resource path="res://Art/Music/Marauder.ogg" type="AudioStream" id=20]
-[ext_resource path="res://Art/Music/Boom.ogg" type="AudioStream" id=21]
-[ext_resource path="res://Art/Music/BigCarTheft.ogg" type="AudioStream" id=22]
+[ext_resource path="res://Art/music/sound2/85BUCLE2.ogg" type="AudioStream" id=20]
+[ext_resource path="res://Art/music/sound2/BUCLE2.ogg" type="AudioStream" id=21]
+[ext_resource path="res://Art/music/sound2/70BUCLE2.ogg" type="AudioStream" id=22]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -274,16 +274,16 @@ animation = "stair"
 centered = false
 
 [node name="Music_Green" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
-volume_db = -20.0
+stream = ExtResource( 22 )
+volume_db = -10.0
 
 [node name="Music_Orange" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 22 )
-volume_db = -20.0
+stream = ExtResource( 20 )
+volume_db = -10.0
 
 [node name="Music_Red" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 21 )
-volume_db = -20.0
+volume_db = -10.0
 [connection signal="timeout" from="ninjaSpawn" to="." method="_on_ninjaSpawn_timeout"]
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]

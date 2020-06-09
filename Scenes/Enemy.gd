@@ -120,7 +120,7 @@ func _on_Enemy_area_entered(area):
 		match type:
 			0:
 				if can_get_damage:
-					Singleton.score += 4
+					Singleton.score += 10
 			1:
 				if can_get_damage:
 					Singleton.score += 6
