@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/BUCLE2.ogg-bfe5f1fa5b6c52ddfa2bc468b1db1cf5.oggstr"
+
+[deps]
+
+source_file="res://Art/music/sound2/BUCLE2.ogg"
+dest_files=[ "res://.import/BUCLE2.ogg-bfe5f1fa5b6c52ddfa2bc468b1db1cf5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0
