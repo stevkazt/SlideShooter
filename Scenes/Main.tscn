@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scenes/Main.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Stage0.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Art/GUI/about.png" type="Texture" id=10]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Scenes/Tutorials.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Scenes/About.tscn" type="PackedScene" id=13]
 
 [sub_resource type="DynamicFont" id=1]
 size = 100
@@ -51,6 +52,7 @@ __meta__ = {
 }
 Game = ExtResource( 2 )
 Tutorials = ExtResource( 12 )
+About = ExtResource( 13 )
 
 [node name="Screen" type="Control" parent="."]
 margin_right = 720.0
@@ -183,3 +185,4 @@ text = "language"
 [connection signal="pressed" from="Screen/Down/Settings/sfx" to="." method="_on_sfx_pressed"]
 [connection signal="pressed" from="Screen/Down/Store" to="." method="_on_Store_pressed"]
 [connection signal="pressed" from="Screen/Down/tutorial" to="." method="_on_tutorial_pressed"]
+[connection signal="pressed" from="Screen/Down/about" to="." method="_on_about_pressed"]

@@ -30,9 +30,9 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 13 ), ExtResource( 4 ) ],
 "loop": true,
-"name": "shield",
+"name": "Player2Shield",
 "speed": 45.0
 }, {
 "frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
@@ -40,9 +40,9 @@ animations = [ {
 "name": "explode",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 13 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "Player2Shield",
+"name": "shield",
 "speed": 45.0
 }, {
 "frames": [ ExtResource( 13 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 5 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ), ExtResource( 13 ) ],
@@ -117,7 +117,7 @@ volume_db = 10.0
 [node name="sfx_lose" type="AudioStreamPlayer2D" parent="."]
 pause_mode = 2
 stream = ExtResource( 19 )
-volume_db = 20.0
+volume_db = 10.0
 
 [node name="Area2D" type="Area2D" parent="."]
 input_pickable = false

@@ -38,10 +38,10 @@ func start(_position, _direction, _type,_team):
 	#----------- Enemy Team -----------------------------------------------------------------------
 	if team == 2:
 		set_collision_layer_bit(5,false)
+		set_collision_mask_bit(0,true)
 		if type == 1:
 			$sfx_laser_enemy.play()
 			$Sprite.animation = "enemy"
-			set_collision_mask_bit(0,true)
 		if type == 2:
 			$CollisionShape2D.scale = Vector2(2,2)
 			rocketlaunch = false
@@ -95,9 +95,7 @@ func missile_process(delta):
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_Bullet_area_entered(area):
-	if team == 1 and !area.get_collision_layer_bit(9):
-		if type ==1:
-			pass
+	if team == 1:
 		velocity = Vector2()
 		$CollisionShape2D.queue_free()
 		$Sprite.play("explode")

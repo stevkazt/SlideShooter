@@ -162,7 +162,7 @@ anchor_right = 1.0
 margin_right = 716.0
 margin_bottom = 249.0
 custom_fonts/font = SubResource( 4 )
-text = "Tu nave solo dispara si 
+text = "Tu nave solo apuntara si 
 el enemigo esta dentro de 
 este rango. 
 "

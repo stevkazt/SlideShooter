@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Boss1.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
@@ -8,9 +8,14 @@
 [ext_resource path="res://Art/Bullets/Lazer2.png" type="Texture" id=6]
 [ext_resource path="res://Art/Bullets/Lazer3.png" type="Texture" id=7]
 [ext_resource path="res://Art/Bullets/Lazer4.png" type="Texture" id=8]
+[ext_resource path="res://Art/Enemy/Boss1_2.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Art/Damage/playerShip3_damage2.png" type="Texture" id=11]
 [ext_resource path="res://Art/Damage/playerShip3_damage3.png" type="Texture" id=12]
+[ext_resource path="res://Art/Enemy/Boss1_mini.png" type="Texture" id=13]
+[ext_resource path="res://Art/Enemy/Boss1_1.png" type="Texture" id=14]
+[ext_resource path="res://Art/Enemy/Boss1_3.png" type="Texture" id=15]
+[ext_resource path="res://Art/Sfx/sfx_lose.ogg" type="AudioStream" id=16]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -19,12 +24,17 @@ animations = [ {
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 11 ), ExtResource( 12 ) ],
+"frames": [ ExtResource( 14 ) ],
+"loop": true,
+"name": "damage",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ), ExtResource( 15 ), ExtResource( 11 ), ExtResource( 15 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "explode",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [ ExtResource( 9 ) ],
 "loop": false,
 "name": "laser",
 "speed": 5.0
@@ -95,7 +105,6 @@ position = Vector2( 500, 0 )
 rotation = 1.5708
 z_index = -1
 frames = SubResource( 3 )
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Laser"]
@@ -109,6 +118,15 @@ one_shot = true
 
 [node name="ShooterTimer" type="Timer" parent="."]
 wait_time = 3.0
+
+[node name="Mini" type="Sprite" parent="."]
+visible = false
+rotation = -1.5708
+texture = ExtResource( 13 )
+
+[node name="sfx_explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 16 )
+volume_db = 10.0
 [connection signal="area_entered" from="." to="." method="_on_Boss1_area_entered"]
 [connection signal="timeout" from="PosTimer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="Laser1Timer" to="." method="_on_Laser1Timer_timeout"]

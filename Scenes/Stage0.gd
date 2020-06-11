@@ -111,6 +111,8 @@ func _on_ninjaSpawn_timeout():
 		ninja_sprite = 2
 	if Singleton.score > 800:
 		$ninjaSpawn.wait_time = 0.675
+	if Singleton.score > 2000 and $Music_Red.playing:
+		$Music_Red.stop()
 	
 	if !gfp:
 		var e = Enemy.instance()
@@ -121,7 +123,7 @@ func _on_ninjaSpawn_timeout():
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_ShooterTimer_timeout():
-	if !gfp and Singleton.score > 300:
+	if !gfp and Singleton.score > 100:
 		var e = Enemy.instance()
 		e.type = 1
 		add_child(e)

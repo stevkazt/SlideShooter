@@ -2,7 +2,7 @@ extends Control
 
 export (PackedScene) var Game 
 export (PackedScene) var Tutorials
-#export (PackedScene) var Store
+export (PackedScene) var About
 
 var score_file = "user://highscore.gd"
 var highscore = 0
@@ -68,7 +68,6 @@ func _on_Settings_pressed():
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_tutorial_pressed():
-	pass
 	var tutos = Tutorials.instance()
 	get_parent().add_child(tutos)
 	queue_free()
@@ -79,3 +78,9 @@ func _on_Store_pressed():
 #	var store = Store.instance()
 #	get_parent().add_child(store)
 #	queue_free()
+
+
+func _on_about_pressed():
+	var ab = About.instance()
+	get_parent().add_child(ab)
+	queue_free()

@@ -39,6 +39,7 @@ func _process(delta):
 	if Singleton.score > 1200 and part == 1:
 		target_dir = Vector2(0,-1)
 		if  can_get_damage:
+			$AnimatedSprite.animation = "damage"
 			$ShooterTimer.start()
 			$Laser1Timer.stop()
 			can_get_damage = false
@@ -70,8 +71,9 @@ func _process(delta):
 			$AnimatedSprite.animation = "laser"
 			$Laser/CollisionShape2D.disabled = false
 	
-	
-
+	if Singleton.score > 2000:
+		$Mini.global_position = $Mini.global_position.linear_interpolate(Vector2(400,-200), delta*.4)
+		$Mini.global_rotation_degrees = -180 
 	
 	position = position.linear_interpolate(set_pos, delta*0.5)
 	if can_get_damage:
@@ -82,14 +84,16 @@ func _on_Boss1_area_entered(area):
 	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5) and can_get_damage:
 		Singleton.score += 4
 		if Singleton.score >2000:
+			$sfx_explode.play()
 			$FinalTimer.start()
 			$Laser.hide()
 			$AnimatedSprite.animation = "explode"
-			scale = Vector2(2,2)
+			call_deferred("$CollisionShape2D.disabled","true")
 			$MissilesTimer.stop()
 			$Laser1Timer.stop()
 			$Laser2Timer.stop()
 			can_get_damage = false
+			$Mini.show()
 	
 #-----------------------------------------------------------------------------------------------------
 func _on_Timer_timeout():
@@ -131,7 +135,7 @@ func _on_MissilesTimer_timeout():
 #-----------------------------------------------------------------------------------------------------
 
 func _on_ShooterTimer_timeout():
-	if minions_count <= 4:
+	if minions_count <= 5:
 		var m = minions.instance()
 		m.ninja_sprite = 2
 		m.type = 0

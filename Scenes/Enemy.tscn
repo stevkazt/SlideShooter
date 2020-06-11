@@ -76,7 +76,7 @@ autostart = true
 
 [node name="sfx_explode" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
-volume_db = -25.0
+volume_db = -15.0
 [connection signal="area_entered" from="." to="." method="_on_Enemy_area_entered"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]

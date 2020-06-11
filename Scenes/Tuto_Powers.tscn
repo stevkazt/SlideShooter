@@ -1,6 +1,6 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=24 format=2]
 
-[ext_resource path="res://Scenes/Stage0.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Tuto_Powers.gd" type="Script" id=1]
 [ext_resource path="res://Art/GUI/play.png" type="Texture" id=2]
 [ext_resource path="res://Art/PowerUps/Roketluncher.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=4]
@@ -8,8 +8,6 @@
 [ext_resource path="res://Art/PowerUps/Escudo.png" type="Texture" id=6]
 [ext_resource path="res://Art/PowerUps/Multishot.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/PlayerShip.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Art/GUI/playerLife1_blue.png" type="Texture" id=9]
-[ext_resource path="res://Scenes/Boss1.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Art/Background/fondo1.png" type="Texture" id=11]
 [ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=12]
 [ext_resource path="res://Art/GUI/pause.png" type="Texture" id=13]
@@ -19,13 +17,7 @@
 [ext_resource path="res://Art/GUI/no.png" type="Texture" id=17]
 [ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=18]
 [ext_resource path="res://Art/PowerUps/FondoPowerup.png" type="Texture" id=19]
-[ext_resource path="res://Art/music/sound2/85BUCLE2.ogg" type="AudioStream" id=20]
-[ext_resource path="res://Art/music/sound2/BUCLE2.ogg" type="AudioStream" id=21]
 [ext_resource path="res://Art/music/sound2/70BUCLE2.ogg" type="AudioStream" id=22]
-
-[sub_resource type="DynamicFont" id=1]
-size = 50
-font_data = ExtResource( 12 )
 
 [sub_resource type="SpriteFrames" id=2]
 animations = [ {
@@ -63,14 +55,14 @@ animations = [ {
 
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ ExtResource( 6 ) ],
-"loop": true,
-"name": "shield",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
 "name": "rocket",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 6 ) ],
+"loop": true,
+"name": "shield",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 7 ) ],
@@ -79,7 +71,11 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="Stage0" type="Node2D"]
+[sub_resource type="DynamicFont" id=6]
+size = 40
+font_data = ExtResource( 12 )
+
+[node name="Tuto_Powers" type="Node2D"]
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_vertical_guides_": [  ]
@@ -87,7 +83,6 @@ __meta__ = {
 Enemy = ExtResource( 4 )
 PLAYER = ExtResource( 8 )
 PowerUp = ExtResource( 5 )
-Boss1 = ExtResource( 10 )
 
 [node name="BG" type="Node2D" parent="."]
 
@@ -100,58 +95,20 @@ motion_mirroring = Vector2( 0, 3838 )
 position = Vector2( 360, 200 )
 texture = ExtResource( 11 )
 
-[node name="Lifes" type="Control" parent="."]
-margin_right = 40.0
-margin_bottom = 40.0
-
-[node name="Life1" type="Sprite" parent="Lifes"]
-position = Vector2( 100, 65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
-
-[node name="Life2" type="Sprite" parent="Lifes"]
-position = Vector2( 170, 65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
-
-[node name="Life3" type="Sprite" parent="Lifes"]
-position = Vector2( 240, 65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 9 )
-
-[node name="Score" type="Label" parent="."]
-margin_left = 520.0
-margin_top = 25.0
-margin_right = 634.0
-margin_bottom = 101.0
-custom_fonts/font = SubResource( 1 )
-text = "100"
-align = 2
-valign = 1
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ninjaSpawn" type="Timer" parent="."]
-autostart = true
-
 [node name="ShooterTimer" type="Timer" parent="."]
-wait_time = 5.0
 autostart = true
 
 [node name="PowerUpTimer" type="Timer" parent="."]
-wait_time = 16.0
+wait_time = 8.0
 autostart = true
-
-[node name="GameOverTimer" type="Timer" parent="."]
-pause_mode = 2
-wait_time = 4.0
-one_shot = true
 
 [node name="Buttons" type="Control" parent="."]
 margin_top = 1150.0
 margin_right = 40.0
 margin_bottom = 1190.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="pause_menu" type="Button" parent="Buttons"]
 pause_mode = 2
@@ -277,17 +234,20 @@ centered = false
 stream = ExtResource( 22 )
 volume_db = -10.0
 
-[node name="Music_Orange" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 20 )
-volume_db = -10.0
-
-[node name="Music_Red" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 21 )
-volume_db = -10.0
-[connection signal="timeout" from="ninjaSpawn" to="." method="_on_ninjaSpawn_timeout"]
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+margin_right = 718.0
+margin_bottom = 123.0
+custom_fonts/font = SubResource( 6 )
+text = "Toca la pantalla dos veces 
+para usar tus poderes"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
-[connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="pressed" from="Buttons/pause_menu" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home/Button_yes" to="." method="_on_Button_yes_pressed"]

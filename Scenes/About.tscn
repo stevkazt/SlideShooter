@@ -1,14 +1,13 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=13 format=2]
 
-[ext_resource path="res://Scenes/Tutorials.gd" type="Script" id=1]
-[ext_resource path="res://Art/Player/ship1_4.png" type="Texture" id=2]
+[ext_resource path="res://Scenes/About.gd" type="Script" id=1]
+[ext_resource path="res://Art/GUI/tutorial.png" type="Texture" id=2]
 [ext_resource path="res://Scenes/ParallaxBackground.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Art/GUI/configuration.png" type="Texture" id=4]
 [ext_resource path="res://Art/GUI/sfx_on.png" type="Texture" id=5]
 [ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=6]
 [ext_resource path="res://Art/GUI/keys.png" type="Texture" id=7]
 [ext_resource path="res://Art/GUI/home.png" type="Texture" id=8]
-[ext_resource path="res://Art/GUI/about.png" type="Texture" id=9]
 [ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=10]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -29,13 +28,16 @@ size = 50
 font_data = ExtResource( 10 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 50
+size = 45
 font_data = ExtResource( 10 )
 
-[node name="Main" type="Control"]
+[node name="About" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ParallaxBackground" parent="." instance=ExtResource( 3 )]
 
@@ -80,33 +82,33 @@ rect_scale = Vector2( 2, 2 )
 icon = ExtResource( 7 )
 flat = true
 
-[node name="home" type="Button" parent="Screen/Down"]
+[node name="tutorials" type="Button" parent="Screen/Down"]
 margin_left = 228.0
 margin_right = 288.0
 margin_bottom = 54.0
 rect_scale = Vector2( 2, 2 )
-icon = ExtResource( 8 )
+icon = ExtResource( 2 )
 flat = true
 
-[node name="about" type="Button" parent="Screen/Down"]
+[node name="home" type="Button" parent="Screen/Down"]
 margin_left = 84.0
 margin_right = 144.0
 margin_bottom = 54.0
 rect_scale = Vector2( 2, 2 )
-icon = ExtResource( 9 )
+icon = ExtResource( 8 )
 flat = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="tuto_menu" type="Control" parent="Screen"]
+[node name="Credit_menu" type="Control" parent="Screen"]
 margin_right = 720.0
 margin_bottom = 1100.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="title" type="Label" parent="Screen/tuto_menu"]
+[node name="title" type="Label" parent="Screen/Credit_menu"]
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -171.0
@@ -114,63 +116,66 @@ margin_top = 50.0
 margin_right = 171.0
 margin_bottom = 126.0
 custom_fonts/font = SubResource( 2 )
-text = "tutorials"
+text = "creditos"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Rango" type="Label" parent="Screen/tuto_menu"]
-margin_left = 80.0
-margin_top = 249.364
-margin_right = 751.0
-margin_bottom = 325.364
+[node name="Arte" type="Label" parent="Screen/Credit_menu"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -209.5
+margin_top = -350.0
+margin_right = 209.5
+margin_bottom = -209.0
 custom_fonts/font = SubResource( 3 )
-text = "rango                                     "
+text = "arte
+Cristian vega"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RangoBT" type="Button" parent="Screen/tuto_menu/Rango"]
-anchor_left = 1.0
+[node name="Musica" type="Label" parent="Screen/Credit_menu"]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -121.0
-margin_top = -47.0
-margin_right = -6.0
-margin_bottom = 47.0
-rect_rotation = 90.0
-icon = ExtResource( 2 )
-flat = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Poderes" type="Label" parent="Screen/tuto_menu"]
-anchor_top = 0.5
-anchor_bottom = 0.5
-margin_left = 80.0
-margin_top = -137.933
-margin_right = 827.0
-margin_bottom = -61.933
+margin_left = -255.0
+margin_top = -150.0
+margin_right = 255.0
+margin_bottom = -9.0
 custom_fonts/font = SubResource( 3 )
-text = "Poderes"
+text = "musica
+audionautix.com"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PoderesBT" type="Button" parent="Screen/tuto_menu/Poderes"]
-anchor_left = 1.0
+[node name="Desarrollo" type="Label" parent="Screen/Credit_menu"]
+anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 1.0
+anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -197.0
-margin_top = -47.0
-margin_right = -82.0
-margin_bottom = 47.0
-rect_rotation = 90.0
-icon = ExtResource( 2 )
-flat = true
+margin_left = -260.5
+margin_top = 50.0
+margin_right = 260.5
+margin_bottom = 191.0
+custom_fonts/font = SubResource( 3 )
+text = "Desarrollo
+Stev Castellanos"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="Screen/Down/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Screen/Down/Settings/sfx" to="." method="_on_sfx_pressed"]
-[connection signal="pressed" from="Screen/Down/home" to="." method="_on_tutorial_pressed"]
-[connection signal="pressed" from="Screen/Down/about" to="." method="_on_about_pressed"]
-[connection signal="pressed" from="Screen/tuto_menu/Rango/RangoBT" to="." method="_on_RangoBT_pressed"]
-[connection signal="pressed" from="Screen/tuto_menu/Poderes/PoderesBT" to="." method="_on_PoderesBT_pressed"]
+[connection signal="pressed" from="Screen/Down/tutorials" to="." method="_on_tutorials_pressed"]
+[connection signal="pressed" from="Screen/Down/home" to="." method="_on_home_pressed"]

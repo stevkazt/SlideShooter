@@ -44,7 +44,7 @@ func _on_Settings_pressed():
 	settings = !settings
 
 
-func _on_tutorial_pressed():
+func _on_home_pressed():
 	var Main = load("res://Scenes/Main.tscn")
 	var main = Main.instance()
 	get_parent().add_child(main)
@@ -57,23 +57,14 @@ func _on_Store_pressed():
 	get_parent().add_child(store)
 	queue_free()
 
-
-func _on_RangoBT_pressed():
-	var TRange = load("res://Scenes/Tuto_Range.tscn")
-	var trange = TRange.instance()
-	get_parent().add_child(trange)
-	queue_free()
-
-
-func _on_PoderesBT_pressed():
 	var TPowers = load("res://Scenes/Tuto_Powers.tscn")
 	var tpowers= TPowers.instance()
 	get_parent().add_child(tpowers)
 	queue_free()
 
 
-func _on_about_pressed():
-	var About = load("res://Scenes/About.tscn")
-	var ab = About.instance()
-	get_parent().add_child(ab)
+func _on_tutorials_pressed():
+	var Tutorials = load("res://Scenes/Tutorials.tscn")
+	var tutos = Tutorials.instance()
+	get_parent().add_child(tutos)
 	queue_free()

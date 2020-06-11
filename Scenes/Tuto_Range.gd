@@ -14,6 +14,7 @@ func _ready():
 		$Buttons/pause_menu/sfx/sfx.animation = "sfx_off"
 		
 	screensize =  get_viewport_rect().size
+	$Buttons.rect_global_position = Vector2(0,screensize.y-130)
 	#----------------------------------------------------------------------------------------------
 	player =  PLAYER.instance()
 	player.circle = true
