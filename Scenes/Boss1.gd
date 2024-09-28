@@ -41,17 +41,14 @@ func _process(delta):
 
 
 func _on_Boss1_area_entered(area):
-	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5):
+	if area.get_collision_layer_value(1) or area.get_collision_layer_value(5):
 		Singleton.score += 5
-
-
 
 func _on_Timer_timeout():
 	set_pos = Vector2(randf_range(100,screensize.x-100),screensize.y-200)
 
-
 func _on_MissileTimer_timeout():
-	var b = bullet.instance()
+	var b = bullet.instantiate()
 	b.team = 2
 	b.scale = Vector2(2,2)
 	get_parent().add_child(b)
@@ -66,7 +63,7 @@ func _on_MissileTimer_timeout():
 	
 
 func _on_Laser2Timer_timeout():
-	var b = bullet.instance()
+	var b = bullet.instantiate()
 	b.team = 2
 	b.scale = Vector2(2,2)
 	get_parent().add_child(b)
@@ -78,7 +75,7 @@ func _on_MissilesTimer_timeout():
 	missile_counter += 1
 	if missile_counter < 3:
 		$MissilesTimer.start()
-		var b = bullet.instance()
+		var b = bullet.instantiate()
 		b.team = 2
 		get_parent().add_child(b)
 		b.start($Position2D2.global_position,Vector2(1, 0).rotated($Position2D.global_rotation),2,2)

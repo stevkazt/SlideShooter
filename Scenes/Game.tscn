@@ -1,126 +1,136 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=22 format=3 uid="uid://b67o7k6ygvbfy"]
 
-[ext_resource path="res://Scenes/Game.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Scenes/PlayerShip.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/PowerUp.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Scenes/Boss1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Art/GUI/playerLife1_blue.png" type="Texture" id=6]
-[ext_resource path="res://Art/Fonts/Kenney Blocks.ttf" type="DynamicFontData" id=7]
-[ext_resource path="res://Art/GUI/play.png" type="Texture" id=8]
-[ext_resource path="res://Art/GUI/pause.png" type="Texture" id=9]
-[ext_resource path="res://Art/GUI/home.png" type="Texture" id=10]
-[ext_resource path="res://Art/GUI/yes.png" type="Texture" id=11]
-[ext_resource path="res://Art/GUI/no.png" type="Texture" id=12]
-[ext_resource path="res://Art/GUI/sfx_on.png" type="Texture" id=13]
-[ext_resource path="res://Art/GUI/sfx_off.png" type="Texture" id=14]
-[ext_resource path="res://Art/PowerUps/Escudo.png" type="Texture" id=15]
-[ext_resource path="res://Art/PowerUps/Multishot.png" type="Texture" id=16]
-[ext_resource path="res://Art/PowerUps/Roketluncher.png" type="Texture" id=17]
-[ext_resource path="res://Art/PowerUps/FondoPowerup.png" type="Texture" id=18]
+[ext_resource type="Script" path="res://Scenes/Game.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://cpnottxufs8tg" path="res://Scenes/PlayerShip.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://Scenes/PowerUp.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://Scenes/Boss1.tscn" id="5"]
+[ext_resource type="Texture2D" uid="uid://dw67xtg3dq74u" path="res://Art/GUI/playerLife1_blue.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://b8j7l5ylexh7l" path="res://Art/GUI/play.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://bdjchxd477t7d" path="res://Art/GUI/pause.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://n2o6lrk6jv84" path="res://Art/GUI/home.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://cm62p0j2l53yw" path="res://Art/GUI/yes.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://dorfx77c4xi0j" path="res://Art/GUI/no.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://mjfljhypyal2" path="res://Art/GUI/sfx_on.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://07eu8w08qcw8" path="res://Art/GUI/sfx_off.png" id="14"]
+[ext_resource type="Texture2D" uid="uid://daw7g4fql7sws" path="res://Art/PowerUps/Escudo.png" id="15"]
+[ext_resource type="Texture2D" uid="uid://bl40nev780w7i" path="res://Art/PowerUps/Multishot.png" id="16"]
+[ext_resource type="Texture2D" uid="uid://bmf72scm0qi4h" path="res://Art/PowerUps/Roketluncher.png" id="17"]
+[ext_resource type="Texture2D" uid="uid://cv4ds7ug6cmsj" path="res://Art/PowerUps/FondoPowerup.png" id="18"]
 
-[sub_resource type="DynamicFont" id=1]
-size = 50
-font_data = ExtResource( 7 )
-
-[sub_resource type="SpriteFrames" id=2]
-animations = [ {
-"frames": [ ExtResource( 8 ) ],
+[sub_resource type="SpriteFrames" id="2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9")
+}],
 "loop": false,
-"name": "play",
+"name": &"pause",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 9 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}],
 "loop": false,
-"name": "pause",
+"name": &"play",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="SpriteFrames" id=3]
-animations = [ {
-"frames": [ ExtResource( 10 ) ],
+[sub_resource type="SpriteFrames" id="3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
 "loop": false,
-"name": "home",
+"name": &"home",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 13 ) ],
+[sub_resource type="SpriteFrames" id="4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14")
+}],
 "loop": false,
-"name": "sfx_on",
+"name": &"sfx_off",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 14 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13")
+}],
 "loop": false,
-"name": "sfx_off",
+"name": &"sfx_on",
 "speed": 5.0
-} ]
+}]
 
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ ExtResource( 15 ) ],
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17")
+}],
 "loop": true,
-"name": "shield",
+"name": &"rocket",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 16 ) ],
-"loop": false,
-"name": "stair",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 17 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15")
+}],
 "loop": true,
-"name": "rocket",
+"name": &"shield",
 "speed": 5.0
-} ]
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16")
+}],
+"loop": false,
+"name": &"stair",
+"speed": 5.0
+}]
 
 [node name="Game" type="Node2D"]
-script = ExtResource( 1 )
-__meta__ = {
-"_edit_vertical_guides_": [  ]
-}
-Enemy = ExtResource( 2 )
-PLAYER = ExtResource( 3 )
-PowerUp = ExtResource( 4 )
-Boss1 = ExtResource( 5 )
+process_mode = 1
+script = ExtResource("1")
+Enemy = ExtResource("2")
+PLAYER = ExtResource("3")
+PowerUp = ExtResource("4")
+Boss1 = ExtResource("5")
 
 [node name="ninjaSpawn" type="Timer" parent="."]
 wait_time = 0.7
 autostart = true
 
 [node name="Lifes" type="Control" parent="."]
-editor/display_folded = true
-margin_right = 40.0
-margin_bottom = 40.0
+layout_mode = 3
+anchors_preset = 0
 
-[node name="Life1" type="Sprite" parent="Lifes"]
-position = Vector2( 100, 65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 6 )
+[node name="Life1" type="Sprite2D" parent="Lifes"]
+position = Vector2(100, 65)
+scale = Vector2(2, 2)
+texture = ExtResource("6")
 
-[node name="Life2" type="Sprite" parent="Lifes"]
-position = Vector2( 170, 65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 6 )
+[node name="Life2" type="Sprite2D" parent="Lifes"]
+position = Vector2(170, 65)
+scale = Vector2(2, 2)
+texture = ExtResource("6")
 
-[node name="Life3" type="Sprite" parent="Lifes"]
-position = Vector2( 240, 65 )
-scale = Vector2( 2, 2 )
-texture = ExtResource( 6 )
+[node name="Life3" type="Sprite2D" parent="Lifes"]
+position = Vector2(240, 65)
+scale = Vector2(2, 2)
+texture = ExtResource("6")
 
 [node name="Score" type="Label" parent="."]
-margin_left = 520.0
-margin_top = 25.0
-margin_right = 634.0
-margin_bottom = 101.0
-custom_fonts/font = SubResource( 1 )
 text = "100"
-align = 2
-valign = 1
+horizontal_alignment = 2
+vertical_alignment = 1
 
 [node name="GameOverTimer" type="Timer" parent="."]
-pause_mode = 2
 wait_time = 4.0
 one_shot = true
 
@@ -131,127 +141,120 @@ wait_time = 6.0
 wait_time = 15.0
 
 [node name="Buttons" type="Control" parent="."]
-margin_top = 1150.0
-margin_right = 40.0
-margin_bottom = 1190.0
+process_mode = 3
+layout_mode = 3
+anchors_preset = 0
 
 [node name="pause_menu" type="Button" parent="Buttons"]
-pause_mode = 2
-editor/display_folded = true
-margin_left = 560.0
-margin_right = 608.0
-margin_bottom = 48.0
-rect_scale = Vector2( 2, 2 )
+layout_mode = 0
+offset_right = 72.0
+offset_bottom = 72.0
 flat = true
 
-[node name="pauseBtt" type="AnimatedSprite" parent="Buttons/pause_menu"]
-frames = SubResource( 2 )
-animation = "pause"
+[node name="pauseBtt" type="AnimatedSprite2D" parent="Buttons/pause_menu"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("2")
+animation = &"pause"
 centered = false
 
 [node name="home" type="Button" parent="Buttons/pause_menu"]
-editor/display_folded = true
 visible = false
-margin_top = -140.0
-margin_right = 48.0
-margin_bottom = -92.0
+layout_mode = 0
+offset_left = -200.0
+offset_right = -128.0
+offset_bottom = 72.0
 flat = true
 
-[node name="Home" type="AnimatedSprite" parent="Buttons/pause_menu/home"]
-frames = SubResource( 3 )
-animation = "home"
+[node name="Home" type="AnimatedSprite2D" parent="Buttons/pause_menu/home"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("3")
+animation = &"home"
 centered = false
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="Button_yes" type="Button" parent="Buttons/pause_menu/home"]
 visible = false
-margin_left = -70.0
-margin_right = -22.0
-margin_bottom = 48.0
+layout_mode = 0
+offset_left = -80.0
+offset_top = -80.0
+offset_right = -32.0
+offset_bottom = -32.0
 flat = true
 
-[node name="yes" type="Sprite" parent="Buttons/pause_menu/home/Button_yes"]
-texture = ExtResource( 11 )
+[node name="yes" type="Sprite2D" parent="Buttons/pause_menu/home/Button_yes"]
+texture = ExtResource("11")
 centered = false
 
 [node name="Button_no" type="Button" parent="Buttons/pause_menu/home"]
 visible = false
-margin_left = -140.0
-margin_right = -92.0
-margin_bottom = 48.0
+layout_mode = 0
+offset_left = -80.0
+offset_right = -32.0
+offset_bottom = 47.0
 flat = true
 
-[node name="no" type="Sprite" parent="Buttons/pause_menu/home/Button_no"]
-texture = ExtResource( 12 )
+[node name="no" type="Sprite2D" parent="Buttons/pause_menu/home/Button_no"]
+texture = ExtResource("12")
 centered = false
 
 [node name="sfx" type="Button" parent="Buttons/pause_menu"]
-editor/display_folded = true
-visible = false
-margin_top = -70.0
-margin_right = 48.0
-margin_bottom = -22.0
+layout_mode = 0
+offset_left = -100.0
+offset_right = -28.0
+offset_bottom = 71.0
 flat = true
 
-[node name="sfx" type="AnimatedSprite" parent="Buttons/pause_menu/sfx"]
-frames = SubResource( 4 )
-animation = "sfx_on"
+[node name="sfx" type="AnimatedSprite2D" parent="Buttons/pause_menu/sfx"]
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("4")
+animation = &"sfx_on"
 centered = false
 
 [node name="Powers" type="Control" parent="Buttons"]
-margin_right = 40.0
-margin_bottom = 40.0
+anchors_preset = 0
 
 [node name="Power1" type="Button" parent="Buttons/Powers"]
-margin_left = 40.0
-margin_right = 100.0
-margin_bottom = 60.0
-rect_scale = Vector2( 1.5, 1.5 )
+layout_mode = 0
 flat = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="Buttons/Powers/Power1"]
-frames = SubResource( 5 )
-animation = "stair"
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Buttons/Powers/Power1"]
+visible = false
+sprite_frames = SubResource("5")
+animation = &"stair"
 centered = false
 
-[node name="Sprite" type="Sprite" parent="Buttons/Powers/Power1"]
-position = Vector2( -6.14424, -3.28645 )
-scale = Vector2( 0.899892, 0.842736 )
+[node name="Sprite" type="Sprite2D" parent="Buttons/Powers/Power1"]
+visible = false
 z_index = -1
-texture = ExtResource( 18 )
+position = Vector2(-6.14424, -3.28645)
+scale = Vector2(0.899892, 0.842736)
+texture = ExtResource("18")
 centered = false
 
 [node name="Power2" type="Button" parent="Buttons/Powers"]
-margin_left = 200.0
-margin_right = 260.0
-margin_bottom = 60.0
-rect_scale = Vector2( 1.5, 1.5 )
+layout_mode = 0
 flat = true
 
-[node name="AnimatedSprite2" type="AnimatedSprite" parent="Buttons/Powers/Power2"]
-frames = SubResource( 5 )
-animation = "stair"
+[node name="AnimatedSprite2" type="AnimatedSprite2D" parent="Buttons/Powers/Power2"]
+visible = false
+sprite_frames = SubResource("5")
+animation = &"stair"
 centered = false
 
 [node name="Power3" type="Button" parent="Buttons/Powers"]
-margin_left = 350.0
-margin_right = 410.0
-margin_bottom = 60.0
-rect_scale = Vector2( 1.5, 1.5 )
+layout_mode = 0
 flat = true
 
-[node name="AnimatedSprite3" type="AnimatedSprite" parent="Buttons/Powers/Power3"]
-frames = SubResource( 5 )
-animation = "stair"
+[node name="AnimatedSprite3" type="AnimatedSprite2D" parent="Buttons/Powers/Power3"]
+visible = false
+sprite_frames = SubResource("5")
+animation = &"stair"
 centered = false
 
 [connection signal="timeout" from="ninjaSpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
 [connection signal="timeout" from="PowerUpTimer" to="." method="_on_PowerUpTimer_timeout"]
-[connection signal="pressed" from="Buttons/pause_menu" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="Buttons/pause_menu" to="." method="_on_pause_menu_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home" to="." method="_on_home_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home/Button_yes" to="." method="_on_Button_yes_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home/Button_no" to="." method="_on_Button_no_pressed"]

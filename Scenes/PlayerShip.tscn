@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://cpnottxufs8tg"]
 
 [ext_resource type="Script" path="res://Scenes/PlayerShip.gd" id="1"]
-[ext_resource type="PackedScene" path="res://Scenes/Bullet.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bqbpjwnihhg8i" path="res://Scenes/Bullet.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://dwgemtj2v0rcv" path="res://Art/Player/playerShip1_blue.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://lgb8i5h11exj" path="res://Art/Damage/playerShip3_damage3.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c13dj3w5fhpwq" path="res://Art/Damage/playerShip3_damage2.png" id="5"]
@@ -74,7 +74,7 @@ radius = 463.511
 [node name="PlayerShip" type="Area2D" groups=["player"]]
 z_index = -2
 rotation = -1.5708
-collision_mask = 740
+collision_mask = 964
 script = ExtResource("1")
 Bullet = ExtResource("2")
 

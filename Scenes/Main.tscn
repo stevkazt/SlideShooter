@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://s50n8u1wym83"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1"]
-[ext_resource type="PackedScene" path="res://Scenes/Game.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://b67o7k6ygvbfy" path="res://Scenes/Game.tscn" id="2"]
 [ext_resource type="Texture2D" uid="uid://bd2ok8evag6po" path="res://Art/Player/playerShip2_orange.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c5gmmcpojbmjx" path="res://Art/GUI/configuration.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://mjfljhypyal2" path="res://Art/GUI/sfx_on.png" id="6"]
@@ -138,10 +138,10 @@ flat = true
 
 [node name="tutorial" type="Button" parent="Screen/Down"]
 layout_mode = 0
-offset_left = 127.0
-offset_top = 1016.0
-offset_right = 183.0
-offset_bottom = 1072.0
+offset_left = 491.0
+offset_top = 627.0
+offset_right = 547.0
+offset_bottom = 683.0
 icon = ExtResource("9")
 flat = true
 

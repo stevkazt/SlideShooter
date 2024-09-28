@@ -12,8 +12,6 @@ var rocketlaunch
 # type 1 = laser
 # type 2 = missile
 
-
-
 func start(_position, _direction, _type,_team):
 	screensize = get_viewport_rect().size
 	type = _type
@@ -21,7 +19,8 @@ func start(_position, _direction, _type,_team):
 	if team == 2:
 		$sfx_laser_enemy.play()
 		$Sprite.animation = "enemy"
-
+		collision_layer = 0b1000000
+		collision_mask = 0b1
 	if type == 2:
 		rocketlaunch = false
 		$Sprite.animation = "missile"
@@ -47,7 +46,7 @@ func missile_process(delta):
 			position = position.lerp(Vector2(670,screensize.y/2), delta*0.8)
 		var target_dir = (target.global_position - global_position).normalized()
 		var current_dir = Vector2(1, 0).rotated(self.global_rotation)
-		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*10).angle()
+		self.global_rotation = current_dir.lerp(target_dir, delta*10).angle()
 		velocity =  (target.global_position - global_position).normalized() *600
 		
 	else:
@@ -56,7 +55,6 @@ func missile_process(delta):
 			speed = 100
 		rocketlaunch = true
 		position += velocity* delta
-		
 
 func explode():
 	queue_free()
@@ -64,8 +62,7 @@ func explode():
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free()
 
-
-func _on_Bullet_area_entered(area):
+func _on_Bullet_area_entered(_area):
 	if team == 1:
 		velocity = Vector2()
 		$CollisionShape2D.queue_free()

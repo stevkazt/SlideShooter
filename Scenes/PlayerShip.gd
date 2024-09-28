@@ -1,10 +1,8 @@
 extends Area2D
 
-
 var target = null
 var dis : Array
 var enemytypes : Array
-
 
 var drag 
 var dragging
@@ -17,11 +15,9 @@ var lost_shield_played = false
 
 @export var Bullet: PackedScene
 
-
 func _ready():
 	#can_get_damage = false
 	screensize = get_viewport_rect().size
-
 
 func _process(delta):
 	if shield:
@@ -37,9 +33,8 @@ func _process(delta):
 		var current_dir = Vector2(1, 0).rotated(self.global_rotation)
 		self.global_rotation = current_dir.lerp(target_dir, delta*10).angle()
 
-
 func _input(event):
-	if event is InputEventScreenTouch and event.position.y < screensize.y-200:
+	if event is InputEventScreenTouch:
 		if event.pressed:
 			if Singleton.powers.size() > 0:
 				taps += 1
@@ -59,7 +54,6 @@ func _input(event):
 	if event is InputEventScreenDrag:
 		drag = event.relative
 
-
 func who_to(enemies_in_area):
 	enemytypes = Array()
 	if enemies_in_area.size() > 0:
@@ -76,60 +70,58 @@ func _on_Timer_timeout():
 	var b = Bullet.instantiate()
 	get_parent().add_child(b)
 	b.start($Position2D.global_position, dir,1,1)
-	
 
 func _powerupStair():
-		var b = Bullet.instance()
+		var b = Bullet.instantiate()
 		$sfx_stair.play()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(1,0),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(-1,0),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(0,1),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(0,-1),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(1,1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(-1,1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(-1,-1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(1,-1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(1,-2).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(2,-1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(2,1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(1,2).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(-1,2).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(-2,1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(-2,-1).normalized(),1,1)
-		b = Bullet.instance()
+		b = Bullet.instantiate()
 		get_parent().add_child(b)
 		b.start(self.global_position, Vector2(-1,-2).normalized(),1,1)
-		
-			
+
 func _powerupShield():
 	if !shield: 
 		$sfx_shielup.play()
@@ -161,11 +153,8 @@ func _powerupShieldprocess():
 		shield = false
 		can_get_damage = true
 
-
-
-
-func _on_PlayerShip_area_entered(area):
-	if shield and area.get_collision_layer_bit(7):
+func _on_PlayerShip_area_entered(_area):
+	if shield:
 		shields_number=0
 		lost_shield_played = false
 	#if can_get_damage and area.get_collision_layer_value(7): 
@@ -174,9 +163,9 @@ func _on_PlayerShip_area_entered(area):
 		#$sfx_lose.play()
 		#Singleton.powers.resize(0)
 	
-	elif shield:
-		shields_number-=1
-		lost_shield_played = false
+	#elif shield:
+		#shields_number-=1
+		#lost_shield_played = false
 	elif can_get_damage: 
 		can_get_damage = false
 		$sfx_shielup.play()
@@ -187,8 +176,6 @@ func _on_PlayerShip_area_entered(area):
 			Singleton.powers.resize(0)
 			$Sprite.play("explode")
 			$sfx_lose.play()
-		
-
 
 func _on_LifeTimer_timeout():
 	$Sprite.play("default")
@@ -196,12 +183,8 @@ func _on_LifeTimer_timeout():
 	$sfx_shielup.stop()
 	$sfx_shielddown.play()
 
-
-
-
 func _on_TapTimer_timeout():
 	taps = 0
-
 
 func _on_sfx_lost_shield_finished():
 	lost_shield_played = true

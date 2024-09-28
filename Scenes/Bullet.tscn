@@ -1,75 +1,116 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=17 format=3 uid="uid://bqbpjwnihhg8i"]
 
-[ext_resource path="res://Scenes/Bullet.gd" type="Script" id=1]
-[ext_resource path="res://Art/Bullets/laserBlue01.png" type="Texture" id=2]
-[ext_resource path="res://Art/Bullets/laserRed01.png" type="Texture" id=3]
-[ext_resource path="res://Art/Bullets/laserBlue08.png" type="Texture" id=4]
-[ext_resource path="res://Art/Bullets/laserBlue09.png" type="Texture" id=5]
-[ext_resource path="res://Art/Bullets/laserBlue10.png" type="Texture" id=6]
-[ext_resource path="res://Art/Bullets/laserBlue11.png" type="Texture" id=7]
-[ext_resource path="res://Art/Bullets/laserRed08.png" type="Texture" id=8]
-[ext_resource path="res://Art/Bullets/laserRed09.png" type="Texture" id=9]
-[ext_resource path="res://Art/Bullets/laserRed10.png" type="Texture" id=10]
-[ext_resource path="res://Art/Bullets/laserRed11.png" type="Texture" id=11]
-[ext_resource path="res://Art/Bullets/mesiles1.png" type="Texture" id=12]
-[ext_resource path="res://Art/Bullets/mesiles2.png" type="Texture" id=13]
-[ext_resource path="res://Art/Bullets/mesiles3.png" type="Texture" id=14]
+[ext_resource type="Script" path="res://Scenes/Bullet.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cchq32yu8sqdx" path="res://Art/Bullets/laserBlue01.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bvqfreq1xoude" path="res://Art/Bullets/laserRed01.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://cf510wqqdap2b" path="res://Art/Bullets/laserBlue08.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://fejswor2chcj" path="res://Art/Bullets/laserBlue09.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://ccs1vgj0yiv4l" path="res://Art/Bullets/laserBlue10.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://bwsmp2x8swk4q" path="res://Art/Bullets/laserBlue11.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://b1x5a32de6dya" path="res://Art/Bullets/laserRed08.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://dh4vncpcooxjf" path="res://Art/Bullets/laserRed09.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://d4ggl15cmv1lq" path="res://Art/Bullets/laserRed10.png" id="10"]
+[ext_resource type="Texture2D" uid="uid://b1cs3hkdid1kl" path="res://Art/Bullets/laserRed11.png" id="11"]
+[ext_resource type="Texture2D" uid="uid://cybw7jberr6r2" path="res://Art/Bullets/mesiles1.png" id="12"]
+[ext_resource type="Texture2D" uid="uid://bi6j7u1wls2v4" path="res://Art/Bullets/mesiles2.png" id="13"]
+[ext_resource type="Texture2D" uid="uid://4ku6ykh77lkl" path="res://Art/Bullets/mesiles3.png" id="14"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
 "loop": false,
-"name": "default",
+"name": &"default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
 "loop": false,
-"name": "enemy",
+"name": &"enemy",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
 "loop": false,
-"name": "explode",
+"name": &"explode",
 "speed": 16.0
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11")
+}],
 "loop": false,
-"name": "explodeenemy",
+"name": &"explodeenemy",
 "speed": 16.0
 }, {
-"frames": [ ExtResource( 12 ) ],
-"loop": false,
-"name": "missile",
-"speed": 5.0
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12")
 }, {
-"frames": [ ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
+"duration": 1.0,
+"texture": ExtResource("13")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14")
+}],
 "loop": true,
-"name": "launch_missile",
+"name": &"launch_missile",
 "speed": 15.0
-} ]
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("12")
+}],
+"loop": false,
+"name": &"missile",
+"speed": 5.0
+}]
 
-[sub_resource type="CapsuleShape2D" id=2]
+[sub_resource type="CapsuleShape2D" id="2"]
 radius = 3.89649
 height = 21.2112
 
 [node name="Bullet" type="Area2D"]
-pause_mode = 1
 collision_layer = 32
 collision_mask = 524
-script = ExtResource( 1 )
+script = ExtResource("1")
 speed = 1000
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
-frames = SubResource( 1 )
+sprite_frames = SubResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 11.5158, 0.0449142 )
+position = Vector2(11.5158, 0.0449142)
 rotation = 1.5708
-shape = SubResource( 2 )
+shape = SubResource("2")
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
-position = Vector2( -14.52, 0.250343 )
+[node name="VisibilityNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(-14.52, 0.250343)
 
 [node name="sfx_laser_player" type="AudioStreamPlayer2D" parent="."]
 volume_db = -10.0

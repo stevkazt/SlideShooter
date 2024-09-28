@@ -21,17 +21,15 @@ func _ready():
 	if !Singleton.sfx:
 		$Buttons/pause_menu/sfx/sfx.animation = "sfx_off"
 	screensize =  get_viewport_rect().size
-	$Buttons.global_position = Vector2(0,screensize.y-130)
+	$Buttons.global_position = Vector2(screensize.x-110,screensize.y-110)
 	player =  PLAYER.instantiate()
 	add_child(player)
 	player.position = Vector2(360,900)
 
-
-
 func _process(_delta):
-	if Singleton.score > 2000 and Singleton.boss:
+	if Singleton.score > 1000 and Singleton.boss:
 		Singleton.boss = false
-	if Singleton.score > 1000 and Singleton.score < 1100 and !Singleton.boss:
+	if Singleton.score > 500 and Singleton.score < 600 and !Singleton.boss:# 1000 - 1100
 		Singleton.boss = true
 		$ShooterTimer.stop()
 		$ninjaSpawn.stop()
@@ -84,31 +82,11 @@ func _process(_delta):
 		check_highscore()
 		$GameOverTimer.start()
 		get_tree().paused = true
-		
-
-
-
 
 func _on_EnemySpawn_timeout():
 	var e = Enemy.instantiate()
 	e.type = 0
 	add_child(e)
-	
-
-
-func _on_pause_pressed():
-	if get_tree().paused:
-		$Buttons/pause_menu/pauseBtt.animation = "pause"
-		get_tree().paused = false
-		$Buttons/pause_menu/home.hide()
-		$Buttons/pause_menu/sfx.hide()
-	else:
-		$Buttons/pause_menu/pauseBtt.animation = "play"
-		get_tree().paused = true
-		$Buttons/pause_menu/home.show()
-		$Buttons/pause_menu/sfx.show()
-
-
 
 func _on_GameOverTimer_timeout():
 	var Main = load("res://Scenes/Main.tscn")
@@ -118,13 +96,11 @@ func _on_GameOverTimer_timeout():
 	Singleton.score = 0
 	Singleton.boss = false
 	get_parent().add_child(main)
-	queue_free()
+	#squeue_free()
 
 func update_highscore():
 	var f = FileAccess.open(score_file,FileAccess.WRITE)
 	f.store_string(str(Singleton.score))
-	f.close()
-	
 
 func check_highscore():
 	if FileAccess.file_exists(score_file):
@@ -132,13 +108,11 @@ func check_highscore():
 		var content = f.get_as_text()
 		higscore = int(content)
 		f.close()
-		
 
 func _on_ShooterTimer_timeout():
 	var e = Enemy.instantiate()
 	e.type = 1
 	add_child(e)
-
 
 func _on_PowerUpTimer_timeout():
 		randomize()
@@ -148,9 +122,6 @@ func _on_PowerUpTimer_timeout():
 		p.power = a[b]
 		add_child(p)
 		p.position = Vector2(randf_range(150,600),randf_range(400,1120))
-
-
-
 
 func _on_Power2_pressed():
 	if Singleton.powers.size() >= 2:
@@ -168,11 +139,6 @@ func _on_Power3_pressed():
 		Singleton.powers[1] = p0
 		Singleton.powers[2] = p1
 
-
-func _on_home_pressed():
-	$Buttons/pause_menu/home/Button_yes.show()
-	$Buttons/pause_menu/home/Button_no.show()
-
 func _on_sfx_pressed():
 	if Singleton.sfx:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),true)
@@ -181,7 +147,6 @@ func _on_sfx_pressed():
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),false)
 		$Buttons/pause_menu/sfx/sfx.animation = "sfx_on"
 	Singleton.sfx = !Singleton.sfx
-
 
 func _on_Button_yes_pressed():
 	var Main = load("res://Scenes/Main.tscn")
@@ -194,7 +159,24 @@ func _on_Button_yes_pressed():
 	get_parent().add_child(main)
 	queue_free()
 
-
 func _on_Button_no_pressed():
 	$Buttons/pause_menu/home/Button_yes.hide()
 	$Buttons/pause_menu/home/Button_no.hide()
+
+func _on_pause_menu_pressed():
+	if get_tree().paused:
+		$Buttons/pause_menu/pauseBtt.animation = "pause"
+		get_tree().paused = false
+		$Buttons/pause_menu/home.hide()
+		$Buttons/pause_menu/sfx.hide()
+	else:
+		$Buttons/pause_menu/pauseBtt.animation = "play"
+		get_tree().paused = true
+		$Buttons/pause_menu/home.show()
+		$Buttons/pause_menu/sfx.show()
+
+
+func _on_home_pressed():
+	print("Hi")
+	$Buttons/pause_menu/home/Button_no.show()
+	$Buttons/pause_menu/home/Button_yes.show()

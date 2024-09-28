@@ -1,12 +1,12 @@
 res://Scenes/Asteroid.tscn::f4c5147e0626b9a577eda6b08acdf344::1727490592::res://.godot/exported/133200997/export-ee32f79a18d612135965e97ab4215a4d-Asteroid.scn
 res://Scenes/Boss1.tscn::d3e23415c7e6fb2f69a1f7b5c40f7e82::1727490592::res://.godot/exported/133200997/export-ce5b997b203b72715d810b126c62a050-Boss1.scn
 res://Scenes/BossLife.tscn::13070ed9c0c6ee0e61b9c6b0ed7cf008::1727490592::res://.godot/exported/133200997/export-815f825699e8e9eeeda3523d409b9708-BossLife.scn
-res://Scenes/Bullet.tscn::ce7fbe22bad1f83b0d8b69ee3b89d41f::1727490592::res://.godot/exported/133200997/export-af750b9c4b9ebab46d11aac95c540e43-Bullet.scn
+res://Scenes/Bullet.tscn::b01812d0cf887db47c1cd540fe255058::1727501692::res://.godot/exported/133200997/export-af750b9c4b9ebab46d11aac95c540e43-Bullet.scn
 res://Scenes/Enemy.tscn::4a77f047cec4d41865654a720ca92bfc::1727490592::res://.godot/exported/133200997/export-b62ce0eb0da9366804eacfbf851dbe37-Enemy.scn
-res://Scenes/Game.tscn::77bb7001fddade68daf8b5f06d8652a6::1727490592::res://.godot/exported/133200997/export-8ec1ce4394550eef6b399142f35b815f-Game.scn
-res://Scenes/Main.tscn::6169e782e7e665f0b2c7cab02ed4a3e0::1727492259::res://.godot/exported/133200997/export-a8e1520d83f25710dd4e3da8c6f32601-Main.scn
+res://Scenes/Game.tscn::5efb9a53267d96bf39425f32ef55323c::1727501692::res://.godot/exported/133200997/export-8ec1ce4394550eef6b399142f35b815f-Game.scn
+res://Scenes/Main.tscn::668ab53a37c6a4d42c31603c9eb091b1::1727501691::res://.godot/exported/133200997/export-a8e1520d83f25710dd4e3da8c6f32601-Main.scn
 res://Scenes/ParallaxBackground.tscn::6712eb0dc490a05338ab44388e1aedeb::1727490592::res://.godot/exported/133200997/export-a6153c6101e397de93e591fa41ccd2e0-ParallaxBackground.scn
-res://Scenes/PlayerShip.tscn::76bbcddca28b46b3859bde62de077fa6::1727492259::res://.godot/exported/133200997/export-14fa8bc7b2525d3d9d2d96af6b229040-PlayerShip.scn
+res://Scenes/PlayerShip.tscn::8d368af7ebdff8580c8cfcdec01e811c::1727501692::res://.godot/exported/133200997/export-14fa8bc7b2525d3d9d2d96af6b229040-PlayerShip.scn
 res://Scenes/PowerUp.tscn::668f5234d19d48ab851598493365702a::1727490592::res://.godot/exported/133200997/export-d89f6b1be5920762af6956eeb419a551-PowerUp.scn
 res://Scenes/Store.tscn::2690b73cc93c86b6d5425882ebfda376::1727490592::res://.godot/exported/133200997/export-dc136de4af02d2774790535663c5ba38-Store.scn
 res://Scenes/Tutorials.tscn::19ad431a40b725dc86fa004112dd851d::1727490592::res://.godot/exported/133200997/export-233b4b65f60bab61f2b767b5f3b8d1d5-Tutorials.scn
