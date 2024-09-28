@@ -15,7 +15,6 @@ var Icons = [0,"stair","shield","rocket"]
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#testing
-	
 	#
 	randomize()
 	if !Singleton.sfx:
@@ -27,6 +26,12 @@ func _ready():
 	player.position = Vector2(360,900)
 
 func _process(_delta):
+	if Singleton.lifes == 0 and $GameOverTimer.is_stopped():
+		get_tree().paused = true
+		check_highscore()
+		$GameOverTimer.start()
+		
+		
 	if Singleton.score > 1000 and Singleton.boss:
 		Singleton.boss = false
 	if Singleton.score > 500 and Singleton.score < 600 and !Singleton.boss:# 1000 - 1100
@@ -46,7 +51,6 @@ func _process(_delta):
 			$Lifes/Life2.hide()
 			if Singleton.lifes < 1:
 				$Lifes/Life1.hide()
-	
 	
 	if Singleton.powers.size() > 0:
 		$Buttons/Powers/Power1/AnimatedSprite.animation = Icons[Singleton.powers[0]]
@@ -78,10 +82,7 @@ func _process(_delta):
 	#empiezan power ups
 	if Singleton.score > 200 and $PowerUpTimer.is_stopped():
 		$PowerUpTimer.start()
-	if Singleton.lifes == 0:
-		check_highscore()
-		$GameOverTimer.start()
-		get_tree().paused = true
+	
 
 func _on_EnemySpawn_timeout():
 	var e = Enemy.instantiate()
@@ -94,9 +95,10 @@ func _on_GameOverTimer_timeout():
 	get_tree().paused = false
 	Singleton.lifes = 3
 	Singleton.score = 0
+	Singleton.powers.resize(0)
 	Singleton.boss = false
 	get_parent().add_child(main)
-	#squeue_free()
+	queue_free()
 
 func update_highscore():
 	var f = FileAccess.open(score_file,FileAccess.WRITE)
@@ -107,7 +109,6 @@ func check_highscore():
 		var f = FileAccess.open(score_file,FileAccess.READ)
 		var content = f.get_as_text()
 		higscore = int(content)
-		f.close()
 
 func _on_ShooterTimer_timeout():
 	var e = Enemy.instantiate()
@@ -175,8 +176,6 @@ func _on_pause_menu_pressed():
 		$Buttons/pause_menu/home.show()
 		$Buttons/pause_menu/sfx.show()
 
-
 func _on_home_pressed():
-	print("Hi")
 	$Buttons/pause_menu/home/Button_no.show()
 	$Buttons/pause_menu/home/Button_yes.show()

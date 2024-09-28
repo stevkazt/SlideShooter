@@ -131,6 +131,8 @@ horizontal_alignment = 2
 vertical_alignment = 1
 
 [node name="GameOverTimer" type="Timer" parent="."]
+process_mode = 3
+process_priority = 1
 wait_time = 4.0
 one_shot = true
 
@@ -197,10 +199,11 @@ texture = ExtResource("12")
 centered = false
 
 [node name="sfx" type="Button" parent="Buttons/pause_menu"]
+visible = false
 layout_mode = 0
 offset_left = -100.0
 offset_right = -28.0
-offset_bottom = 71.0
+offset_bottom = 72.0
 flat = true
 
 [node name="sfx" type="AnimatedSprite2D" parent="Buttons/pause_menu/sfx"]
