@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/sfx_twoTone.ogg-7bc04d72fdd3653c7b924f3932f9b060.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://wmbm4d8ao13f"
+path="res://.godot/imported/sfx_twoTone.ogg-7bc04d72fdd3653c7b924f3932f9b060.oggvorbisstr"
 
 [deps]
 
 source_file="res://Art/Sfx/sfx_twoTone.ogg"
-dest_files=[ "res://.import/sfx_twoTone.ogg-7bc04d72fdd3653c7b924f3932f9b060.oggstr" ]
+dest_files=["res://.godot/imported/sfx_twoTone.ogg-7bc04d72fdd3653c7b924f3932f9b060.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

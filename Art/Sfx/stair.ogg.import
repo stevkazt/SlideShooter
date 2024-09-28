@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/stair.ogg-44d0741041f11552d53a19a182ef8680.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://c24vq5aec4l4a"
+path="res://.godot/imported/stair.ogg-44d0741041f11552d53a19a182ef8680.oggvorbisstr"
 
 [deps]
 
 source_file="res://Art/Sfx/stair.ogg"
-dest_files=[ "res://.import/stair.ogg-44d0741041f11552d53a19a182ef8680.oggstr" ]
+dest_files=["res://.godot/imported/stair.ogg-44d0741041f11552d53a19a182ef8680.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

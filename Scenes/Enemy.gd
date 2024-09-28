@@ -1,8 +1,8 @@
 extends Area2D
 
 
-export (int) var speed
-export (PackedScene) var bullet
+@export var speed: int
+@export var bullet: PackedScene
 
 var velocity = Vector2()
 var dir = Vector2()
@@ -37,13 +37,13 @@ func _ninja():
 	var side = randi()%4+1
 	match side:
 		1:
-			position = Vector2(rand_range(0,screensize.x),0)
+			position = Vector2(randf_range(0,screensize.x),0)
 		2:
-			position = Vector2(screensize.x,rand_range(0,screensize.y))
+			position = Vector2(screensize.x,randf_range(0,screensize.y))
 		3:
-			position = Vector2(rand_range(0,screensize.x),screensize.y)
+			position = Vector2(randf_range(0,screensize.x),screensize.y)
 		4:
-			position = Vector2(0,rand_range(0,screensize.y))
+			position = Vector2(0,randf_range(0,screensize.y))
 
 func _ninja_process(delta):
 	var playerpos = target.position
@@ -60,27 +60,27 @@ func _shooter():
 	var side = randi()%sides+1
 	match side:
 		1:
-			position = Vector2(rand_range(0,screensize.x),0)
-			set_pos = Vector2(rand_range(100,screensize.x-100),200)
+			position = Vector2(randf_range(0,screensize.x),0)
+			set_pos = Vector2(randf_range(100,screensize.x-100),200)
 		2:
-			position = Vector2(screensize.x,rand_range(0,screensize.y))
-			set_pos = Vector2(screensize.x-100,rand_range(100,screensize.y-100))
+			position = Vector2(screensize.x,randf_range(0,screensize.y))
+			set_pos = Vector2(screensize.x-100,randf_range(100,screensize.y-100))
 		3:
-			position = Vector2(0,rand_range(0,screensize.y))
-			set_pos = Vector2(100,rand_range(100,screensize.y-100))
+			position = Vector2(0,randf_range(0,screensize.y))
+			set_pos = Vector2(100,randf_range(100,screensize.y-100))
 		4:
-			position = Vector2(rand_range(0,screensize.x),screensize.y)
-			set_pos = Vector2(rand_range(100,screensize.x-100),screensize.y-200)
+			position = Vector2(randf_range(0,screensize.x),screensize.y)
+			set_pos = Vector2(randf_range(100,screensize.x-100),screensize.y-200)
 
 func _shooter_process(delta):
-	position = position.linear_interpolate(set_pos, delta*0.5)
+	position = position.lerp(set_pos, delta*0.5)
 	var target_dir = (target.global_position - global_position).normalized()
 	var current_dir = Vector2(1, 0).rotated(self.global_rotation)
-	self.global_rotation = current_dir.linear_interpolate(target_dir, delta*2).angle()
+	self.global_rotation = current_dir.lerp(target_dir, delta*2).angle()
 	
 	
 func _on_Enemy_area_entered(area):
-	if area.get_collision_layer_bit(0) or area.get_collision_layer_bit(5):
+	if area.get_collision_layer_value(1) or area.get_collision_layer_value(6):
 		match type:
 			0:
 				Singleton.score += 5
@@ -100,6 +100,6 @@ func _on_Sprite_animation_finished():
 
 func _on_ShootTimer_timeout():
 	if type ==1:
-		var b = bullet.instance()
+		var b = bullet.instantiate()
 		get_parent().add_child(b)
 		b.start($Position2D.global_position,Vector2(1, 0).rotated($Position2D.global_rotation),1,2)

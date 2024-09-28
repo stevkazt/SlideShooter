@@ -1,9 +1,9 @@
 extends Node2D
 
-export (PackedScene) var Enemy
-export (PackedScene) var PLAYER
-export (PackedScene) var PowerUp
-export (PackedScene) var Boss1
+@export var Enemy:PackedScene
+@export var PLAYER:PackedScene
+@export var PowerUp:PackedScene
+@export var Boss1:PackedScene
 
 var player
 var score_file = "user://highscore"
@@ -21,8 +21,8 @@ func _ready():
 	if !Singleton.sfx:
 		$Buttons/pause_menu/sfx/sfx.animation = "sfx_off"
 	screensize =  get_viewport_rect().size
-	$Buttons.rect_global_position = Vector2(0,screensize.y-130)
-	player =  PLAYER.instance()
+	$Buttons.global_position = Vector2(0,screensize.y-130)
+	player =  PLAYER.instantiate()
 	add_child(player)
 	player.position = Vector2(360,900)
 
@@ -35,7 +35,7 @@ func _process(_delta):
 		Singleton.boss = true
 		$ShooterTimer.stop()
 		$ninjaSpawn.stop()
-		var boss1 = Boss1.instance()
+		var boss1 = Boss1.instantiate()
 		add_child(boss1)
 		
 	if !Singleton.boss and $ninjaSpawn.is_stopped():
@@ -69,11 +69,11 @@ func _process(_delta):
 		$Buttons/Powers/Power2.hide()
 		$Buttons/Powers/Power3.hide()
 	if Singleton.lifes == 3:
-		$Lifes.add_color_override("font_color",Color(0,1,0,1))
+		$Lifes.add_theme_color_override("font_color",Color(0,1,0,1))
 	elif Singleton.lifes == 2:
-		$Lifes.add_color_override("font_color",Color("#ffb300"))
+		$Lifes.add_theme_color_override("font_color",Color("#ffb300"))
 	elif Singleton.lifes == 1:
-		$Lifes.add_color_override("font_color",Color(1,0,0,1))
+		$Lifes.add_theme_color_override("font_color",Color(1,0,0,1))
 	#Empieza shooter
 	if Singleton.score > 100 and $ShooterTimer.is_stopped() and !Singleton.boss:
 		$ShooterTimer.start()
@@ -90,7 +90,7 @@ func _process(_delta):
 
 
 func _on_EnemySpawn_timeout():
-	var e = Enemy.instance()
+	var e = Enemy.instantiate()
 	e.type = 0
 	add_child(e)
 	
@@ -112,7 +112,7 @@ func _on_pause_pressed():
 
 func _on_GameOverTimer_timeout():
 	var Main = load("res://Scenes/Main.tscn")
-	var main = Main.instance()
+	var main = Main.instantiate()
 	get_tree().paused = false
 	Singleton.lifes = 3
 	Singleton.score = 0
@@ -121,35 +121,33 @@ func _on_GameOverTimer_timeout():
 	queue_free()
 
 func update_highscore():
-	var f = File.new()
-	f.open(score_file,File.WRITE)
+	var f = FileAccess.open(score_file,FileAccess.WRITE)
 	f.store_string(str(Singleton.score))
 	f.close()
 	
 
 func check_highscore():
-	var f = File.new()
-	if f.file_exists(score_file):
-		f.open(score_file,File.READ)
+	if FileAccess.file_exists(score_file):
+		var f = FileAccess.open(score_file,FileAccess.READ)
 		var content = f.get_as_text()
 		higscore = int(content)
 		f.close()
 		
 
 func _on_ShooterTimer_timeout():
-	var e = Enemy.instance()
+	var e = Enemy.instantiate()
 	e.type = 1
 	add_child(e)
 
 
 func _on_PowerUpTimer_timeout():
 		randomize()
-		var p = PowerUp.instance()
+		var p = PowerUp.instantiate()
 		var a = [1,1,1,1,1,1,1,1,2,2,2,2]
 		var b = randi()%12+0
 		p.power = a[b]
 		add_child(p)
-		p.position = Vector2(rand_range(150,600),rand_range(400,1120))
+		p.position = Vector2(randf_range(150,600),randf_range(400,1120))
 
 
 
@@ -187,7 +185,7 @@ func _on_sfx_pressed():
 
 func _on_Button_yes_pressed():
 	var Main = load("res://Scenes/Main.tscn")
-	var main = Main.instance()
+	var main = Main.instantiate()
 	get_tree().paused = false
 	Singleton.lifes = 3
 	Singleton.score = 0
@@ -200,6 +198,3 @@ func _on_Button_yes_pressed():
 func _on_Button_no_pressed():
 	$Buttons/pause_menu/home/Button_yes.hide()
 	$Buttons/pause_menu/home/Button_no.hide()
-
-
-

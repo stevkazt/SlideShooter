@@ -1,0 +1,8 @@
+res://Scenes/Main.tscn
+res://Scenes/Main.gd
+res://Scenes/Game.gd
+res://Scenes/Enemy.gd
+res://Scenes/Bullet.gd
+res://Scenes/PlayerShip.gd
+res://Scenes/Boss1.gd
+res://Scenes/PlayerShip.tscn

@@ -1,106 +1,123 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=18 format=3 uid="uid://cpnottxufs8tg"]
 
-[ext_resource path="res://Scenes/PlayerShip.gd" type="Script" id=1]
-[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Art/Player/playerShip1_blue.png" type="Texture" id=3]
-[ext_resource path="res://Art/Damage/playerShip3_damage3.png" type="Texture" id=4]
-[ext_resource path="res://Art/Damage/playerShip3_damage2.png" type="Texture" id=5]
-[ext_resource path="res://Art/Damage/playerShip3_damage1.png" type="Texture" id=6]
-[ext_resource path="res://Art/Shields/shield1.png" type="Texture" id=7]
-[ext_resource path="res://Art/Shields/ESCUDO3.png" type="Texture" id=8]
-[ext_resource path="res://Art/Shields/ESCUDO2.png" type="Texture" id=9]
-[ext_resource path="res://Art/Shields/ESCUDO1.png" type="Texture" id=10]
-[ext_resource path="res://Art/Sfx/sfx_shieldUp.ogg" type="AudioStream" id=11]
-[ext_resource path="res://Art/Sfx/sfx_shieldDown.ogg" type="AudioStream" id=12]
-[ext_resource path="res://Art/Sfx/sfx_lose.ogg" type="AudioStream" id=13]
-[ext_resource path="res://Art/Sfx/stair.ogg" type="AudioStream" id=14]
+[ext_resource type="Script" path="res://Scenes/PlayerShip.gd" id="1"]
+[ext_resource type="PackedScene" path="res://Scenes/Bullet.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://dwgemtj2v0rcv" path="res://Art/Player/playerShip1_blue.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://lgb8i5h11exj" path="res://Art/Damage/playerShip3_damage3.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://c13dj3w5fhpwq" path="res://Art/Damage/playerShip3_damage2.png" id="5"]
+[ext_resource type="Texture2D" uid="uid://b56lheik3n6p2" path="res://Art/Damage/playerShip3_damage1.png" id="6"]
+[ext_resource type="Texture2D" uid="uid://cyydrj6u7daok" path="res://Art/Shields/shield1.png" id="7"]
+[ext_resource type="Texture2D" uid="uid://d1mfs4tljwnof" path="res://Art/Shields/ESCUDO3.png" id="8"]
+[ext_resource type="Texture2D" uid="uid://c77veevev7l4v" path="res://Art/Shields/ESCUDO2.png" id="9"]
+[ext_resource type="Texture2D" uid="uid://dphphotojomw2" path="res://Art/Shields/ESCUDO1.png" id="10"]
+[ext_resource type="AudioStream" uid="uid://43gtqjd1kosr" path="res://Art/Sfx/sfx_shieldUp.ogg" id="11"]
+[ext_resource type="AudioStream" uid="uid://iwfo2yavshhp" path="res://Art/Sfx/sfx_shieldDown.ogg" id="12"]
+[ext_resource type="AudioStream" uid="uid://bh6xns5rfup6x" path="res://Art/Sfx/sfx_lose.ogg" id="13"]
+[ext_resource type="AudioStream" uid="uid://c24vq5aec4l4a" path="res://Art/Sfx/stair.ogg" id="14"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10")
+}],
 "loop": false,
-"name": "default",
+"name": &"PowerShield",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6")
+}],
 "loop": true,
-"name": "explode",
+"name": &"explode",
 "speed": 6.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "shield",
-"speed": 45.0
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
 }, {
-"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ) ],
-"loop": false,
-"name": "PowerShield",
-"speed": 5.0
-} ]
+"duration": 1.0,
+"texture": ExtResource("7")
+}],
+"loop": true,
+"name": &"shield",
+"speed": 45.0
+}]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id="2"]
 radius = 43.3031
 
-[sub_resource type="CircleShape2D" id=3]
+[sub_resource type="CircleShape2D" id="3"]
 radius = 463.511
 
-[node name="PlayerShip" type="Area2D" groups=[
-"player",
-]]
-rotation = -1.5708
+[node name="PlayerShip" type="Area2D" groups=["player"]]
 z_index = -2
-collision_mask = 732
-script = ExtResource( 1 )
-Bullet = ExtResource( 2 )
+rotation = -1.5708
+collision_mask = 740
+script = ExtResource("1")
+Bullet = ExtResource("2")
 
-[node name="Sprite" type="AnimatedSprite" parent="."]
-pause_mode = 2
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708
-frames = SubResource( 1 )
+sprite_frames = SubResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 2 )
+shape = SubResource("2")
 
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 45, 0 )
+[node name="Position2D" type="Marker2D" parent="."]
+position = Vector2(45, 0)
 
 [node name="LaserTimer" type="Timer" parent="."]
 wait_time = 0.3
 autostart = true
 
 [node name="sfx_shielup" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 11 )
+stream = ExtResource("11")
 volume_db = 10.0
 
 [node name="sfx_shielddown" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource("12")
 volume_db = 10.0
 
 [node name="sfx_lose" type="AudioStreamPlayer2D" parent="."]
-pause_mode = 2
-stream = ExtResource( 13 )
+stream = ExtResource("13")
 volume_db = 20.0
 
 [node name="Area2D" type="Area2D" parent="."]
-input_pickable = false
 collision_layer = 2
 collision_mask = 4
-__meta__ = {
-"_edit_lock_": true
-}
+input_pickable = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 3 )
-__meta__ = {
-"_edit_lock_": true
-}
+shape = SubResource("3")
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 5.0
 one_shot = true
 
 [node name="sfx_stair" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 14 )
+stream = ExtResource("14")
 volume_db = -5.0
 
 [node name="TapTimer" type="Timer" parent="."]
@@ -108,7 +125,7 @@ wait_time = 0.3
 one_shot = true
 
 [node name="sfx_lost_shield" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 12 )
+stream = ExtResource("12")
 volume_db = 5.0
 
 [connection signal="area_entered" from="." to="." method="_on_PlayerShip_area_entered"]

@@ -15,7 +15,7 @@ var shields_number = 0
 var shield = false
 var lost_shield_played = false
 
-export (PackedScene) var Bullet
+@export var Bullet: PackedScene
 
 
 func _ready():
@@ -35,12 +35,12 @@ func _process(delta):
 	if target:
 		var target_dir = (target.global_position - global_position).normalized()
 		var current_dir = Vector2(1, 0).rotated(self.global_rotation)
-		self.global_rotation = current_dir.linear_interpolate(target_dir, delta*10).angle()
+		self.global_rotation = current_dir.lerp(target_dir, delta*10).angle()
 
 
 func _input(event):
-	if event is InputEventMouseButton and event.position.y < screensize.y-200:
-		if event.button_index == BUTTON_LEFT and event.pressed:
+	if event is InputEventScreenTouch and event.position.y < screensize.y-200:
+		if event.pressed:
 			if Singleton.powers.size() > 0:
 				taps += 1
 				$TapTimer.start()
@@ -51,10 +51,10 @@ func _input(event):
 						2:
 							if !shield:
 								_powerupShield()
-					Singleton.powers.remove(0)
+					Singleton.powers.erase(0)
 					taps = 0
 			dragging = true
-		elif event.button_index == BUTTON_LEFT and !event.pressed:
+		elif !event.pressed:
 			dragging = false
 	if event is InputEventScreenDrag:
 		drag = event.relative
@@ -73,7 +73,7 @@ func who_to(enemies_in_area):
 
 func _on_Timer_timeout():
 	var dir = Vector2(1, 0).rotated($Position2D.global_rotation)
-	var b = Bullet.instance()
+	var b = Bullet.instantiate()
 	get_parent().add_child(b)
 	b.start($Position2D.global_position, dir,1,1)
 	
@@ -168,17 +168,16 @@ func _on_PlayerShip_area_entered(area):
 	if shield and area.get_collision_layer_bit(7):
 		shields_number=0
 		lost_shield_played = false
-	if can_get_damage and area.get_collision_layer_bit(7): 
-		Singleton.lifes = 0
-		$Sprite.play("explode")
-		$sfx_lose.play()
-		Singleton.powers.resize(0)
+	#if can_get_damage and area.get_collision_layer_value(7): 
+		#Singleton.lifes = 0
+		#$Sprite.play("explode")
+		#$sfx_lose.play()
+		#Singleton.powers.resize(0)
 	
-	elif shield and !area.get_collision_layer_bit(4):
+	elif shield:
 		shields_number-=1
 		lost_shield_played = false
-	elif can_get_damage and !area.get_collision_layer_bit(4): 
-		#Input.vibrate_handheld(500)
+	elif can_get_damage: 
 		can_get_damage = false
 		$sfx_shielup.play()
 		$Sprite.play("shield")

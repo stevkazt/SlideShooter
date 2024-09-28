@@ -1,15 +1,19 @@
 [remap]
 
-importer="ogg_vorbis"
-type="AudioStreamOGGVorbis"
-path="res://.import/sfx_shieldUp.ogg-b2be61a7182910ce640268da56ef40e6.oggstr"
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://43gtqjd1kosr"
+path="res://.godot/imported/sfx_shieldUp.ogg-b2be61a7182910ce640268da56ef40e6.oggvorbisstr"
 
 [deps]
 
 source_file="res://Art/Sfx/sfx_shieldUp.ogg"
-dest_files=[ "res://.import/sfx_shieldUp.ogg-b2be61a7182910ce640268da56ef40e6.oggstr" ]
+dest_files=["res://.godot/imported/sfx_shieldUp.ogg-b2be61a7182910ce640268da56ef40e6.oggvorbisstr"]
 
 [params]
 
 loop=false
 loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

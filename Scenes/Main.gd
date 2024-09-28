@@ -1,8 +1,8 @@
 extends Control
 
-export (PackedScene) var Game 
-export (PackedScene) var Tutorials
-export (PackedScene) var Store
+@export var Game: PackedScene
+@export var Tutorials: PackedScene
+@export var Store: PackedScene
 
 var score_file = "user://highscore"
 var higscore = 0
@@ -14,9 +14,9 @@ func _ready():
 	screensize =  get_viewport_rect().size
 	randomize()
 	load_score()
-	$Screen.rect_size.y = screensize.y
-	$Screen/Up.rect_size.y = (screensize.y/2)+160
-	$Screen/Down.rect_global_position = Vector2(0,screensize.y-130)
+	#$Screen.rect_size.y = screensize.y
+	#$Screen/Up.rect_size.y = (screensize.y/2)+160
+	#$Screen/Down.rect_global_position = Vector2(0,screensize.y-130)
 
 	if !Singleton.sfx:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),true)
@@ -24,9 +24,8 @@ func _ready():
 	
 #--------------------------------
 func load_score():
-	var f = File.new()
-	if f.file_exists(score_file):
-		f.open(score_file,File.READ)
+	if FileAccess.file_exists(score_file):
+		var f = FileAccess.open(score_file,FileAccess.READ)
 		var content = f.get_as_text()
 		higscore = int(content)
 		f.close()
@@ -39,7 +38,7 @@ func _process(_delta):
 	
 #---------------------------------
 func _on_Button_pressed():
-	var game = Game.instance()
+	var game = Game.instantiate()
 	get_parent().add_child(game)
 	$Screen.hide()
 	queue_free()
@@ -70,12 +69,12 @@ func _on_Settings_pressed():
 	
 #--------------------------------
 func _on_tutorial_pressed():
-	var tutos = Tutorials.instance()
+	var tutos = Tutorials.instantiate()
 	get_parent().add_child(tutos)
 	queue_free()
 	
 #--------------------------------
 func _on_Store_pressed():
-	var store = Store.instance()
+	var store = Store.instantiate()
 	get_parent().add_child(store)
 	queue_free()
