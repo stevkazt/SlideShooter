@@ -6,3 +6,7 @@ res://Scenes/Game.gd
 res://Scenes/Game.tscn
 res://Scenes/PlayerShip.gd
 res://Scenes/Boss1.gd
+res://Scenes/Main.gd
+res://Scenes/PowerUp.gd
+res://Scenes/PowerUp.tscn
+res://Scenes/Singleton.gd

@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://s50n8u1wym83"]
+[gd_scene load_steps=13 format=3 uid="uid://s50n8u1wym83"]
 
 [ext_resource type="Script" path="res://Scenes/Main.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://b67o7k6ygvbfy" path="res://Scenes/Game.tscn" id="2"]
+[ext_resource type="Texture2D" uid="uid://jlpqgfnye6gj" path="res://Art/GUI/5471985.jpg" id="3_3yf2y"]
 [ext_resource type="Texture2D" uid="uid://bd2ok8evag6po" path="res://Art/Player/playerShip2_orange.png" id="4"]
+[ext_resource type="FontFile" uid="uid://bwg0si80vw0xj" path="res://Art/Fonts/Kenney Blocks.ttf" id="4_32imo"]
 [ext_resource type="Texture2D" uid="uid://c5gmmcpojbmjx" path="res://Art/GUI/configuration.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://mjfljhypyal2" path="res://Art/GUI/sfx_on.png" id="6"]
 [ext_resource type="Texture2D" uid="uid://07eu8w08qcw8" path="res://Art/GUI/sfx_off.png" id="7"]
@@ -34,11 +36,22 @@ layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
 offset_right = 5.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1")
 Game = ExtResource("2")
+
+[node name="background" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="background"]
+offset_right = 1761.0
+offset_bottom = 3105.0
+texture = ExtResource("3_3yf2y")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="Screen" type="Control" parent="."]
 anchors_preset = 0
@@ -48,13 +61,16 @@ anchors_preset = 0
 
 [node name="Title" type="Label" parent="Screen/Up"]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_left = 262.0
-offset_top = 257.0
-offset_right = 365.0
-offset_bottom = 280.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 116.0
+offset_top = 252.0
+offset_right = 264.0
+offset_bottom = 276.0
 grow_horizontal = 2
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("4_32imo")
 text = "Slide Shooter"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -89,18 +105,20 @@ text = "highscore"
 horizontal_alignment = 1
 
 [node name="Play" type="Button" parent="Screen/Up"]
+layout_direction = 2
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 252.0
-offset_top = 815.0
-offset_right = 372.0
-offset_bottom = 898.0
+offset_left = 260.0
+offset_top = 817.0
+offset_right = 380.0
+offset_bottom = 900.0
 grow_horizontal = 2
 grow_vertical = 0
+pivot_offset = Vector2(60, 45)
 icon = ExtResource("4")
 flat = true
 
@@ -113,12 +131,16 @@ offset_left = 511.0
 offset_top = 1021.0
 offset_right = 567.0
 offset_bottom = 1077.0
+scale = Vector2(1.5, 1.5)
 icon = ExtResource("5")
 flat = true
 
 [node name="sfx" type="Button" parent="Screen/Down/Settings"]
 visible = false
 layout_mode = 0
+offset_left = -80.0
+offset_right = -25.0
+offset_bottom = 52.0
 flat = true
 
 [node name="sfx" type="AnimatedSprite2D" parent="Screen/Down/Settings/sfx"]
@@ -128,6 +150,7 @@ animation = &"sfx_on"
 centered = false
 
 [node name="Store" type="Button" parent="Screen/Down"]
+visible = false
 layout_mode = 0
 offset_left = 248.0
 offset_top = 1013.0
@@ -137,6 +160,7 @@ icon = ExtResource("8")
 flat = true
 
 [node name="tutorial" type="Button" parent="Screen/Down"]
+visible = false
 layout_mode = 0
 offset_left = 491.0
 offset_top = 627.0
@@ -146,6 +170,7 @@ icon = ExtResource("9")
 flat = true
 
 [node name="about" type="Button" parent="Screen/Down"]
+visible = false
 layout_mode = 0
 offset_left = 382.0
 offset_top = 1011.0
@@ -157,5 +182,3 @@ flat = true
 [connection signal="pressed" from="Screen/Up/Play" to="." method="_on_Button_pressed"]
 [connection signal="pressed" from="Screen/Down/Settings" to="." method="_on_Settings_pressed"]
 [connection signal="pressed" from="Screen/Down/Settings/sfx" to="." method="_on_sfx_pressed"]
-[connection signal="pressed" from="Screen/Down/Store" to="." method="_on_Store_pressed"]
-[connection signal="pressed" from="Screen/Down/tutorial" to="." method="_on_tutorial_pressed"]

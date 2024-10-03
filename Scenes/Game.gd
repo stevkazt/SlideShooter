@@ -6,7 +6,7 @@ extends Node2D
 @export var Boss1:PackedScene
 
 var player
-var score_file = "user://highscore"
+var score_file = "user://highscore.txt"
 var higscore = 0
 var screensize
 var Icons = [0,"stair","shield","rocket"]
@@ -14,6 +14,7 @@ var Icons = [0,"stair","shield","rocket"]
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	#testing
 	#
 	randomize()
@@ -23,14 +24,19 @@ func _ready():
 	$Buttons.global_position = Vector2(screensize.x-110,screensize.y-110)
 	player =  PLAYER.instantiate()
 	add_child(player)
-	player.position = Vector2(360,900)
+	player.position = Vector2(screensize.x/2,900)
 
 func _process(_delta):
+	if Singleton.powers.available and $Powers.hidden:
+		$Powers/AnimatedSprite.animation = Icons[Singleton.powers.type]
+		$Powers.show()
+	else:
+		$Powers.hide()
+	
 	if Singleton.lifes == 0 and $GameOverTimer.is_stopped():
 		get_tree().paused = true
 		check_highscore()
 		$GameOverTimer.start()
-		
 		
 	if Singleton.score > 1000 and Singleton.boss:
 		Singleton.boss = false
@@ -52,24 +58,6 @@ func _process(_delta):
 			if Singleton.lifes < 1:
 				$Lifes/Life1.hide()
 	
-	if Singleton.powers.size() > 0:
-		$Buttons/Powers/Power1/AnimatedSprite.animation = Icons[Singleton.powers[0]]
-		$Buttons/Powers/Power1.show()
-		if Singleton.powers.size() > 1:
-			$Buttons/Powers/Power2/AnimatedSprite2.animation = Icons[Singleton.powers[1]]
-			$Buttons/Powers/Power2.show()
-			if Singleton.powers.size() > 2:
-				$Buttons/Powers/Power3/AnimatedSprite3.animation = Icons[Singleton.powers[2]]
-				$Buttons/Powers/Power3.show()
-			else:
-				$Buttons/Powers/Power3.hide()
-		else:
-			$Buttons/Powers/Power2.hide()
-			$Buttons/Powers/Power3.hide()
-	else:
-		$Buttons/Powers/Power1.hide()
-		$Buttons/Powers/Power2.hide()
-		$Buttons/Powers/Power3.hide()
 	if Singleton.lifes == 3:
 		$Lifes.add_theme_color_override("font_color",Color(0,1,0,1))
 	elif Singleton.lifes == 2:
@@ -80,29 +68,30 @@ func _process(_delta):
 	if Singleton.score > 100 and $ShooterTimer.is_stopped() and !Singleton.boss:
 		$ShooterTimer.start()
 	#empiezan power ups
-	if Singleton.score > 200 and $PowerUpTimer.is_stopped():
+	if Singleton.score > 10 and $PowerUpTimer.is_stopped():#200
 		$PowerUpTimer.start()
 	
-
 func _on_EnemySpawn_timeout():
 	var e = Enemy.instantiate()
 	e.type = 0
 	add_child(e)
 
 func _on_GameOverTimer_timeout():
+	update_highscore()
 	var Main = load("res://Scenes/Main.tscn")
 	var main = Main.instantiate()
 	get_tree().paused = false
 	Singleton.lifes = 3
 	Singleton.score = 0
-	Singleton.powers.resize(0)
+	Singleton.powers.available = 0
 	Singleton.boss = false
 	get_parent().add_child(main)
 	queue_free()
 
 func update_highscore():
-	var f = FileAccess.open(score_file,FileAccess.WRITE)
-	f.store_string(str(Singleton.score))
+	if Singleton.score > int(FileAccess.open(score_file,FileAccess.READ).get_as_text()):
+		var f = FileAccess.open(score_file,FileAccess.WRITE)
+		f.store_string(str(Singleton.score))
 
 func check_highscore():
 	if FileAccess.file_exists(score_file):
@@ -116,29 +105,14 @@ func _on_ShooterTimer_timeout():
 	add_child(e)
 
 func _on_PowerUpTimer_timeout():
+		# This code instantite a new power up
 		randomize()
-		var p = PowerUp.instantiate()
-		var a = [1,1,1,1,1,1,1,1,2,2,2,2]
-		var b = randi()%12+0
-		p.power = a[b]
-		add_child(p)
-		p.position = Vector2(randf_range(150,600),randf_range(400,1120))
-
-func _on_Power2_pressed():
-	if Singleton.powers.size() >= 2:
-		var p0 = Singleton.powers[0]
-		var p1 = Singleton.powers[1]
-		Singleton.powers[0] = p1
-		Singleton.powers[1] = p0
-	
-func _on_Power3_pressed():
-	if Singleton.powers.size() == 3:
-		var p0 = Singleton.powers[0]
-		var p1 = Singleton.powers[1]
-		var p2 = Singleton.powers[2]
-		Singleton.powers[0] = p2
-		Singleton.powers[1] = p0
-		Singleton.powers[2] = p1
+		var power = PowerUp.instantiate()
+		var distribution = [1,1,1,1,1,1,1,1,2,2,2,2]
+		var rand_position = randi()%12+0
+		power.type = distribution[rand_position]
+		add_child(power)
+		power.position = Vector2(randf_range(150,600),randf_range(400,1120))
 
 func _on_sfx_pressed():
 	if Singleton.sfx:
@@ -155,7 +129,6 @@ func _on_Button_yes_pressed():
 	get_tree().paused = false
 	Singleton.lifes = 3
 	Singleton.score = 0
-	Singleton.powers.resize(0)
 	Singleton.boss = false
 	get_parent().add_child(main)
 	queue_free()

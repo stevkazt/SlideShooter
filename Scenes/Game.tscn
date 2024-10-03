@@ -1,11 +1,12 @@
-[gd_scene load_steps=22 format=3 uid="uid://b67o7k6ygvbfy"]
+[gd_scene load_steps=23 format=3 uid="uid://b67o7k6ygvbfy"]
 
 [ext_resource type="Script" path="res://Scenes/Game.gd" id="1"]
 [ext_resource type="PackedScene" path="res://Scenes/Enemy.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://cpnottxufs8tg" path="res://Scenes/PlayerShip.tscn" id="3"]
-[ext_resource type="PackedScene" path="res://Scenes/PowerUp.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://dwr46ndsg1eww" path="res://Scenes/PowerUp.tscn" id="4"]
 [ext_resource type="PackedScene" path="res://Scenes/Boss1.tscn" id="5"]
 [ext_resource type="Texture2D" uid="uid://dw67xtg3dq74u" path="res://Art/GUI/playerLife1_blue.png" id="6"]
+[ext_resource type="FontFile" uid="uid://bwg0si80vw0xj" path="res://Art/Fonts/Kenney Blocks.ttf" id="7"]
 [ext_resource type="Texture2D" uid="uid://b8j7l5ylexh7l" path="res://Art/GUI/play.png" id="8"]
 [ext_resource type="Texture2D" uid="uid://bdjchxd477t7d" path="res://Art/GUI/pause.png" id="9"]
 [ext_resource type="Texture2D" uid="uid://n2o6lrk6jv84" path="res://Art/GUI/home.png" id="10"]
@@ -16,7 +17,34 @@
 [ext_resource type="Texture2D" uid="uid://daw7g4fql7sws" path="res://Art/PowerUps/Escudo.png" id="15"]
 [ext_resource type="Texture2D" uid="uid://bl40nev780w7i" path="res://Art/PowerUps/Multishot.png" id="16"]
 [ext_resource type="Texture2D" uid="uid://bmf72scm0qi4h" path="res://Art/PowerUps/Roketluncher.png" id="17"]
-[ext_resource type="Texture2D" uid="uid://cv4ds7ug6cmsj" path="res://Art/PowerUps/FondoPowerup.png" id="18"]
+[ext_resource type="Texture2D" uid="uid://jlpqgfnye6gj" path="res://Art/GUI/5471985.jpg" id="18_f804r"]
+
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17")
+}],
+"loop": true,
+"name": &"rocket",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15")
+}],
+"loop": true,
+"name": &"shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16")
+}],
+"loop": false,
+"name": &"stair",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="2"]
 animations = [{
@@ -67,40 +95,24 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="5"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("17")
-}],
-"loop": true,
-"name": &"rocket",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("15")
-}],
-"loop": true,
-"name": &"shield",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("16")
-}],
-"loop": false,
-"name": &"stair",
-"speed": 5.0
-}]
-
 [node name="Game" type="Node2D"]
 process_mode = 1
+position = Vector2(0, 1)
 script = ExtResource("1")
 Enemy = ExtResource("2")
 PLAYER = ExtResource("3")
 PowerUp = ExtResource("4")
 Boss1 = ExtResource("5")
+
+[node name="background" type="Node2D" parent="."]
+z_index = -8
+
+[node name="TextureRect" type="TextureRect" parent="background"]
+offset_right = 1761.0
+offset_bottom = 3105.0
+texture = ExtResource("18_f804r")
+expand_mode = 1
+stretch_mode = 6
 
 [node name="ninjaSpawn" type="Timer" parent="."]
 wait_time = 0.7
@@ -111,21 +123,41 @@ layout_mode = 3
 anchors_preset = 0
 
 [node name="Life1" type="Sprite2D" parent="Lifes"]
-position = Vector2(100, 65)
+position = Vector2(100, 100)
 scale = Vector2(2, 2)
 texture = ExtResource("6")
 
 [node name="Life2" type="Sprite2D" parent="Lifes"]
-position = Vector2(170, 65)
+position = Vector2(170, 100)
 scale = Vector2(2, 2)
 texture = ExtResource("6")
 
 [node name="Life3" type="Sprite2D" parent="Lifes"]
-position = Vector2(240, 65)
+position = Vector2(240, 100)
 scale = Vector2(2, 2)
 texture = ExtResource("6")
 
+[node name="Powers" type="Control" parent="."]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_left = 66.0
+offset_top = 148.0
+offset_right = 66.0
+offset_bottom = 148.0
+
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Powers"]
+sprite_frames = SubResource("5")
+animation = &"shield"
+centered = false
+
 [node name="Score" type="Label" parent="."]
+offset_left = 489.0
+offset_top = 78.0
+offset_right = 544.0
+offset_bottom = 123.0
+theme_override_fonts/font = ExtResource("7")
+theme_override_font_sizes/font_size = 32
 text = "100"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -212,47 +244,6 @@ sprite_frames = SubResource("4")
 animation = &"sfx_on"
 centered = false
 
-[node name="Powers" type="Control" parent="Buttons"]
-anchors_preset = 0
-
-[node name="Power1" type="Button" parent="Buttons/Powers"]
-layout_mode = 0
-flat = true
-
-[node name="AnimatedSprite" type="AnimatedSprite2D" parent="Buttons/Powers/Power1"]
-visible = false
-sprite_frames = SubResource("5")
-animation = &"stair"
-centered = false
-
-[node name="Sprite" type="Sprite2D" parent="Buttons/Powers/Power1"]
-visible = false
-z_index = -1
-position = Vector2(-6.14424, -3.28645)
-scale = Vector2(0.899892, 0.842736)
-texture = ExtResource("18")
-centered = false
-
-[node name="Power2" type="Button" parent="Buttons/Powers"]
-layout_mode = 0
-flat = true
-
-[node name="AnimatedSprite2" type="AnimatedSprite2D" parent="Buttons/Powers/Power2"]
-visible = false
-sprite_frames = SubResource("5")
-animation = &"stair"
-centered = false
-
-[node name="Power3" type="Button" parent="Buttons/Powers"]
-layout_mode = 0
-flat = true
-
-[node name="AnimatedSprite3" type="AnimatedSprite2D" parent="Buttons/Powers/Power3"]
-visible = false
-sprite_frames = SubResource("5")
-animation = &"stair"
-centered = false
-
 [connection signal="timeout" from="ninjaSpawn" to="." method="_on_EnemySpawn_timeout"]
 [connection signal="timeout" from="GameOverTimer" to="." method="_on_GameOverTimer_timeout"]
 [connection signal="timeout" from="ShooterTimer" to="." method="_on_ShooterTimer_timeout"]
@@ -262,5 +253,3 @@ centered = false
 [connection signal="pressed" from="Buttons/pause_menu/home/Button_yes" to="." method="_on_Button_yes_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/home/Button_no" to="." method="_on_Button_no_pressed"]
 [connection signal="pressed" from="Buttons/pause_menu/sfx" to="." method="_on_sfx_pressed"]
-[connection signal="pressed" from="Buttons/Powers/Power2" to="." method="_on_Power2_pressed"]
-[connection signal="pressed" from="Buttons/Powers/Power3" to="." method="_on_Power3_pressed"]

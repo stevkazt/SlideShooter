@@ -1,44 +1,51 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://dwr46ndsg1eww"]
 
-[ext_resource path="res://Scenes/PowerUp.gd" type="Script" id=1]
-[ext_resource path="res://Art/PowerUps/Escudo.png" type="Texture" id=2]
-[ext_resource path="res://Art/PowerUps/Multishot.png" type="Texture" id=3]
-[ext_resource path="res://Art/PowerUps/Roketluncher.png" type="Texture" id=4]
+[ext_resource type="Script" path="res://Scenes/PowerUp.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://daw7g4fql7sws" path="res://Art/PowerUps/Escudo.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://bl40nev780w7i" path="res://Art/PowerUps/Multishot.png" id="3"]
+[ext_resource type="Texture2D" uid="uid://bmf72scm0qi4h" path="res://Art/PowerUps/Roketluncher.png" id="4"]
 
-[sub_resource type="SpriteFrames" id=1]
-animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": false,
-"name": "shield",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 3 ) ],
-"loop": false,
-"name": "stair",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 4 ) ],
+[sub_resource type="SpriteFrames" id="1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4")
+}],
 "loop": true,
-"name": "rocket",
+"name": &"rocket",
 "speed": 5.0
-} ]
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2")
+}],
+"loop": false,
+"name": &"shield",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3")
+}],
+"loop": false,
+"name": &"stair",
+"speed": 5.0
+}]
 
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id="2"]
 radius = 11.9281
 
-[node name="PowerUp" type="Area2D" groups=[
-"powerup",
-]]
+[node name="PowerUp" type="Area2D" groups=["powerup"]]
 collision_layer = 16
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 1 )
-animation = "stair"
+[node name="AnimatedSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("1")
+animation = &"stair"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.234371, 0.937477 )
-shape = SubResource( 2 )
+position = Vector2(0.234371, 0.937477)
+shape = SubResource("2")
 
 [node name="sfx_taken" type="AudioStreamPlayer2D" parent="."]
 volume_db = 5.0

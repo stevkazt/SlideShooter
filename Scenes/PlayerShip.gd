@@ -36,17 +36,17 @@ func _process(delta):
 func _input(event):
 	if event is InputEventScreenTouch:
 		if event.pressed:
-			if Singleton.powers.size() > 0:
+			if Singleton.powers.available:
 				taps += 1
 				$TapTimer.start()
 				if taps == 2:
-					match Singleton.powers[0]:
+					match Singleton.powers.type:
 						1:
 							_powerupStair()
 						2:
 							if !shield:
 								_powerupShield()
-					Singleton.powers.erase(0)
+					Singleton.powers.available = false
 					taps = 0
 			dragging = true
 		elif !event.pressed:
@@ -157,15 +157,7 @@ func _on_PlayerShip_area_entered(_area):
 	if shield:
 		shields_number=0
 		lost_shield_played = false
-	#if can_get_damage and area.get_collision_layer_value(7): 
-		#Singleton.lifes = 0
-		#$Sprite.play("explode")
-		#$sfx_lose.play()
-		#Singleton.powers.resize(0)
-	
-	#elif shield:
-		#shields_number-=1
-		#lost_shield_played = false
+
 	elif can_get_damage: 
 		can_get_damage = false
 		$sfx_shielup.play()
@@ -173,7 +165,7 @@ func _on_PlayerShip_area_entered(_area):
 		$LifeTimer.start()
 		Singleton.lifes -= 1
 		if Singleton.lifes == 0:
-			Singleton.powers.resize(0)
+			Singleton.powers.available = false
 			$Sprite.play("explode")
 			$sfx_lose.play()
 

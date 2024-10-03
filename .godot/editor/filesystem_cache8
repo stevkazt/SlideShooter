@@ -1,7 +1,7 @@
 fc8a56933c4b1c8d796fdb8f7a9f9475
-::res://::1727493283
+::res://::1727836562
 default_env.tres::Environment::-1::1727490592::0::1::::<><>::
-export_presets.cfg::TextFile::-1::1727492375::0::1::::<><>::
+export_presets.cfg::TextFile::-1::1727835282::0::1::::<><>::
 icon.png::CompressedTexture2D::552847034724255474::1727490592::1727490613::1::::<><>::
 README.md::TextFile::-1::1727490592::0::1::::<><>::
 ::res://APK/::1727490592
@@ -33,9 +33,11 @@ playerShip3_damage3.png::CompressedTexture2D::784583661619096567::1727490592::17
 enemyBlack1.png::CompressedTexture2D::6805052247727294182::1727490592::1727490613::1::::<><>::
 enemyRed2.png::CompressedTexture2D::6679366958728914847::1727490592::1727490613::1::::<><>::
 spaceShips_007.png::CompressedTexture2D::6873523011658242154::1727490592::1727490613::1::::<><>::
-::res://Art/Fonts/::1727490613
+::res://Art/Fonts/::1727836075
+Evil Empire.otf::FontFile::5102464266359635522::1727836040::1727836075::1::::<><>::
 Kenney Blocks.ttf::FontFile::3944512051693811803::1727490592::1727490613::1::::<><>::
-::res://Art/GUI/::1727490613
+::res://Art/GUI/::1727836562
+5471985.jpg::CompressedTexture2D::655347399117973073::1727836544::1727836563::1::::<><>::
 about.png::CompressedTexture2D::2296369249438588946::1727490592::1727490613::1::::<><>::
 configuration.png::CompressedTexture2D::6891643105358531601::1727490592::1727490613::1::::<><>::
 home.png::CompressedTexture2D::969099168678503691::1727490592::1727490613::1::::<><>::
@@ -72,23 +74,23 @@ shield1.png::CompressedTexture2D::6507131711821774398::1727490592::1727490613::1
 ::res://music/::1727490592
 ::res://music/sound2/::1727490613
 BUCLE2.ogg::AudioStreamOggVorbis::8863031385395405417::1727490592::1727490613::1::::<><>::
-::res://Scenes/::1727492596
+::res://Scenes/::1727836562
 Asteroid.gd::GDScript::-1::1727490592::0::1::::<>Area2D<>::
 Asteroid.tscn::PackedScene::-1::1727490592::0::1::::<><>::res://Scenes/Asteroid.gd<>res://art/PNG/Meteors/meteorBrown_small1.png
-Boss1.gd::GDScript::-1::1727491993::0::1::::<>Area2D<>::
+Boss1.gd::GDScript::-1::1727500222::0::1::::<>Area2D<>::
 Boss1.tscn::PackedScene::-1::1727490592::0::1::::<><>::res://Scenes/Boss1.gd<>res://Scenes/Bullet.tscn<>res://Art/Enemy/spaceShips_007.png<>res://Art/Bullets/ShipLazer.png<>res://Art/Bullets/Lazer1.png<>res://Art/Bullets/Lazer2.png<>res://Art/Bullets/Lazer3.png<>res://Art/Bullets/Lazer4.png
 BossLife.tscn::PackedScene::-1::1727490592::0::1::::<><>::
-Bullet.gd::GDScript::-1::1727491534::0::1::::<>Area2D<>::
-Bullet.tscn::PackedScene::-1::1727490592::0::1::::<><>::res://Scenes/Bullet.gd<>res://Art/Bullets/laserBlue01.png<>res://Art/Bullets/laserRed01.png<>res://Art/Bullets/laserBlue08.png<>res://Art/Bullets/laserBlue09.png<>res://Art/Bullets/laserBlue10.png<>res://Art/Bullets/laserBlue11.png<>res://Art/Bullets/laserRed08.png<>res://Art/Bullets/laserRed09.png<>res://Art/Bullets/laserRed10.png<>res://Art/Bullets/laserRed11.png<>res://Art/Bullets/mesiles1.png<>res://Art/Bullets/mesiles2.png<>res://Art/Bullets/mesiles3.png
+Bullet.gd::GDScript::-1::1727498717::0::1::::<>Area2D<>::
+Bullet.tscn::PackedScene::3512434562661601514::1727835256::0::1::::<><>::res://Scenes/Bullet.gd<>uid://cchq32yu8sqdx::::res://Art/Bullets/laserBlue01.png<>uid://bvqfreq1xoude::::res://Art/Bullets/laserRed01.png<>uid://cf510wqqdap2b::::res://Art/Bullets/laserBlue08.png<>uid://fejswor2chcj::::res://Art/Bullets/laserBlue09.png<>uid://ccs1vgj0yiv4l::::res://Art/Bullets/laserBlue10.png<>uid://bwsmp2x8swk4q::::res://Art/Bullets/laserBlue11.png<>uid://b1x5a32de6dya::::res://Art/Bullets/laserRed08.png<>uid://dh4vncpcooxjf::::res://Art/Bullets/laserRed09.png<>uid://d4ggl15cmv1lq::::res://Art/Bullets/laserRed10.png<>uid://b1cs3hkdid1kl::::res://Art/Bullets/laserRed11.png<>uid://cybw7jberr6r2::::res://Art/Bullets/mesiles1.png<>uid://bi6j7u1wls2v4::::res://Art/Bullets/mesiles2.png<>uid://4ku6ykh77lkl::::res://Art/Bullets/mesiles3.png
 Enemy.gd::GDScript::-1::1727491790::0::1::::<>Area2D<>::
 Enemy.tscn::PackedScene::-1::1727490592::0::1::::<><>::res://Scenes/Enemy.gd<>res://Scenes/Bullet.tscn<>res://Art/Damage/playerShip3_damage1.png<>res://Art/Damage/playerShip3_damage2.png<>res://Art/Damage/playerShip3_damage3.png<>res://Art/Enemy/enemyBlack1.png<>res://Art/Enemy/enemyRed2.png
-Game.gd::GDScript::-1::1727491489::0::1::::<>Node2D<>::
-Game.tscn::PackedScene::-1::1727490592::0::1::::<><>::res://Scenes/Game.gd<>res://Scenes/Enemy.tscn<>res://Scenes/PlayerShip.tscn<>res://Scenes/PowerUp.tscn<>res://Scenes/Boss1.tscn<>res://Art/GUI/playerLife1_blue.png<>res://Art/Fonts/Kenney Blocks.ttf<>res://Art/GUI/play.png<>res://Art/GUI/pause.png<>res://Art/GUI/home.png<>res://Art/GUI/yes.png<>res://Art/GUI/no.png<>res://Art/GUI/sfx_on.png<>res://Art/GUI/sfx_off.png<>res://Art/PowerUps/Escudo.png<>res://Art/PowerUps/Multishot.png<>res://Art/PowerUps/Roketluncher.png<>res://Art/PowerUps/FondoPowerup.png
-Main.gd::GDScript::-1::1727491315::0::1::::<>Control<>::
-Main.tscn::PackedScene::1326873423624623246::1727492259::0::1::::<><>::res://Scenes/Main.gd<>res://Scenes/Game.tscn<>uid://bd2ok8evag6po::::res://Art/Player/playerShip2_orange.png<>uid://c5gmmcpojbmjx::::res://Art/GUI/configuration.png<>uid://mjfljhypyal2::::res://Art/GUI/sfx_on.png<>uid://07eu8w08qcw8::::res://Art/GUI/sfx_off.png<>uid://ilnwrotsccxv::::res://Art/GUI/keys.png<>uid://mrpiyaqjldeg::::res://Art/GUI/tutorial.png<>uid://7ym4pevdbohu::::res://Art/GUI/about.png
+Game.gd::GDScript::-1::1727835465::0::1::::<>Node2D<>::
+Game.tscn::PackedScene::4629242682127438222::1727835256::0::1::::<><>::res://Scenes/Game.gd<>res://Scenes/Enemy.tscn<>uid://cpnottxufs8tg::::res://Scenes/PlayerShip.tscn<>res://Scenes/PowerUp.tscn<>res://Scenes/Boss1.tscn<>uid://dw67xtg3dq74u::::res://Art/GUI/playerLife1_blue.png<>uid://b8j7l5ylexh7l::::res://Art/GUI/play.png<>uid://bdjchxd477t7d::::res://Art/GUI/pause.png<>uid://n2o6lrk6jv84::::res://Art/GUI/home.png<>uid://cm62p0j2l53yw::::res://Art/GUI/yes.png<>uid://dorfx77c4xi0j::::res://Art/GUI/no.png<>uid://mjfljhypyal2::::res://Art/GUI/sfx_on.png<>uid://07eu8w08qcw8::::res://Art/GUI/sfx_off.png<>uid://daw7g4fql7sws::::res://Art/PowerUps/Escudo.png<>uid://bl40nev780w7i::::res://Art/PowerUps/Multishot.png<>uid://bmf72scm0qi4h::::res://Art/PowerUps/Roketluncher.png<>uid://cv4ds7ug6cmsj::::res://Art/PowerUps/FondoPowerup.png
+Main.gd::GDScript::-1::1727835489::0::1::::<>Control<>::
+Main.tscn::PackedScene::1326873423624623246::1727835489::0::1::::<><>::res://Scenes/Main.gd<>uid://b67o7k6ygvbfy::::res://Scenes/Game.tscn<>uid://bd2ok8evag6po::::res://Art/Player/playerShip2_orange.png<>uid://c5gmmcpojbmjx::::res://Art/GUI/configuration.png<>uid://mjfljhypyal2::::res://Art/GUI/sfx_on.png<>uid://07eu8w08qcw8::::res://Art/GUI/sfx_off.png<>uid://ilnwrotsccxv::::res://Art/GUI/keys.png<>uid://mrpiyaqjldeg::::res://Art/GUI/tutorial.png<>uid://7ym4pevdbohu::::res://Art/GUI/about.png
 ParallaxBackground.tscn::PackedScene::-1::1727490592::0::1::::<><>::
-PlayerShip.gd::GDScript::-1::1727491727::0::1::::<>Area2D<>::
-PlayerShip.tscn::PackedScene::5853395935132679216::1727492596::0::1::::<><>::res://Scenes/PlayerShip.gd<>res://Scenes/Bullet.tscn<>uid://dwgemtj2v0rcv::::res://Art/Player/playerShip1_blue.png<>uid://lgb8i5h11exj::::res://Art/Damage/playerShip3_damage3.png<>uid://c13dj3w5fhpwq::::res://Art/Damage/playerShip3_damage2.png<>uid://b56lheik3n6p2::::res://Art/Damage/playerShip3_damage1.png<>uid://cyydrj6u7daok::::res://Art/Shields/shield1.png<>uid://d1mfs4tljwnof::::res://Art/Shields/ESCUDO3.png<>uid://c77veevev7l4v::::res://Art/Shields/ESCUDO2.png<>uid://dphphotojomw2::::res://Art/Shields/ESCUDO1.png<>uid://43gtqjd1kosr::::res://Art/Sfx/sfx_shieldUp.ogg<>uid://iwfo2yavshhp::::res://Art/Sfx/sfx_shieldDown.ogg<>uid://bh6xns5rfup6x::::res://Art/Sfx/sfx_lose.ogg<>uid://c24vq5aec4l4a::::res://Art/Sfx/stair.ogg
+PlayerShip.gd::GDScript::-1::1727504270::0::1::::<>Area2D<>::
+PlayerShip.tscn::PackedScene::5853395935132679216::1727835256::0::1::::<><>::res://Scenes/PlayerShip.gd<>uid://bqbpjwnihhg8i::::res://Scenes/Bullet.tscn<>uid://dwgemtj2v0rcv::::res://Art/Player/playerShip1_blue.png<>uid://lgb8i5h11exj::::res://Art/Damage/playerShip3_damage3.png<>uid://c13dj3w5fhpwq::::res://Art/Damage/playerShip3_damage2.png<>uid://b56lheik3n6p2::::res://Art/Damage/playerShip3_damage1.png<>uid://cyydrj6u7daok::::res://Art/Shields/shield1.png<>uid://d1mfs4tljwnof::::res://Art/Shields/ESCUDO3.png<>uid://c77veevev7l4v::::res://Art/Shields/ESCUDO2.png<>uid://dphphotojomw2::::res://Art/Shields/ESCUDO1.png<>uid://43gtqjd1kosr::::res://Art/Sfx/sfx_shieldUp.ogg<>uid://iwfo2yavshhp::::res://Art/Sfx/sfx_shieldDown.ogg<>uid://bh6xns5rfup6x::::res://Art/Sfx/sfx_lose.ogg<>uid://c24vq5aec4l4a::::res://Art/Sfx/stair.ogg
 PowerUp.gd::GDScript::-1::1727490592::0::1::::<>Area2D<>::
 PowerUp.tscn::PackedScene::-1::1727490592::0::1::::<><>::res://Scenes/PowerUp.gd<>res://Art/PowerUps/Escudo.png<>res://Art/PowerUps/Multishot.png<>res://Art/PowerUps/Roketluncher.png
 Singleton.gd::GDScript::-1::1727490592::0::1::::<>Node<>::

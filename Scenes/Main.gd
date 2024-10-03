@@ -4,7 +4,7 @@ extends Control
 @export var Tutorials: PackedScene
 @export var Store: PackedScene
 
-var score_file = "user://highscore"
+var score_file = "user://highscore.txt"
 var higscore = 0
 var screensize
 var settings = false
@@ -14,9 +14,8 @@ func _ready():
 	screensize =  get_viewport_rect().size
 	randomize()
 	load_score()
-	#$Screen.rect_size.y = screensize.y
-	#$Screen/Up.rect_size.y = (screensize.y/2)+160
-	#$Screen/Down.rect_global_position = Vector2(0,screensize.y-130)
+	$Screen/Up/Play.position.y = screensize.y-300 
+	$Screen/Down/Settings.position.y = screensize.y - 150
 
 	if !Singleton.sfx:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),true)
@@ -56,14 +55,14 @@ func _on_sfx_pressed():
 #--------------------------------
 func _on_Settings_pressed():
 	if !settings:
-		$Screen/Down/Store.hide()
-		$Screen/Down/tutorial.hide()
-		$Screen/Down/about.hide()
+		#$Screen/Down/Store.hide()
+		#$Screen/Down/tutorial.hide()
+		#$Screen/Down/about.hide()
 		$Screen/Down/Settings/sfx.show()
 	else:
-		$Screen/Down/Store.show()
-		$Screen/Down/tutorial.show()
-		$Screen/Down/about.show()
+		#$Screen/Down/Store.show()
+		#$Screen/Down/tutorial.show()
+		#$Screen/Down/about.show()
 		$Screen/Down/Settings/sfx.hide()
 	settings = !settings
 	
