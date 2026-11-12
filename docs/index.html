@@ -78,7 +78,7 @@ body {
 		</style>
 		<link id="-gd-engine-icon" rel="icon" type="image/png" href="index.icon.png" />
 <link rel="apple-touch-icon" href="index.apple-touch-icon.png"/>
-
+<script>(function(){var O=window.AudioContext||window.webkitAudioContext;if(!O)return;var cs=[];function P(){var c=new O(...arguments);cs.push(c);return c}P.prototype=O.prototype;window.AudioContext=P;if(window.webkitAudioContext)window.webkitAudioContext=P;function as(){try{if(navigator.audioSession)navigator.audioSession.type='playback'}catch(e){}}as();function u(){as();cs.forEach(function(c){try{if(c.state!=='running')c.resume();var b=c.createBuffer(1,1,22050),s=c.createBufferSource();s.buffer=b;s.connect(c.destination);s.start(0)}catch(e){}})}['touchend','pointerup','click','keydown'].forEach(function(e){window.addEventListener(e,u,{capture:true,passive:true})});if(/audiodebug/.test(location.search)){var d=document.createElement('div');d.style.cssText='position:fixed;top:0;left:0;z-index:99;background:#000a;color:#0f0;font:12px monospace;padding:4px;pointer-events:none';document.addEventListener('DOMContentLoaded',function(){document.body.appendChild(d)});setInterval(function(){d.textContent='audio: '+(cs.length?cs.map(function(c){return c.state+' '+c.sampleRate+'Hz t='+c.currentTime.toFixed(1)}).join(', '):'no context')+' | session: '+(navigator.audioSession?navigator.audioSession.type:'n/a')},500)}})();</script>
 	</head>
 	<body>
 		<canvas id="canvas">
@@ -97,7 +97,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":1136048,"index.wasm":35376909},"focusCanvas":true,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":1163552,"index.wasm":35376909},"focusCanvas":true,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
