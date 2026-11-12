@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bqbpjwnihhg8i"]
+[gd_scene load_steps=19 format=3 uid="uid://bqbpjwnihhg8i"]
 
 [ext_resource type="Script" path="res://Scenes/Bullet.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cchq32yu8sqdx" path="res://Art/Bullets/laserBlue01.png" id="2"]
@@ -14,6 +14,8 @@
 [ext_resource type="Texture2D" uid="uid://cybw7jberr6r2" path="res://Art/Bullets/mesiles1.png" id="12"]
 [ext_resource type="Texture2D" uid="uid://bi6j7u1wls2v4" path="res://Art/Bullets/mesiles2.png" id="13"]
 [ext_resource type="Texture2D" uid="uid://4ku6ykh77lkl" path="res://Art/Bullets/mesiles3.png" id="14"]
+[ext_resource type="AudioStream" path="res://Art/Sfx/sfx_laser1.ogg" id="sfx_player"]
+[ext_resource type="AudioStream" path="res://Art/Sfx/sfx_laser2.ogg" id="sfx_enemy"]
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
@@ -113,9 +115,11 @@ shape = SubResource("2")
 position = Vector2(-14.52, 0.250343)
 
 [node name="sfx_laser_player" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("sfx_player")
 volume_db = -10.0
 
 [node name="sfx_laser_enemy" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("sfx_enemy")
 
 [connection signal="area_entered" from="." to="." method="_on_Bullet_area_entered"]
 [connection signal="animation_finished" from="Sprite" to="." method="_on_Sprite_animation_finished"]

@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dwr46ndsg1eww"]
+[gd_scene load_steps=8 format=3 uid="uid://dwr46ndsg1eww"]
 
 [ext_resource type="Script" path="res://Scenes/PowerUp.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://daw7g4fql7sws" path="res://Art/PowerUps/Escudo.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://bl40nev780w7i" path="res://Art/PowerUps/Multishot.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://bmf72scm0qi4h" path="res://Art/PowerUps/Roketluncher.png" id="4"]
+[ext_resource type="AudioStream" path="res://Art/Sfx/sfx_twoTone.ogg" id="sfx_taken"]
 
 [sub_resource type="SpriteFrames" id="1"]
 animations = [{
@@ -48,6 +49,7 @@ position = Vector2(0.234371, 0.937477)
 shape = SubResource("2")
 
 [node name="sfx_taken" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("sfx_taken")
 volume_db = 5.0
 
 [node name="Dissapear" type="Timer" parent="."]
