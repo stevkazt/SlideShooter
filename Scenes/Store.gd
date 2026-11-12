@@ -1,7 +1,7 @@
 extends Control
 
 
-export (PackedScene) var Asteroid 
+@export var Asteroid: PackedScene
 
 
 
@@ -16,8 +16,8 @@ var settings = false
 func _ready():
 	screensize =  get_viewport_rect().size
 	randomize()
-	$Screen.rect_size.y = screensize.y
-	$Screen/Down.rect_global_position = Vector2(0,screensize.y-130)
+	$Screen.size.y = screensize.y
+	$Screen/Down.global_position = Vector2(0,screensize.y-130)
 	
 	if !Singleton.sfx:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index("Master"),true)
@@ -25,13 +25,13 @@ func _ready():
 
 	
 func _process(_delta):
-	$AsteroidTimer.wait_time = rand_range(.5,2)
+	$AsteroidTimer.wait_time = randf_range(.5,2)
 	$ParallaxBackground/ParallaxLayer.motion_offset.y += 1
 
 
 func _on_AsteroidTimer_timeout():
 	if get_tree().get_nodes_in_group("asteroids").size() < 20:
-		var ast = Asteroid.instance()
+		var ast = Asteroid.instantiate()
 		add_child(ast)
 
 
@@ -60,7 +60,7 @@ func _on_Settings_pressed():
 
 func _on_tutorial_pressed():
 	var Tutorials = load("res://Scenes/Tutorials.tscn")
-	var tutos = Tutorials.instance()
+	var tutos = Tutorials.instantiate()
 	get_parent().add_child(tutos)
 	queue_free()
 
@@ -69,6 +69,6 @@ func _on_tutorial_pressed():
 
 func _on_home_pressed():
 	var Main = load("res://Scenes/Main.tscn")
-	var main = Main.instance()
+	var main = Main.instantiate()
 	get_parent().add_child(main)
 	queue_free()

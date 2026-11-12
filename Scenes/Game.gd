@@ -89,7 +89,11 @@ func _on_GameOverTimer_timeout():
 	queue_free()
 
 func update_highscore():
-	if Singleton.score > int(FileAccess.open(score_file,FileAccess.READ).get_as_text()):
+	# FileAccess.open() returns null when the file doesn't exist yet (first game on a fresh install)
+	var best = 0
+	if FileAccess.file_exists(score_file):
+		best = int(FileAccess.open(score_file,FileAccess.READ).get_as_text())
+	if Singleton.score > best:
 		var f = FileAccess.open(score_file,FileAccess.WRITE)
 		f.store_string(str(Singleton.score))
 
